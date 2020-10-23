@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/materialize.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/icon-font.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <title>My Emergency</title>
+  </head>
+  <body>
+    <header class="header">
+      <button class="btn-refresh">Refresh</button>
+      <div id="map"></div>
+      <button class="btn-emergency">Emergency</button>
+    </header>
+  </body>
+  <main>
+    <section class="nationalEmergencyHelpline">
+      <h2
+        class="heading-secondary nationalEmergencyHelpline__heading u-center-text u-margin-bottom-big u-margin-top-big"
+      >
+        National Emergency Helpline Numbres
+      </h2>
+      <div class="row">
+        <div class="col-1-of-3 nationalEmergencyHelpline__Card">
+          <div class="nationalEmergencyHelpline__Card-icon">
+            <img src="./img/police.png" alt="" srcset="" />
+          </div>
+          <div class="nationalEmergencyHelpline__Card-userName">
+            <font>Police</font>
+          </div>
+          <div class="nationalEmergencyHelpline__Card-phone"></div>
+          <div class="btn-copy nationalEmergencyHelpline__Card-btn">
+            <font>Copy</font>
+          </div>
+        </div>
+        <div class="col-1-of-3 nationalEmergencyHelpline__Card">
+          <div class="nationalEmergencyHelpline__Card-icon">
+            <img src="./img/ambulance.png" alt="" srcset="" />
+          </div>
+          <div class="nationalEmergencyHelpline__Card-userName">
+            <font>Ambulance</font>
+          </div>
+          <div class="nationalEmergencyHelpline__Card-phone"></div>
+          <div class="btn-copy nationalEmergencyHelpline__Card-btn">Copy</div>
+        </div>
+        <div class="col-1-of-3 nationalEmergencyHelpline__Card">
+          <div class="nationalEmergencyHelpline__Card-icon">
+            <img src="./img/fireBrigade.png" alt="" srcset="" />
+          </div>
+          <div class="nationalEmergencyHelpline__Card-userName">
+            <font>Fire Brigade</font>
+          </div>
+          <div class="nationalEmergencyHelpline__Card-phone"></div>
+          <div class="btn-copy nationalEmergencyHelpline__Card-btn">Copy</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1-of-3 nationalEmergencyHelpline__Card">
+          <div class="nationalEmergencyHelpline__Card-icon">
+            <img src="./img/ndrf.webp" alt="" srcset="" />
+          </div>
+          <div class="nationalEmergencyHelpline__Card-userName">
+            <font>NDRF</font>
+          </div>
+          <div class="nationalEmergencyHelpline__Card-phone"></div>
+          <div class="btn-copy nationalEmergencyHelpline__Card-btn">Copy</div>
+        </div>
+        <div class="col-1-of-3 nationalEmergencyHelpline__Card">
+          <div class="nationalEmergencyHelpline__Card-icon">
+            <img src="./img/woman.png" alt="" srcset="" />
+          </div>
+          <div class="nationalEmergencyHelpline__Card-userName text-wrap  ">
+            <font>Women Helpline</font>
+          </div>
+          <div class="nationalEmergencyHelpline__Card-phone"></div>
+          <div class="btn-copy nationalEmergencyHelpline__Card-btn">Copy</div>
+        </div>
+        <div class="col-1-of-3 nationalEmergencyHelpline__Card">
+          <div class="nationalEmergencyHelpline__Card-icon">
+            <img src="./img/siren.png" alt="" srcset="" />
+          </div>
+          <div class="nationalEmergencyHelpline__Card-userName">
+            <font>Emergency</font>
+          </div>
+          <div class="nationalEmergencyHelpline__Card-phone"></div>
+          <div class="btn-copy nationalEmergencyHelpline__Card-btn">Copy</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="./js/bundle.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+</html>
