@@ -1,0 +1,23 @@
+.emergencyChatBox {
+  height: 80rem;
+  width: 100%;
+  background-color: $color-grey-dark-3;
+  position: relative;
+  font-size: 10rem;
+  &__heading {
+    position: absolute;
+    width: 100%;
+    top: 7%;
+  }
+  &__messenger {
+    overflow: scroll;
+    height: 70%;
+    width: 90%;
+    background-color: orangered;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 1rem;
+  }
+}

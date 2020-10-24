@@ -9,7 +9,10 @@
 @import 'layout/header';
 @import 'layout/map';
 @import 'layout/grid';
+@import 'layout/footer';
 
 @import 'components/button';
 @import 'components/marker';
-@import 'components/nationalEmergencyHelplineCard';
+@import 'components/nationalEmergencyHelpline';
+@import 'components/emergencyChatBox';
+@import 'components/notifyAvengers';
