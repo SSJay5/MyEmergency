@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/materialize.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/materialize.min.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
       rel="stylesheet"
@@ -20,6 +20,30 @@
     <title>My Emergency</title>
   </head>
   <body>
+    <nav>
+      <div class="nav-wrapper">
+        <div class="container">
+          <a href="#" class="brand-logo">Logo</a>
+
+          <a href="#" class="sidenav-trigger" data-target="#slide_out"
+            ><i class="material-icons">menu</i></a
+          >
+
+          <ul class="right hide-on-med-and-down">
+            <li><a href="index.html">Home </a></li>
+            <li><a href="services.html">Services </a></li>
+            <li><a href="contact.html">Contact </a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <ul class="sidenav" id="slide_out">
+      <li><a href="index.html">Home </a></li>
+      <li><a href="services.html">Services </a></li>
+      <li><a href="contact.html">Contact </a></li>
+    </ul>
+
     <header class="header">
       <button class="btn-refresh">Refresh</button>
       <div id="map"></div>
@@ -41,7 +65,9 @@
           <div class="nationalEmergencyHelpline__Card-userName">
             <font>Police</font>
           </div>
-          <div class="nationalEmergencyHelpline__Card-phone"></div>
+          <div class="nationalEmergencyHelpline__Card-phone">
+            <font>100</font>
+          </div>
           <div class="btn-copy nationalEmergencyHelpline__Card-btn">
             <font>Copy</font>
           </div>
@@ -53,7 +79,9 @@
           <div class="nationalEmergencyHelpline__Card-userName">
             <font>Ambulance</font>
           </div>
-          <div class="nationalEmergencyHelpline__Card-phone"></div>
+          <div class="nationalEmergencyHelpline__Card-phone">
+            <font>102</font>
+          </div>
           <div class="btn-copy nationalEmergencyHelpline__Card-btn">Copy</div>
         </div>
         <div class="col-1-of-3 nationalEmergencyHelpline__Card">
@@ -63,7 +91,9 @@
           <div class="nationalEmergencyHelpline__Card-userName">
             <font>Fire Brigade</font>
           </div>
-          <div class="nationalEmergencyHelpline__Card-phone"></div>
+          <div class="nationalEmergencyHelpline__Card-phone">
+            <font>101</font>
+          </div>
           <div class="btn-copy nationalEmergencyHelpline__Card-btn">Copy</div>
         </div>
       </div>
@@ -75,17 +105,21 @@
           <div class="nationalEmergencyHelpline__Card-userName">
             <font>NDRF</font>
           </div>
-          <div class="nationalEmergencyHelpline__Card-phone"></div>
+          <div class="nationalEmergencyHelpline__Card-phone">
+            <font>9711077372</font>
+          </div>
           <div class="btn-copy nationalEmergencyHelpline__Card-btn">Copy</div>
         </div>
         <div class="col-1-of-3 nationalEmergencyHelpline__Card">
           <div class="nationalEmergencyHelpline__Card-icon">
             <img src="./img/woman.png" alt="" srcset="" />
           </div>
-          <div class="nationalEmergencyHelpline__Card-userName text-wrap  ">
+          <div class="nationalEmergencyHelpline__Card-userName text-wrap">
             <font>Women Helpline</font>
           </div>
-          <div class="nationalEmergencyHelpline__Card-phone"></div>
+          <div class="nationalEmergencyHelpline__Card-phone">
+            <font>1091</font>
+          </div>
           <div class="btn-copy nationalEmergencyHelpline__Card-btn">Copy</div>
         </div>
         <div class="col-1-of-3 nationalEmergencyHelpline__Card">
@@ -95,15 +129,277 @@
           <div class="nationalEmergencyHelpline__Card-userName">
             <font>Emergency</font>
           </div>
-          <div class="nationalEmergencyHelpline__Card-phone"></div>
+          <div class="nationalEmergencyHelpline__Card-phone">
+            <font>112</font>
+          </div>
           <div class="btn-copy nationalEmergencyHelpline__Card-btn">Copy</div>
         </div>
       </div>
     </section>
+    <section class="emergencyChatBox">
+      <h2
+        class="heading-secondary emergencyChatBox__heading u-center-text u-margin-bottom-small u-margin-top-small"
+      >
+        Chat Section
+      </h2>
+      <div class="emergencyChatBox__messenger"></div>
+    </section>
+    <section class="notifyAvengers">
+      <h2
+        class="heading-secondary notifyAvengers__heading u-center-text u-margin-bottom-big u-margin-top-big"
+      >
+        Notify Avengers
+      </h2>
+      <div class="row">
+        <div class="col-1-of-3 notifyAvengers__card">
+          <a class="notifyAvengers__card-addButton">
+            <svg
+              width="8em"
+              height="8em"
+              viewBox="0 0 16 16"
+              class="bi bi-plus-circle"
+              fill="white"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+              />
+            </svg>
+          </a>
+        </div>
+        <div class="col-1-of-3 notifyAvengers__card">
+          <a class="notifyAvengers__card-addButton">
+            <svg
+              width="8em"
+              height="8em"
+              viewBox="0 0 16 16"
+              class="bi bi-plus-circle"
+              fill="white"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+              />
+            </svg>
+          </a>
+        </div>
+        <div class="col-1-of-3 notifyAvengers__card">
+          <a class="notifyAvengers__card-addButton">
+            <svg
+              width="8em"
+              height="8em"
+              viewBox="0 0 16 16"
+              class="bi bi-plus-circle"
+              fill="white"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1-of-3 notifyAvengers__card">
+          <a class="notifyAvengers__card-addButton">
+            <svg
+              width="8em"
+              height="8em"
+              viewBox="0 0 16 16"
+              class="bi bi-plus-circle"
+              fill="white"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+              />
+            </svg>
+          </a>
+        </div>
+        <div class="col-1-of-3 notifyAvengers__card">
+          <a class="notifyAvengers__card-addButton">
+            <svg
+              width="8em"
+              height="8em"
+              viewBox="0 0 16 16"
+              class="bi bi-plus-circle"
+              fill="white"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+              />
+            </svg>
+          </a>
+        </div>
+        <div class="col-1-of-3 notifyAvengers__card">
+          <a class="notifyAvengers__card-addButton">
+            <svg
+              width="8em"
+              height="8em"
+              viewBox="0 0 16 16"
+              class="bi bi-plus-circle"
+              fill="white"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1-of-3 notifyAvengers__card">
+          <a class="notifyAvengers__card-addButton">
+            <svg
+              width="8em"
+              height="8em"
+              viewBox="0 0 16 16"
+              class="bi bi-plus-circle"
+              fill="white"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+              />
+            </svg>
+          </a>
+        </div>
+        <div class="col-1-of-3 notifyAvengers__card">
+          <a class="notifyAvengers__card-addButton">
+            <svg
+              width="8em"
+              height="8em"
+              viewBox="0 0 16 16"
+              class="bi bi-plus-circle"
+              fill="white"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+              />
+            </svg>
+          </a>
+        </div>
+        <div class="col-1-of-3 notifyAvengers__card">
+          <a class="notifyAvengers__card-addButton">
+            <svg
+              width="8em"
+              height="8em"
+              viewBox="0 0 16 16"
+              class="bi bi-plus-circle"
+              fill="white"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
-
+  <footer class="footer">
+    <div class="footer__logo-box">
+      <picture class="footer__logo">
+        <source
+          srcset="
+            img/logo-green-small-1x.png 1x,
+            img/logo-green-small-2x.png 2x
+          "
+          media="(max-width:37.5em)"
+          src="img/logo-green-small-2x.png"
+        />
+        <img
+          srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x"
+          alt="Full logo"
+        />
+      </picture>
+    </div>
+    <div class="row">
+      <div class="col-1-of-2">
+        <div class="footer__navigation">
+          <ul class="footer__list">
+            <li class="footer__item">
+              <a href="" class="footer__link">Company</a>
+            </li>
+            <li class="footer__item">
+              <a href="" class="footer__link">Contact us</a>
+            </li>
+            <li class="footer__item">
+              <a href="" class="footer__link">Carrers</a>
+            </li>
+            <li class="footer__item">
+              <a href="" class="footer__link">Privacy Policy</a>
+            </li>
+            <li class="footer__item">
+              <a href="" class="footer__link">Terms</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-1-of-2">
+        <p class="footer__copyright">
+          Built my <a href="#" class="footer__link">Jay Kotak </a> his Personal
+          Project <a href="#" class="footer__link">MyEmergency </a>. Copyright
+          &copy; Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui,
+          corporis hic quo asperiores quae vel quas, nemo assumenda illum sint
+          voluptate, enim nulla nesciunt consequatur? Harum inventore doloribus
+          perspiciatis accusantium.
+        </p>
+      </div>
+    </div>
+  </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <script src="./js/bundle.js"></script>
-  <script src="js/bootstrap.min.js"></script>
   <script src="js/materialize.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 </html>

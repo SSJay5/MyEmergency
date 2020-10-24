@@ -6935,6 +6935,12 @@ var _buttonAction = require("./buttonAction");
 
 // import { Linter } from 'eslint';
 // import anime from 'animejs';
+document.addEventListener('DOMContentLoaded', function () {
+  var myNav = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(myNav, {});
+});
+var collapsibleElem = document.querySelector('.collapsible');
+var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
 var locations = [72.82119, 18.959125];
 (0, _mapbox.displayMap)(locations);
 var refreshButton = document.getElementsByClassName('btn-refresh')[0];
@@ -6985,7 +6991,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61360" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63075" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

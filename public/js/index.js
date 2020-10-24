@@ -4,6 +4,13 @@ import { displayMap } from './mapbox';
 // import anime from 'animejs';
 import { emergencyButtonAction } from './buttonAction';
 
+document.addEventListener('DOMContentLoaded', function () {
+  var myNav = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(myNav, {});
+});
+var collapsibleElem = document.querySelector('.collapsible');
+var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
 let locations = [72.82119, 18.959125];
 displayMap(locations);
 const refreshButton = document.getElementsByClassName('btn-refresh')[0];
