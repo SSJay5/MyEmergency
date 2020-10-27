@@ -13,6 +13,11 @@
   transform: translate(-50%, -50%);
 }
 
+@mixin fitImg {
+  width: 100%;
+  height: auto;
+}
+
 // MEDIA QUERY MANAGER
 /*
 

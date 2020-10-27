@@ -1,4 +1,4 @@
-// import 'https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js';
+
 
 export const displayMap = (locations) => {
   mapboxgl.accessToken =
@@ -28,7 +28,7 @@ export const displayMap = (locations) => {
   // Create marker
   document.querySelectorAll('.pulse').forEach((e) => e.remove());
   document.querySelectorAll('.marker').forEach((e) => e.remove());
-  
+
   var el1 = document.createElement('div');
   el1.className = 'btn-floating pulse';
 

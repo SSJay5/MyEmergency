@@ -42,22 +42,17 @@ body {
 
 @keyframes scaleDown {
   0% {
-    border-radius: 50% 50% 0% 50%;
-    transform-origin: center;
-    transform: translate(-50%, 0%) scale(1);
-    -webkit-transform: rotate(45deg) translate(-50%, 0%) scale(1);
-    -moz-transform: translate(-50%, 0%) scale(1);
-    -ms-transform: translate(-50%, 0%) scale(1);
-    -o-transform: translate(-50%, 0%) scale(1); }
+    transform: translate(-50%, -50%) scale(1);
+    -webkit-transform: translate(-50%, -50%) scale(1);
+    -moz-transform: translate(-50%, -50%) scale(1);
+    -ms-transform: translate(-50%, -50%) scale(1);
+    -o-transform: translate(-50%, -50%) scale(1); }
   100% {
-    border-radius: 50% 50% 0% 50%;
-    transform-origin: center;
-    transform: translate(-33%, 15%) scale(0.2);
-    -webkit-transform: rotate(45deg) translate(-33%, 15%) scale(0.2);
-    -moz-transform: translate(-33%, 0%) scale(0.2);
-    -ms-transform: translate(-33%, 0%) scale(0.2);
-    -o-transform: translate(-33%, 0%) scale(0.2);
-    opacity: 0; } }
+    transform: translate(-50%, -25%) scale(0.2);
+    -webkit-transform: translate(-50%, -25%) scale(0.2);
+    -moz-transform: scale(0.2);
+    -ms-transform: scale(0.2);
+    -o-transform: scale(0.2); } }
 
 .pulse {
   overflow: visible;
@@ -200,7 +195,7 @@ body {
 .u-margin-top-huge {
   margin-top: 10rem !important; }
 
-.header {
+.emergencyMap {
   height: 95vh;
   width: 100wh;
   position: relative; }
@@ -309,6 +304,15 @@ body {
         float: none;
         width: 100%; } }
 
+.navigation {
+  background-color: black; }
+  .navigation__user {
+    width: 4rem; }
+    .navigation__user img {
+      width: 100%;
+      height: auto;
+      object-fit: fill; }
+
 .btn-emergency {
   text-transform: uppercase;
   text-align: center;
@@ -317,8 +321,8 @@ body {
   width: 20rem;
   padding: 5rem;
   position: absolute;
-  left: 47%;
-  top: 35%;
+  left: 50%;
+  top: 50%;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -327,12 +331,8 @@ body {
   z-index: 100;
   transition: all 1s;
   transform-origin: top;
-  transform: rotate(45deg);
+  transform: translate(-50%, -50%);
   opacity: 0; }
-  @media only screen and (max-width: 37.5em) {
-    .btn-emergency {
-      left: 45%;
-      top: 35%; } }
 
 .btn-refresh {
   position: absolute;
@@ -417,6 +417,9 @@ body {
       @media only screen and (max-width: 56.25em) {
         .nationalEmergencyHelpline__Card-phone {
           width: 52%; } }
+      @media only screen and (max-width: 37.5em) {
+        .nationalEmergencyHelpline__Card-phone {
+          width: 40%; } }
 
 .emergencyChatBox {
   height: 80rem;
@@ -460,3 +463,43 @@ body {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%); }
+
+.form-user-data__profile-photo {
+  width: 8rem;
+  border-radius: 50%;
+  overflow: hidden; }
+  .form-user-data__profile-photo img {
+    width: 100%;
+    height: auto;
+    object-fit: fill; }
+
+.emergencies {
+  min-height: 100vh;
+  width: 100%; }
+  .emergencies__searchBar {
+    min-height: 10rem;
+    width: 100%;
+    background-color: #eee; }
+    .emergencies__searchBar-distance-val {
+      width: 40rem;
+      height: 5rem; }
+  .emergencies__Cards {
+    position: relative;
+    min-height: 30rem;
+    width: 100%;
+    background-color: cadetblue;
+    padding: 1rem; }
+  .emergencies__Card {
+    position: relative;
+    min-height: 7rem;
+    width: 94%;
+    border-radius: 1rem;
+    background-color: cyan;
+    margin: 1rem auto;
+    font-size: 5rem; }
+    .emergencies__Card-help, .emergencies__Card-cancel {
+      position: absolute;
+      border-radius: 5px;
+      left: 95%;
+      top: 50%;
+      transform: translate(-95%, -50%); }

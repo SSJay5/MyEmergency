@@ -1,22 +1,17 @@
 @keyframes scaleDown {
   0% {
-    border-radius: 50% 50% 0% 50%;
-    transform-origin: center;
-    transform: translate(-50%, 0%) scale(1);
-    -webkit-transform: rotate(45deg) translate(-50%, 0%) scale(1);
-    -moz-transform: translate(-50%, 0%) scale(1);
-    -ms-transform: translate(-50%, 0%) scale(1);
-    -o-transform: translate(-50%, 0%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+    -webkit-transform: translate(-50%, -50%) scale(1);
+    -moz-transform: translate(-50%, -50%) scale(1);
+    -ms-transform: translate(-50%, -50%) scale(1);
+    -o-transform: translate(-50%, -50%) scale(1);
   }
   100% {
-    border-radius: 50% 50% 0% 50%;
-    transform-origin: center;
-    transform: translate(-33%, 15%) scale(0.2);
-    -webkit-transform: rotate(45deg) translate(-33%, 15%) scale(0.2);
-    -moz-transform: translate(-33%, 0%) scale(0.2);
-    -ms-transform: translate(-33%, 0%) scale(0.2);
-    -o-transform: translate(-33%, 0%) scale(0.2);
-    opacity: 0;
+    transform: translate(-50%, -25%) scale(0.2);
+    -webkit-transform: translate(-50%, -25%) scale(0.2);
+    -moz-transform: scale(0.2);
+    -ms-transform: scale(0.2);
+    -o-transform: scale(0.2);
   }
 }
 .pulse {
