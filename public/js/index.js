@@ -1,61 +1,168 @@
-// import '@babel/polyfill';
-// // import { Linter } from 'eslint';
+/* eslint-disable */
+import '@babel/polyfill';
 import { displayMap } from './mapbox';
+import { login } from './login';
+import axios from 'axios';
 import { help } from './help';
 // import anime from 'animejs';
+const form = document.querySelector('#form');
+console.log(form);
+if (form) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    console.log(email, password);
+    login(email, password);
+  });
+}
 
+var EmergencySearch = document.querySelector('#search-emergencies');
 let locations = [72.82119, 18.959125];
+if (EmergencySearch) {
+  EmergencySearch.addEventListener('click', (e) => {
+    e.preventDefault();
+    navigator.geolocation.getCurrentPosition(
+      (data) => {
+        locations[0] = data.coords.longitude;
+        locations[1] = data.coords.latitude;
+        displayMap(locations);
+        console.log(locations);
+      },
+      (error) => {
+        console.log(error);
+      },
+      {
+        enableHighAccuracy: true,
+      }
+    );
+    let distance = document.getElementById('helping_distance').value;
+    distance = distance * 1;
+    console.log('yeh ', distance);
+
+    // emergencies/within/:distance/center/:latlng/unit/:unit
+    window.setTimeout(() => {
+      location.assign(
+        `/emergencies/${distance}/${locations[1]},${locations[0]}/km`
+      );
+    }, 0);
+  });
+}
+let deleteEmergencyButton = document.getElementsByClassName(
+  'emergencies__Card-cancel'
+)[0];
+if (deleteEmergencyButton) {
+  deleteEmergencyButton.addEventListener('click', async (f) => {
+    try {
+      await axios({
+        method: 'DELETE',
+        url: 'http://127.0.0.1:3000/api/v1/emergencies',
+      });
+      window.setTimeout(() => {
+        location.assign(`/AllEmergencies`);
+      }, 0);
+    } catch (err) {
+      return alert(err.response.data.message);
+    }
+  });
+}
+
 displayMap(locations);
 const refreshButton = document.getElementsByClassName('btn-refresh')[0];
-refreshButton.addEventListener('click', (f) => {
-  navigator.geolocation.getCurrentPosition(
-    (data) => {
-      locations[0] = data.coords.longitude;
-      locations[1] = data.coords.latitude;
-      displayMap(locations);
-    },
-    (error) => {
-      console.log(error);
-    },
-    {
-      enableHighAccuracy: false,
-    }
-  );
-});
+if (refreshButton) {
+  refreshButton.addEventListener('click', (f) => {
+    navigator.geolocation.getCurrentPosition(
+      (data) => {
+        locations[0] = data.coords.longitude;
+        locations[1] = data.coords.latitude;
+        displayMap(locations);
+        console.log(locations);
+      },
+      (error) => {
+        console.log(error);
+      },
+      {
+        enableHighAccuracy: true,
+      }
+    );
+  });
+}
+
 var emergencyButton = document.getElementsByClassName('btn-emergency')[0];
 
 if (emergencyButton) {
-  emergencyButton.addEventListener('click', (f) => {
-    emergencyButton.style.animationName = 'scaleDown';
-    emergencyButton.style.animationDuration = '1s';
+  emergencyButton.addEventListener('click', async (f) => {
+    let user;
+    try {
+      user = await axios({
+        method: 'GET',
+        url: 'http://127.0.0.1:3000/api/v1/users/me',
+      });
+    } catch (err) {
+      return alert(err.response.data.message);
+    }
+    if (user.emergencyActive) {
+      return alert('Your Emergency Alert is already Active ');
+    } else {
+      try {
+        const emergency = await axios({
+          method: 'GET',
+          url: 'http://127.0.0.1:3000/api/v1/emergencies',
+        });
+        emergencyButton.style.animationName = 'scaleDown';
+        emergencyButton.style.animationDuration = '1s';
+        emergencyButton.remove();
+      } catch (err) {
+        return alert(err.response.data.message);
+      }
+    }
   });
 }
-let helpingLocation = [72.81189, 18.955074];
+var helpButton = document.getElementsByClassName('btn-help')[0];
+let helpingLocation = [];
+if (helpButton) {
+  helpButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+    navigator.geolocation.getCurrentPosition(
+      (data) => {
+        locations[0] = data.coords.longitude;
+        locations[1] = data.coords.latitude;
+      },
+      (error) => {
+        return console.log(error);
+      },
+      {
+        enableHighAccuracy: true,
+      }
+    );
+    const emergencyId = JSON.parse(
+      document.getElementById('map').dataset.emergencyid
+    );
+    try {
+      let res = await axios({
+        method: 'GET',
+        url: `http://127.0.0.1:3000/api/v1/emergencies/${emergencyId}`,
+      });
+      helpingLocation = res.data.data.location;
+      console.log(res.data);
+    } catch (err) {
+      return alert(err.response.data.message);
+    }
 
-var helpingButtons = document.getElementsByClassName('emergencies__Card-help');
-console.log(helpingButtons);
-for (var i = 0; i < helpingButtons.length; i++) {
-  (function (index) {
-    helpingButtons[index].onclick = function () {
-      alert('I am button ' + index);
-    };
-  })(i);
+    try {
+      let res = await axios({
+        method: 'PATCH',
+        url: 'http://127.0.0.1:3000/api/v1/users/updateMe',
+        data: {
+          currentLocation: locations,
+        },
+      });
+    } catch (err) {
+      return alert(err.response.data.message);
+    }
+
+    console.log(helpingLocation);
+    console.log(locations);
+    help(helpingLocation, locations);
+  });
 }
-window.emergencyHelp = () => {
-  let emergencies = document.getElementById('emergencies');
-  emergencies.remove();
-  var l1 = document.createElement('main');
-  var l2 = document.createElement('section');
-  l2.className = 'emergencyMap';
-  var buttonRefresh = document.createElement('button');
-  buttonRefresh.appendChild(document.createTextNode('Refresh'));
-  buttonRefresh.className = 'btn-refresh';
-  var Map = document.createElement('div');
-  Map.id = 'map';
-  l2.appendChild(buttonRefresh);
-  l2.appendChild(Map);
-  l1.appendChild(l2);
-
-  help(helpingLocation, locations);
-  console.log('Hello');
-};

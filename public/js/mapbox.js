@@ -1,8 +1,6 @@
-
-
 export const displayMap = (locations) => {
   mapboxgl.accessToken =
-    'pk.eyJ1IjoiamF5c3M1IiwiYSI6ImNrZGh1eGRwOTMwaDYzNGs2bjFld3RhM2MifQ.-vUZBda_lIdiQMUHSLUGdg';
+    'pk.eyJ1IjoiamF5c3M1IiwiYSI6ImNrZzVrMmRuMzA1aW0ycG1vb2JlbWo3ZnkifQ.JkB6uvGRPMCgBrH6BHq3gg';
 
   var map = new mapboxgl.Map({
     container: 'map', // container id
