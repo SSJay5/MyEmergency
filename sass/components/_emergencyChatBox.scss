@@ -13,11 +13,22 @@
     overflow: scroll;
     height: 70%;
     width: 90%;
-    background-color: orangered;
+    background-color: $color-grey-dark-1;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 1rem;
+  }
+  &__message {
+    position: relative;
+    border-radius: 3px;
+    background-color: rgb(102, 77, 68);
+    height: 5rem;
+    width: 95%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 1rem;
+    font-size: 3rem;
   }
 }
