@@ -6,16 +6,16 @@ const User = require('../models/userModel');
 
 exports.createEmergency = catchAsync(async (req, res, next) => {
   let user = await User.findById(req.user._id);
-
+  // console.log(user);
   if (user.emergencyActive) {
     return next(
       new AppError(
-        'Your Emergency Aleart is Active To view Go to Emergencies section or To create new One, First delete Previous One',
+        'Your Emergency Aleart is Active To view Go to Emergencies section or To create new One First delete Previous One',
         400
       )
     );
   }
-  if (!req.body.location) {
+  if (user.currentLocation.coordinates.length === 0) {
     return next(
       new AppError(
         'Please Provide Your Location. Make Sure Your GPS is ON !!!',
@@ -24,10 +24,12 @@ exports.createEmergency = catchAsync(async (req, res, next) => {
     );
   }
   //   const location = [];
-  //   console.log(location);
-  req.body.location = turf.point(req.body.location).geometry;
+  // console.log(user.currentLocation);
+
+  req.body.location = user.currentLocation;
   req.body.active = true;
-  req.body.user = req.user_id;
+  req.body.user = user._id;
+  req.body.createdAt = Date.now();
   const emergency = await Emergency.create(req.body);
   user.emergency = emergency._id;
   user.emergencyActive = true;
@@ -50,7 +52,7 @@ exports.deleteMyEmergency = catchAsync(async (req, res, next) => {
   if (!emergency) {
     return next(new AppError('Emergency Aleart is already deleted', 404));
   }
-  await Emergency.findByIdAndDelete(req.params.id);
+  await Emergency.findByIdAndDelete(emergency._id);
 
   const user = await User.findById(req.user._id);
   user.emergencyActive = false;
@@ -69,8 +71,10 @@ exports.deleteMyEmergency = catchAsync(async (req, res, next) => {
 
 // emergencies/within/:distance/center/:latlng/unit/:unit
 exports.getEmergencies = catchAsync(async (req, res, next) => {
+  if (!req.user) {
+    res.redirect('/login');
+  }
   const user = await User.findById(req.user._id);
-
   if (user.currentLocation.length === 0) {
     return next(
       new AppError(
@@ -101,6 +105,43 @@ exports.getEmergencies = catchAsync(async (req, res, next) => {
     results: emergencies.length,
     data: {
       data: emergencies,
+    },
+  });
+});
+
+exports.getEmergencyLocation = catchAsync(async (req, res, next) => {
+  const emergency = await Emergency.findById(req.params.id);
+
+  if (!emergency) {
+    return next(new AppError('Emergency ALerat is Deleted by user', 404));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      location: emergency.location.coordinates,
+    },
+  });
+});
+
+exports.updateMyEmergencyLocation = catchAsync(async (req, res, next) => {
+  let emergency = await Emergency.findById(req.user.emergency);
+
+  if (!emergency) {
+    return next(new AppError('Emergency ALerat is Deleted by user', 404));
+  }
+
+  emergency.location = turf.point(req.body.location).geometry;
+
+  emergency = await Emergency.findByIdAndUpdate(emergency._id, emergency, {
+    new: true,
+    runValidators: true,
+  });
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      emergency,
     },
   });
 });

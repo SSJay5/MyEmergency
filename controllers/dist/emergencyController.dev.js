@@ -35,10 +35,10 @@ exports.createEmergency = catchAsync(function _callee(req, res, next) {
             break;
           }
 
-          return _context.abrupt("return", next(new AppError('Your Emergency Aleart is Active To view Go to Emergencies section or To create new One, First delete Previous One', 400)));
+          return _context.abrupt("return", next(new AppError('Your Emergency Aleart is Active To view Go to Emergencies section or To create new One First delete Previous One', 400)));
 
         case 5:
-          if (req.body.location) {
+          if (!(user.currentLocation.coordinates.length === 0)) {
             _context.next = 7;
             break;
           }
@@ -47,24 +47,25 @@ exports.createEmergency = catchAsync(function _callee(req, res, next) {
 
         case 7:
           //   const location = [];
-          //   console.log(location);
-          req.body.location = turf.point(req.body.location).geometry;
+          // console.log(user.currentLocation);
+          req.body.location = user.currentLocation;
           req.body.active = true;
-          req.body.user = req.user_id;
-          _context.next = 12;
+          req.body.user = user._id;
+          req.body.createdAt = Date.now();
+          _context.next = 13;
           return regeneratorRuntime.awrap(Emergency.create(req.body));
 
-        case 12:
+        case 13:
           emergency = _context.sent;
           user.emergency = emergency._id;
           user.emergencyActive = true;
-          _context.next = 17;
+          _context.next = 18;
           return regeneratorRuntime.awrap(User.findByIdAndUpdate(user._id, user, {
             "new": true,
             runValidators: true
           }));
 
-        case 17:
+        case 18:
           user = _context.sent;
           res.status(200).json({
             status: 'success',
@@ -73,7 +74,7 @@ exports.createEmergency = catchAsync(function _callee(req, res, next) {
             }
           });
 
-        case 19:
+        case 20:
         case "end":
           return _context.stop();
       }
@@ -101,7 +102,7 @@ exports.deleteMyEmergency = catchAsync(function _callee2(req, res, next) {
 
         case 5:
           _context2.next = 7;
-          return regeneratorRuntime.awrap(Emergency.findByIdAndDelete(req.params.id));
+          return regeneratorRuntime.awrap(Emergency.findByIdAndDelete(emergency._id));
 
         case 7:
           _context2.next = 9;
@@ -138,20 +139,24 @@ exports.getEmergencies = catchAsync(function _callee3(req, res, next) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          _context3.next = 2;
+          if (!req.user) {
+            res.redirect('/login');
+          }
+
+          _context3.next = 3;
           return regeneratorRuntime.awrap(User.findById(req.user._id));
 
-        case 2:
+        case 3:
           user = _context3.sent;
 
           if (!(user.currentLocation.length === 0)) {
-            _context3.next = 5;
+            _context3.next = 6;
             break;
           }
 
           return _context3.abrupt("return", next(new AppError('Please Set Your current Loaction or switch On GPS before helping', 400)));
 
-        case 5:
+        case 6:
           _req$params = req.params, distance = _req$params.distance, latlng = _req$params.latlng, unit = _req$params.unit;
           _latlng$split = latlng.split(','), _latlng$split2 = _slicedToArray(_latlng$split, 2), lat = _latlng$split2[0], lng = _latlng$split2[1];
           radius = unit === 'mi' ? distance / 3963.2 : distance / 6378.1;
@@ -160,7 +165,7 @@ exports.getEmergencies = catchAsync(function _callee3(req, res, next) {
             next(new AppError('Please provide latitude and longitude in the format lat,lng.', 400));
           }
 
-          _context3.next = 11;
+          _context3.next = 12;
           return regeneratorRuntime.awrap(Emergency.find({
             location: {
               $geoWithin: {
@@ -169,7 +174,7 @@ exports.getEmergencies = catchAsync(function _callee3(req, res, next) {
             }
           }));
 
-        case 11:
+        case 12:
           emergencies = _context3.sent;
           res.status(200).json({
             status: 'success',
@@ -179,9 +184,86 @@ exports.getEmergencies = catchAsync(function _callee3(req, res, next) {
             }
           });
 
-        case 13:
+        case 14:
         case "end":
           return _context3.stop();
+      }
+    }
+  });
+});
+exports.getEmergencyLocation = catchAsync(function _callee4(req, res, next) {
+  var emergency;
+  return regeneratorRuntime.async(function _callee4$(_context4) {
+    while (1) {
+      switch (_context4.prev = _context4.next) {
+        case 0:
+          _context4.next = 2;
+          return regeneratorRuntime.awrap(Emergency.findById(req.params.id));
+
+        case 2:
+          emergency = _context4.sent;
+
+          if (emergency) {
+            _context4.next = 5;
+            break;
+          }
+
+          return _context4.abrupt("return", next(new AppError('Emergency ALerat is Deleted by user', 404)));
+
+        case 5:
+          res.status(200).json({
+            status: 'success',
+            data: {
+              location: emergency.location.coordinates
+            }
+          });
+
+        case 6:
+        case "end":
+          return _context4.stop();
+      }
+    }
+  });
+});
+exports.updateMyEmergencyLocation = catchAsync(function _callee5(req, res, next) {
+  var emergency;
+  return regeneratorRuntime.async(function _callee5$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          _context5.next = 2;
+          return regeneratorRuntime.awrap(Emergency.findById(req.user.emergency));
+
+        case 2:
+          emergency = _context5.sent;
+
+          if (emergency) {
+            _context5.next = 5;
+            break;
+          }
+
+          return _context5.abrupt("return", next(new AppError('Emergency ALerat is Deleted by user', 404)));
+
+        case 5:
+          emergency.location = turf.point(req.body.location).geometry;
+          _context5.next = 8;
+          return regeneratorRuntime.awrap(Emergency.findByIdAndUpdate(emergency._id, emergency, {
+            "new": true,
+            runValidators: true
+          }));
+
+        case 8:
+          emergency = _context5.sent;
+          res.status(200).json({
+            status: 'success',
+            data: {
+              emergency: emergency
+            }
+          });
+
+        case 10:
+        case "end":
+          return _context5.stop();
       }
     }
   });
