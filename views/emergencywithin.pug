@@ -1,0 +1,22 @@
+extends base
+
+block content
+  main#emergencies
+    section.emergencies
+      .emergencies__searchBar
+        .emergencies__searchBar-text
+          | Enter distance(in kilometers) form your current location to which
+          | you want to help
+        .emergencies__searchBar-distance
+          input#helping_distance.emergencies__searchBar-distance-val(type='text-box' placeholder='Enter Your Helping Distance')
+          button#search-emergencies.btn-danger Search
+      .emergencies__Cards
+        if user===undefined
+          h1 LOGIN TO CONTINUE
+        else
+          each emergency in emergencies
+            .emergencies__Card=`Created At: ${emergency.createdAt.toLocaleString('en-us',{day:'numeric',month:'long',year:'numeric'})}`
+              if `${user===undefined?null:user._id}`.toLowerCase() === `${emergency.user}`.toLowerCase() 
+                button.emergencies__Card-cancel.btn Delete
+              else
+                a.emergencies__Card-help.btn(href=  `/emergency/${emergency._id}`) Help

@@ -1,0 +1,14 @@
+extends base
+
+block content
+  main
+    section.emergencyMap
+      button.btn-help Refresh
+      #map(data-emergencyId = `${JSON.stringify(emergency._id)}`)
+    section.emergencyChatBox
+      h2.heading-secondary.emergencyChatBox__heading.u-center-text.u-margin-bottom-small.u-margin-top-small
+        | Chat Section
+      #message-container.row.emergencyChatBox__messenger(data-username = `${JSON.stringify(user.name)}`)
+      form#send-container.row
+        input#message-input(type='text')
+        button#send-button.btn(type='submit') Send

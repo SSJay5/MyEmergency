@@ -1,0 +1,64 @@
+extends base
+
+block content
+  main
+  section.form-user-data
+    h1 Your Account Details
+    form(action='#')
+      .row
+        .input-field.col.s6
+          input#first_name.validate(type='text') 
+          label(for='first_name') First Name
+      .row
+        .input-field.col.s6
+          input#last_name.validate(type='text')
+          label(for='last_name') Last Name
+      .row
+        .form-user-data__profile-photo
+          img(src='img/user/default.jpg' alt='' srcset='')
+        div
+          input(type='file' name='' id='')
+      button.btn Save Changes
+    //
+      <div class="row">
+      <form class="col s12">
+      <div class="row">
+      <div class="input-field col s6">
+      <input id="first_name" type="text" class="validate" />
+      <label for="first_name">First Name</label>
+      </div>
+      <div class="input-field col s6">
+      <input id="last_name" type="text" class="validate" />
+      <label for="last_name">Last Name</label>
+      </div>
+      </div>
+      <div class="row">
+      <div class="input-field col s12">
+      <input id="password" type="password" class="validate" />
+      <label for="password">Password</label>
+      </div>
+      </div>
+      <div class="row">
+      <div class="input-field col s12">
+      <input id="email" type="email" class="validate" />
+      <label for="email">Email</label>
+      </div>
+      </div>
+      </form>
+      </div>
+  section.form-user-password
+    h1 Password Change
+    form(action='#')
+      .row
+        .input-field.col.s12
+          input#current_password.validate(type='password' placeholder='Current Password')
+          label(for='current_password') Current Password
+      .row
+        .input-field.col.s12
+          input#new_password.validate(type='password' placeholder='New Password')
+          label(for='new_password') New Password
+      .row
+        .input-field.col.s12
+          input#confirm_password.validate(type='password' placeholder='Confirm Password')
+          label(for='confirm_password') Password
+      button.btn Update
