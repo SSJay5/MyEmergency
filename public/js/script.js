@@ -1,9 +1,10 @@
 /*eslint-disable*/
-const socket = io('https://enigmatic-coast-74172.herokuapp.com');
+const socket = io('/');
 const messageForm = document.getElementById('send-container');
 const messageContainer = document.getElementById('message-container');
 const messageInput = document.getElementById('message-input');
 
+io.connect();
 function appendMessage(message) {
   const messageElement = document.createElement('div');
   messageElement.className = 'emergencyChatBox__message';
