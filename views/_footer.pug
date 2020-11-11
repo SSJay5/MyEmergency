@@ -1,0 +1,34 @@
+footer.footer
+  .footer__logo-box
+    picture.footer__logo
+      source(srcset='\
+      img/logo-green-small-1x.png 1x,\
+      img/logo-green-small-2x.png 2x\
+      ' media='(max-width:37.5em)' src='img/logo-green-small-2x.png')
+      img(srcset='img/logo-green-1x.png 1x, img/logo-green-2x.png 2x' alt='Full logo')
+  .row
+    .col-1-of-2
+      .footer__navigation
+        ul.footer__list
+          li.footer__item
+            a.footer__link(href='') Company
+          li.footer__item
+            a.footer__link(href='') Contact us
+          li.footer__item
+            a.footer__link(href='') Carrers
+          li.footer__item
+            a.footer__link(href='') Privacy Policy
+          li.footer__item
+            a.footer__link(href='') Terms
+    .col-1-of-2
+      p.footer__copyright
+        | Built by 
+        a.footer__link(href='#') Jay Kotak 
+        |  his
+        |             Personal Project 
+        a.footer__link(href='#') MyEmergency 
+        | .
+        |             Copyright &copy; Lorem ipsum dolor, sit amet consectetur adipisicing
+        |             elit. Qui, corporis hic quo asperiores quae vel quas, nemo assumenda
+        |             illum sint voluptate, enim nulla nesciunt consequatur? Harum
+        |             inventore doloribus perspiciatis accusantium.

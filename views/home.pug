@@ -1,0 +1,124 @@
+extends base
+
+block content
+  main
+    section.emergencyMap
+      button.btn-refresh Refresh
+      #map(data-emergencyId = `${user===undefined?null:JSON.stringify(user.emergency)}`)
+      if user===undefined||user.emergencyActive==false
+        button.btn-emergency Emergency
+    section.nationalEmergencyHelpline
+      h2.heading-secondary.nationalEmergencyHelpline__heading.u-center-text.u-margin-bottom-big.u-margin-top-big
+        | National Emergency Helpline Numbres
+      .row
+        .col-1-of-3.nationalEmergencyHelpline__Card
+          .nationalEmergencyHelpline__Card-icon
+            img(src='./img/police.png' alt='' srcset='')
+          .nationalEmergencyHelpline__Card-userName
+            font Police
+          .nationalEmergencyHelpline__Card-phone
+            font 100
+          .btn-copy.nationalEmergencyHelpline__Card-btn
+            font Copy
+        .col-1-of-3.nationalEmergencyHelpline__Card
+          .nationalEmergencyHelpline__Card-icon
+            img(src='./img/ambulance.png' alt='' srcset='')
+          .nationalEmergencyHelpline__Card-userName
+            font Ambulance
+          .nationalEmergencyHelpline__Card-phone
+            font 102
+          .btn-copy.nationalEmergencyHelpline__Card-btn Copy
+        .col-1-of-3.nationalEmergencyHelpline__Card
+          .nationalEmergencyHelpline__Card-icon
+            img(src='./img/fireBrigade.png' alt='' srcset='')
+          .nationalEmergencyHelpline__Card-userName
+            font Fire Brigade
+          .nationalEmergencyHelpline__Card-phone
+            font 101
+          .btn-copy.nationalEmergencyHelpline__Card-btn Copy
+      .row
+        .col-1-of-3.nationalEmergencyHelpline__Card
+          .nationalEmergencyHelpline__Card-icon
+            img(src='./img/ndrf.webp' alt='' srcset='')
+          .nationalEmergencyHelpline__Card-userName
+            font NDRF
+          .nationalEmergencyHelpline__Card-phone
+            font 9711077372
+          .btn-copy.nationalEmergencyHelpline__Card-btn Copy
+        .col-1-of-3.nationalEmergencyHelpline__Card
+          .nationalEmergencyHelpline__Card-icon
+            img(src='./img/woman.png' alt='' srcset='')
+          .nationalEmergencyHelpline__Card-userName.text-wrap
+            font Women Helpline
+          .nationalEmergencyHelpline__Card-phone
+            font 1091
+          .btn-copy.nationalEmergencyHelpline__Card-btn Copy
+        .col-1-of-3.nationalEmergencyHelpline__Card
+          .nationalEmergencyHelpline__Card-icon
+            img(src='./img/siren.png' alt='' srcset='')
+          .nationalEmergencyHelpline__Card-userName
+            font Emergency
+          .nationalEmergencyHelpline__Card-phone
+            font 112
+          .btn-copy.nationalEmergencyHelpline__Card-btn Copy
+    section.emergencyChatBox
+      h2.heading-secondary.emergencyChatBox__heading.u-center-text.u-margin-bottom-small.u-margin-top-small
+        | Chat Section
+      #message-container.row.emergencyChatBox__messenger(data-username = `${user===undefined?null:JSON.stringify(user.name)}`)
+      form#send-container.row
+        input#message-input(type='text')
+        if(user)
+          button#send-button.btn(type='submit') Send
+        else
+          a.btn(href='/login') Send
+    section.notifyAvengers
+      h2.heading-secondary.notifyAvengers__heading.u-center-text.u-margin-bottom-big.u-margin-top-big
+        | Notify Avengers
+      .row
+        .col-1-of-3.notifyAvengers__card
+          a.notifyAvengers__card-addButton
+            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
+              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
+              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
+        .col-1-of-3.notifyAvengers__card
+          a.notifyAvengers__card-addButton
+            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
+              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
+              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
+        .col-1-of-3.notifyAvengers__card
+          a.notifyAvengers__card-addButton
+            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
+              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
+              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
+      .row
+        .col-1-of-3.notifyAvengers__card
+          a.notifyAvengers__card-addButton
+            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
+              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
+              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
+        .col-1-of-3.notifyAvengers__card
+          a.notifyAvengers__card-addButton
+            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
+              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
+              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
+        .col-1-of-3.notifyAvengers__card
+          a.notifyAvengers__card-addButton
+            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
+              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
+              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
+      .row
+        .col-1-of-3.notifyAvengers__card
+          a.notifyAvengers__card-addButton
+            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
+              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
+              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
+        .col-1-of-3.notifyAvengers__card
+          a.notifyAvengers__card-addButton
+            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
+              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
+              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
+        .col-1-of-3.notifyAvengers__card
+          a.notifyAvengers__card-addButton
+            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
+              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
+              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')

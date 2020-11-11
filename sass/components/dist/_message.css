@@ -1,0 +1,9 @@
+#send-container {
+  background-color: col;
+  height: 8rem;
+  width: 90%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 70rem;
+}

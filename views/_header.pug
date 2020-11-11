@@ -1,0 +1,48 @@
+header
+  nav.navigation
+    .nav-wrapper
+      a.brand-logo(href='#') Logo
+      a.sidenav-trigger.left(href='#' data-target='slide-out')
+        i.material-icons menu
+      ul#nav-mobile.right.hide-on-med-and-down
+        li
+          a(href='/') Home
+        li
+          a(href='/AllEmergencies') Emergencies
+        if user
+          li
+            a(href='/account')
+              .navigation__user
+                img.circle(src='/img/user/default.jpg')
+          li
+            a(href='#') Log Out
+        else
+          li
+            a(href='/login') Login
+          li
+            a(href='#') Signin
+  ul#slide-out.sidenav
+    li
+      .user-view
+        .background
+          img(src='/img/black.jpg')
+        if user
+          a(href='/account')
+            img.circle(src=`/img/user/${user.photo}`)
+          a(href='/account')
+            span.white-text.name=`${user.name}`
+          a(href='/account')
+            span.white-text.email=`${user.email}`
+    li
+      a.waves-effect(href='/') Home
+    if user
+      li
+        a.waves-effect(href='/AllEmergencies') Emergencies
+      li
+      a.waves-effect(href='#') Log Out
+    else
+      li
+        a.waves-effect(href='/login') Login
+      li
+        a.waves-effect(href='#') Sign Up
+      

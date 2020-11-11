@@ -1,0 +1,72 @@
+.btn {
+  &-emergency {
+    text-transform: uppercase;
+    text-align: center;
+    background-color: orangered;
+    height: 20rem; //0.5
+    width: 20rem; //0.5
+    padding: 5rem; //2
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    z-index: 100;
+    transition: all 1s;
+    transform-origin: top;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  &-refresh {
+    position: absolute;
+    z-index: 100;
+    background-color: orangered;
+    top: 85vh;
+    left: 80vw;
+  }
+  &-copy {
+    height: 6rem;
+    width: 8rem;
+    background-color: $color-primary;
+    border-radius: 10px;
+  }
+  &-floating {
+    background-color: red;
+    height: 1rem;
+    width: 1rem;
+    opacity: 0.3;
+  }
+  &-text {
+    &:link,
+    &:visited {
+      font-size: $default-font-size;
+      color: $color-primary;
+      display: inline-block;
+      text-decoration: none;
+      border-bottom: 1px solid $color-primary;
+      padding: 3px;
+      transition: all 0.2s;
+    }
+    &:hover {
+      background-color: $color-primary;
+      color: $color-white;
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+      transform: translateY(-2px);
+    }
+    &:active {
+      box-shadow: 0 0.5rem 1rem rgba($color-black, 0.15);
+      transform: translateY(0);
+    }
+  }
+  &-help {
+    position: absolute;
+    z-index: 100;
+    background-color: orangered;
+    top: 85vh;
+    left: 80vw;
+  }
+}

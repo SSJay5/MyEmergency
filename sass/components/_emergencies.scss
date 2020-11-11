@@ -1,0 +1,39 @@
+.emergencies {
+  min-height: 100vh;
+  width: 100%;
+  &__searchBar {
+    min-height: 10rem;
+    width: 100%;
+    background-color: $color-grey-light-2;
+    &-distance {
+      &-val {
+        width: 40rem;
+        height: 5rem;
+      }
+    }
+  }
+  &__Cards {
+    position: relative;
+    min-height: 30rem;
+    width: 100%;
+    background-color: cadetblue;
+    padding: 1rem;
+  }
+  &__Card {
+    position: relative;
+    min-height: 7rem;
+    width: 94%;
+    border-radius: 1rem;
+    background-color: cyan;
+    margin: 1rem auto;
+    font-size: 5rem;
+    &-help,
+    &-cancel {
+      position: absolute;
+      border-radius: 5px;
+      left: 95%;
+      top: 50%;
+      transform: translate(-95%, -50%);
+    }
+  }
+}

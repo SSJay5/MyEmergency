@@ -1,0 +1,69 @@
+.nationalEmergencyHelpline {
+  min-height: 80rem;
+  padding: 2rem;
+
+  background-color: #424d5c;
+  &__heading {
+    width: 100%;
+  }
+  &__Card {
+    position: relative;
+    display: inline-block;
+    background-color: $color-grey-dark-4;
+    height: 20rem;
+    border-radius: 2rem;
+    &-icon {
+      display: inline-block;
+      height: 6rem;
+      width: 6rem;
+      margin: 2rem;
+      float: left;
+      & img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    &-btn {
+      margin: 2rem;
+      position: relative;
+      display: inline-block;
+      float: right;
+    }
+    &-userName {
+      display: inline-block;
+      height: 6rem;
+      width: 57%;
+      font-size: 2rem;
+      text-align: center;
+      text-transform: uppercase;
+      vertical-align: middle;
+      line-height: 5rem;
+      text-color: #252423;
+      @include respond(tab-land) {
+        width: 57%;
+        font-size-adjust: 2rem;
+      }
+      @include respond(tab-port) {
+        width: 55%;
+      }
+      float: left;
+      margin: 2rem 0rem 2rem 0rem;
+    }
+    &-phone {
+      display: inline-block;
+      height: 6rem;
+      width: 52%;
+      @include respond(tab-land) {
+        width: 40%;
+      }
+      @include respond(tab-port) {
+        width: 52%;
+      }
+       @include respond(phone) {
+        width: 40%;
+      }
+      margin: 2rem;
+      position: relative;
+    }
+  }
+}
