@@ -1,7 +1,7 @@
 "use strict";
 
 /*eslint-disable*/
-var socket = io('/');
+var socket = io('https://enigmatic-coast-74172.herokuapp.com');
 var messageForm = document.getElementById('send-container');
 var messageContainer = document.getElementById('message-container');
 var messageInput = document.getElementById('message-input');
