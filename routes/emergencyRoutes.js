@@ -9,8 +9,11 @@ router.use(authController.protect);
 
 router
   .route('/')
-  .post(emergencyController.createEmergency)
+  .get(emergencyController.createEmergency)
+  .patch(emergencyController.updateMyEmergencyLocation)
   .delete(emergencyController.deleteMyEmergency);
+
+router.route('/:id').get(emergencyController.getEmergencyLocation);
 
 router.get(
   '/within/:distance/center/:latlng/unit/:unit',
