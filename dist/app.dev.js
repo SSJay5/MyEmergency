@@ -18,6 +18,8 @@ var hpp = require('hpp');
 
 var cookieParser = require('cookie-parser');
 
+var compression = require('compression');
+
 var AppError = require('./utils/appError');
 
 var globalErrorHandler = require('./controllers/errorController');
@@ -60,7 +62,8 @@ app.use(express.urlencoded({
   extended: true,
   limit: '10kb'
 }));
-app.use(cookieParser()); // Data sanitization against NoSQL query injection
+app.use(cookieParser());
+app.use(compression()); // Data sanitization against NoSQL query injection
 
 app.use(mongoSanitize()); // Data sanitization against XSS
 

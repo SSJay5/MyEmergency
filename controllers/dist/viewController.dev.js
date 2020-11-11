@@ -117,16 +117,15 @@ exports.getEmergencies = catchAsync(function _callee4(req, res, next) {
 
         case 3:
           user = _context4.sent;
-          console.log(user);
 
           if (!(user.currentLocation.length === 0)) {
-            _context4.next = 7;
+            _context4.next = 6;
             break;
           }
 
           return _context4.abrupt("return", next(new AppError('Please Set Your current Loaction or switch On GPS before helping', 400)));
 
-        case 7:
+        case 6:
           _req$params = req.params, distance = _req$params.distance, latlng = _req$params.latlng, unit = _req$params.unit;
           _latlng$split = latlng.split(','), _latlng$split2 = _slicedToArray(_latlng$split, 2), lat = _latlng$split2[0], lng = _latlng$split2[1];
           radius = unit === 'mi' ? distance / 3963.2 : distance / 6378.1;
@@ -135,7 +134,7 @@ exports.getEmergencies = catchAsync(function _callee4(req, res, next) {
             next(new AppError('Please provide latitude and longitude in the format lat,lng.', 400));
           }
 
-          _context4.next = 13;
+          _context4.next = 12;
           return regeneratorRuntime.awrap(Emergency.find({
             location: {
               $geoWithin: {
@@ -144,7 +143,7 @@ exports.getEmergencies = catchAsync(function _callee4(req, res, next) {
             }
           }));
 
-        case 13:
+        case 12:
           emergencies = _context4.sent;
           res.status(200).render('emergencywithin', {
             title: 'Emergencies',
@@ -152,7 +151,7 @@ exports.getEmergencies = catchAsync(function _callee4(req, res, next) {
             user: user
           });
 
-        case 15:
+        case 14:
         case "end":
           return _context4.stop();
       }

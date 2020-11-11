@@ -56,7 +56,7 @@ if (deleteEmergencyButton) {
     try {
       await axios({
         method: 'DELETE',
-        url: 'http://127.0.0.1:3000/api/v1/emergencies',
+        url: '/api/v1/emergencies',
       });
       window.setTimeout(() => {
         location.assign(`/AllEmergencies`);
@@ -96,7 +96,7 @@ if (emergencyButton) {
     try {
       user = await axios({
         method: 'GET',
-        url: 'http://127.0.0.1:3000/api/v1/users/me',
+        url: '/api/v1/users/me',
       });
     } catch (err) {
       return alert(err.response.data.message);
@@ -107,7 +107,7 @@ if (emergencyButton) {
       try {
         const emergency = await axios({
           method: 'GET',
-          url: 'http://127.0.0.1:3000/api/v1/emergencies',
+          url: '/api/v1/emergencies',
         });
         emergencyButton.style.animationName = 'scaleDown';
         emergencyButton.style.animationDuration = '1s';
@@ -141,7 +141,7 @@ if (helpButton) {
     try {
       let res = await axios({
         method: 'GET',
-        url: `http://127.0.0.1:3000/api/v1/emergencies/${emergencyId}`,
+        url: `/api/v1/emergencies/${emergencyId}`,
       });
       helpingLocation = res.data.data.location;
       console.log(res.data);
@@ -152,7 +152,7 @@ if (helpButton) {
     try {
       let res = await axios({
         method: 'PATCH',
-        url: 'http://127.0.0.1:3000/api/v1/users/updateMe',
+        url: '/api/v1/users/updateMe',
         data: {
           currentLocation: locations,
         },

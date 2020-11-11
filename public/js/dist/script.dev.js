@@ -1,7 +1,7 @@
 "use strict";
 
 /*eslint-disable*/
-var socket = io('http://127.0.0.1:3000');
+var socket = io('/');
 var messageForm = document.getElementById('send-container');
 var messageContainer = document.getElementById('message-container');
 var messageInput = document.getElementById('message-input');

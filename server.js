@@ -11,7 +11,7 @@ const getALLEmergencies = catchAsync(async (rooms) => {
   emergencies.forEach((e) => {
     rooms[e._id] = { users: {} };
   });
-  console.log(rooms);
+  // console.log(rooms);
 });
 process.on('uncaughtException', (err) => {
   console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...');

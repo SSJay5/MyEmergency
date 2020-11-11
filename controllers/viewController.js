@@ -46,7 +46,7 @@ exports.getEmergencies = catchAsync(async (req, res, next) => {
     res.redirect('/login');
   }
   const user = await User.findById(req.user._id);
-  console.log(user);
+  // console.log(user);
   if (user.currentLocation.length === 0) {
     return next(
       new AppError(

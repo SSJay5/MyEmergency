@@ -65,7 +65,7 @@ if (deleteEmergencyButton) {
             _context.next = 3;
             return regeneratorRuntime.awrap((0, _axios["default"])({
               method: 'DELETE',
-              url: 'http://127.0.0.1:3000/api/v1/emergencies'
+              url: '/api/v1/emergencies'
             }));
 
           case 3:
@@ -120,7 +120,7 @@ if (emergencyButton) {
             _context2.next = 3;
             return regeneratorRuntime.awrap((0, _axios["default"])({
               method: 'GET',
-              url: 'http://127.0.0.1:3000/api/v1/users/me'
+              url: '/api/v1/users/me'
             }));
 
           case 3:
@@ -146,7 +146,7 @@ if (emergencyButton) {
             _context2.next = 16;
             return regeneratorRuntime.awrap((0, _axios["default"])({
               method: 'GET',
-              url: 'http://127.0.0.1:3000/api/v1/emergencies'
+              url: '/api/v1/emergencies'
             }));
 
           case 16:
@@ -196,7 +196,7 @@ if (helpButton) {
             _context3.next = 6;
             return regeneratorRuntime.awrap((0, _axios["default"])({
               method: 'GET',
-              url: "http://127.0.0.1:3000/api/v1/emergencies/".concat(emergencyId)
+              url: "/api/v1/emergencies/".concat(emergencyId)
             }));
 
           case 6:
@@ -216,7 +216,7 @@ if (helpButton) {
             _context3.next = 17;
             return regeneratorRuntime.awrap((0, _axios["default"])({
               method: 'PATCH',
-              url: 'http://127.0.0.1:3000/api/v1/users/updateMe',
+              url: '/api/v1/users/updateMe',
               data: {
                 currentLocation: locations
               }

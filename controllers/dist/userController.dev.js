@@ -31,21 +31,20 @@ exports.getMe = catchAsync(function _callee(req, res, next) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          console.log(req.user);
-          _context.next = 3;
+          _context.next = 2;
           return regeneratorRuntime.awrap(User.findById(req.user._id));
 
-        case 3:
+        case 2:
           user = _context.sent;
 
           if (user) {
-            _context.next = 6;
+            _context.next = 5;
             break;
           }
 
           return _context.abrupt("return", next(new AppError('No User found', 404)));
 
-        case 6:
+        case 5:
           res.status(200).json({
             status: 'success',
             data: {
@@ -53,7 +52,7 @@ exports.getMe = catchAsync(function _callee(req, res, next) {
             }
           });
 
-        case 7:
+        case 6:
         case "end":
           return _context.stop();
       }

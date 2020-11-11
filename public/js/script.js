@@ -1,5 +1,5 @@
 /*eslint-disable*/
-const socket = io('http://127.0.0.1:3000');
+const socket = io('/');
 const messageForm = document.getElementById('send-container');
 const messageContainer = document.getElementById('message-container');
 const messageInput = document.getElementById('message-input');

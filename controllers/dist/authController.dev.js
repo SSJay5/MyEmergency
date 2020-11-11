@@ -75,50 +75,50 @@ exports.login = catchAsync(function _callee2(req, res, next) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          _req$body = req.body, email = _req$body.email, password = _req$body.password;
-          console.log(email, password); // 1) Check if email and password exist
+          _req$body = req.body, email = _req$body.email, password = _req$body.password; // console.log(email, password);
+          // 1) Check if email and password exist
 
           if (!(!email || !password)) {
-            _context2.next = 4;
+            _context2.next = 3;
             break;
           }
 
           return _context2.abrupt("return", next(new AppError('Please provide email and password!', 400)));
 
-        case 4:
-          _context2.next = 6;
+        case 3:
+          _context2.next = 5;
           return regeneratorRuntime.awrap(User.findOne({
             email: email
           }).select('+password'));
 
-        case 6:
+        case 5:
           user = _context2.sent;
           _context2.t0 = !user;
 
           if (_context2.t0) {
-            _context2.next = 12;
+            _context2.next = 11;
             break;
           }
 
-          _context2.next = 11;
+          _context2.next = 10;
           return regeneratorRuntime.awrap(user.correctPassword(password, user.password));
 
-        case 11:
+        case 10:
           _context2.t0 = !_context2.sent;
 
-        case 12:
+        case 11:
           if (!_context2.t0) {
-            _context2.next = 14;
+            _context2.next = 13;
             break;
           }
 
           return _context2.abrupt("return", next(new AppError('Incorrect email or password', 401)));
 
-        case 14:
+        case 13:
           // 3) If everything ok, send token to client
           createSendToken(user, 200, res);
 
-        case 15:
+        case 14:
         case "end":
           return _context2.stop();
       }

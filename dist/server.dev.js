@@ -35,10 +35,9 @@ var getALLEmergencies = catchAsync(function _callee(rooms) {
             rooms[e._id] = {
               users: {}
             };
-          });
-          console.log(rooms);
+          }); // console.log(rooms);
 
-        case 5:
+        case 4:
         case "end":
           return _context.stop();
       }
