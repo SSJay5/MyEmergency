@@ -14,6 +14,7 @@ const userRouter = require('./routes/userRoutes');
 const emergencyRouter = require('./routes/emergencyRoutes');
 const viewRouter = require('./routes/viewRoutes');
 
+//Start Expess APP
 const app = express();
 app.set('port', process.env.PORT || 3000);
 
