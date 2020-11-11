@@ -26,7 +26,8 @@ var userRouter = require('./routes/userRoutes');
 
 var emergencyRouter = require('./routes/emergencyRoutes');
 
-var viewRouter = require('./routes/viewRoutes');
+var viewRouter = require('./routes/viewRoutes'); //Start Expess APP
+
 
 var app = express();
 app.set('port', process.env.PORT || 3000);
