@@ -9036,86 +9036,115 @@ if (deleteEmergencyButton) {
 var refreshButton = document.getElementsByClassName('btn-refresh')[0];
 
 if (refreshButton) {
-  refreshButton.addEventListener('click', function (f) {
-    navigator.geolocation.getCurrentPosition(function (data) {
-      locations[0] = data.coords.longitude;
-      locations[1] = data.coords.latitude;
-      (0, _mapbox.displayMap)(locations);
-      console.log(locations);
-    }, function (error) {
-      console.log(error);
-    }, {
-      enableHighAccuracy: true
+  refreshButton.addEventListener('click', /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(f) {
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              navigator.geolocation.getCurrentPosition(function (data) {
+                locations[0] = data.coords.longitude;
+                locations[1] = data.coords.latitude;
+                (0, _mapbox.displayMap)(locations);
+                console.log(locations);
+              }, function (error) {
+                console.log(error);
+              }, {
+                enableHighAccuracy: true
+              });
+
+            case 1:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }());
+
+  try {
+    var res = await (0, _axios.default)({
+      method: 'PATCH',
+      url: '/api/v1/users/updateMe',
+      data: {
+        currentLocation: locations
+      }
     });
-  });
+  } catch (err) {
+    return alert(err.response.data.message);
+  }
 }
 
 var emergencyButton = document.getElementsByClassName('btn-emergency')[0];
 
 if (emergencyButton) {
   emergencyButton.addEventListener('click', /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(f) {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(f) {
       var user, emergency;
-      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              _context2.prev = 0;
-              _context2.next = 3;
+              _context3.prev = 0;
+              _context3.next = 3;
               return (0, _axios.default)({
                 method: 'GET',
                 url: '/api/v1/users/me'
               });
 
             case 3:
-              user = _context2.sent;
-              _context2.next = 9;
+              user = _context3.sent;
+              _context3.next = 9;
               break;
 
             case 6:
-              _context2.prev = 6;
-              _context2.t0 = _context2["catch"](0);
-              return _context2.abrupt("return", alert(_context2.t0.response.data.message));
+              _context3.prev = 6;
+              _context3.t0 = _context3["catch"](0);
+              return _context3.abrupt("return", alert(_context3.t0.response.data.message));
 
             case 9:
               if (!user.emergencyActive) {
-                _context2.next = 13;
+                _context3.next = 13;
                 break;
               }
 
-              return _context2.abrupt("return", alert('Your Emergency Alert is already Active '));
+              return _context3.abrupt("return", alert('Your Emergency Alert is already Active '));
 
             case 13:
-              _context2.prev = 13;
-              _context2.next = 16;
+              _context3.prev = 13;
+              _context3.next = 16;
               return (0, _axios.default)({
                 method: 'GET',
                 url: '/api/v1/emergencies'
               });
 
             case 16:
-              emergency = _context2.sent;
+              emergency = _context3.sent;
               emergencyButton.style.animationName = 'scaleDown';
               emergencyButton.style.animationDuration = '1s';
               emergencyButton.remove();
-              _context2.next = 25;
+              _context3.next = 25;
               break;
 
             case 22:
-              _context2.prev = 22;
-              _context2.t1 = _context2["catch"](13);
-              return _context2.abrupt("return", alert(_context2.t1.response.data.message));
+              _context3.prev = 22;
+              _context3.t1 = _context3["catch"](13);
+              return _context3.abrupt("return", alert(_context3.t1.response.data.message));
 
             case 25:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2, null, [[0, 6], [13, 22]]);
+      }, _callee3, null, [[0, 6], [13, 22]]);
     }));
 
-    return function (_x2) {
-      return _ref2.apply(this, arguments);
+    return function (_x3) {
+      return _ref3.apply(this, arguments);
     };
   }());
 }
@@ -9125,12 +9154,12 @@ var helpingLocation = [];
 
 if (helpButton) {
   helpButton.addEventListener('click', /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(e) {
-      var emergencyId, res, _res;
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(e) {
+      var emergencyId, _res, _res2;
 
-      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      return regeneratorRuntime.wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
               e.preventDefault();
               navigator.geolocation.getCurrentPosition(function (data) {
@@ -9142,28 +9171,28 @@ if (helpButton) {
                 enableHighAccuracy: true
               });
               emergencyId = JSON.parse(document.getElementById('map').dataset.emergencyid);
-              _context3.prev = 3;
-              _context3.next = 6;
+              _context4.prev = 3;
+              _context4.next = 6;
               return (0, _axios.default)({
                 method: 'GET',
                 url: "/api/v1/emergencies/".concat(emergencyId)
               });
 
             case 6:
-              res = _context3.sent;
-              helpingLocation = res.data.data.location;
-              console.log(res.data);
-              _context3.next = 14;
+              _res = _context4.sent;
+              helpingLocation = _res.data.data.location;
+              console.log(_res.data);
+              _context4.next = 14;
               break;
 
             case 11:
-              _context3.prev = 11;
-              _context3.t0 = _context3["catch"](3);
-              return _context3.abrupt("return", alert(_context3.t0.response.data.message));
+              _context4.prev = 11;
+              _context4.t0 = _context4["catch"](3);
+              return _context4.abrupt("return", alert(_context4.t0.response.data.message));
 
             case 14:
-              _context3.prev = 14;
-              _context3.next = 17;
+              _context4.prev = 14;
+              _context4.next = 17;
               return (0, _axios.default)({
                 method: 'PATCH',
                 url: '/api/v1/users/updateMe',
@@ -9173,14 +9202,14 @@ if (helpButton) {
               });
 
             case 17:
-              _res = _context3.sent;
-              _context3.next = 23;
+              _res2 = _context4.sent;
+              _context4.next = 23;
               break;
 
             case 20:
-              _context3.prev = 20;
-              _context3.t1 = _context3["catch"](14);
-              return _context3.abrupt("return", alert(_context3.t1.response.data.message));
+              _context4.prev = 20;
+              _context4.t1 = _context4["catch"](14);
+              return _context4.abrupt("return", alert(_context4.t1.response.data.message));
 
             case 23:
               console.log(helpingLocation);
@@ -9189,14 +9218,14 @@ if (helpButton) {
 
             case 26:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3, null, [[3, 11], [14, 20]]);
+      }, _callee4, null, [[3, 11], [14, 20]]);
     }));
 
-    return function (_x3) {
-      return _ref3.apply(this, arguments);
+    return function (_x4) {
+      return _ref4.apply(this, arguments);
     };
   }());
 }
@@ -9228,7 +9257,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62009" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63495" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

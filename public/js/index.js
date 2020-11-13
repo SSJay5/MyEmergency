@@ -114,7 +114,7 @@ if (deleteEmergencyButton) {
 displayMap(locations);
 const refreshButton = document.getElementsByClassName('btn-refresh')[0];
 if (refreshButton) {
-  refreshButton.addEventListener('click', (f) => {
+  refreshButton.addEventListener('click', async (f) => {
     navigator.geolocation.getCurrentPosition(
       (data) => {
         locations[0] = data.coords.longitude;
@@ -130,6 +130,17 @@ if (refreshButton) {
       }
     );
   });
+  try {
+    let res = await axios({
+      method: 'PATCH',
+      url: '/api/v1/users/updateMe',
+      data: {
+        currentLocation: locations,
+      },
+    });
+  } catch (err) {
+    return alert(err.response.data.message);
+  }
 }
 
 var emergencyButton = document.getElementsByClassName('btn-emergency')[0];
