@@ -4,7 +4,7 @@ block content
   main
     section.emergencyMap
       button.btn-refresh Refresh
-      #map(data-emergencyId = `${user===undefined?null:JSON.stringify(user.emergency)}`)
+      #map(data-emergencyId = `${user===undefined?null:JSON.stringify(user.emergency===undefined?'no-emergency':user.emergency)}`)
       if user===undefined||user.emergencyActive==false
         button.btn-emergency Emergency
     section.nationalEmergencyHelpline
