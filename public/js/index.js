@@ -5,7 +5,7 @@ import { login } from './login';
 import axios from 'axios';
 import { help } from './help';
 
-const socket = io('http://127.0.0.1:3000');
+const socket = io('https://myemergency.herokuapp.com');
 
 const messageForm = document.getElementById('send-container');
 const messageContainer = document.getElementById('message-container');

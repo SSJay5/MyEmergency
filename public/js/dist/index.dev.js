@@ -13,7 +13,7 @@ var _help = require("./help");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /* eslint-disable */
-var socket = io('http://127.0.0.1:3000');
+var socket = io('https://myemergency.herokuapp.com');
 var messageForm = document.getElementById('send-container');
 var messageContainer = document.getElementById('message-container');
 var messageInput = document.getElementById('message-input');

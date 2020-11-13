@@ -196,7 +196,7 @@ body {
   margin-top: 10rem !important; }
 
 .emergencyMap {
-  height: 70vh;
+  height: 80vh;
   width: 100wh;
   position: relative; }
 
@@ -338,7 +338,7 @@ body {
   position: absolute;
   z-index: 100;
   background-color: orangered;
-  top: 85vh;
+  top: 60vh;
   left: 80vw; }
 
 .btn-copy {
