@@ -65,26 +65,31 @@ exports.updateMe = catchAsync(function _callee2(req, res, next) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
+          // 1) Create error if user POSTs password data
+          if (!req.user) {
+            res.redirect('/login');
+          }
+
           if (!(req.body.password || req.body.passwordConfirm)) {
-            _context2.next = 2;
+            _context2.next = 3;
             break;
           }
 
           return _context2.abrupt("return", next(new AppError('This route is not for password updates. Please use /updateMyPassword.', 400)));
 
-        case 2:
+        case 3:
           // 2) Filtered out unwanted fields names that are not allowed to be updated
           filteredBody = filterObj(req.body, 'name', 'email');
           if (req.file) filteredBody.photo = req.file.filename;
           req.body.currentLocation = turf.point(req.body.currentLocation).geometry; // 3) Update user document
 
-          _context2.next = 7;
+          _context2.next = 8;
           return regeneratorRuntime.awrap(User.findByIdAndUpdate(req.user.id, filteredBody, {
             "new": true,
             runValidators: true
           }));
 
-        case 7:
+        case 8:
           updatedUser = _context2.sent;
           res.status(200).json({
             status: 'success',
@@ -93,7 +98,7 @@ exports.updateMe = catchAsync(function _callee2(req, res, next) {
             }
           });
 
-        case 9:
+        case 10:
         case "end":
           return _context2.stop();
       }
