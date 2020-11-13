@@ -11,7 +11,7 @@ const getALLEmergencies = catchAsync(async (rooms) => {
   emergencies.forEach((e) => {
     rooms[e._id] = { users: {} };
   });
-  // console.log(rooms);
+  console.log(rooms);
 });
 process.on('uncaughtException', (err) => {
   console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...');
@@ -36,8 +36,6 @@ mongoose
 
 const server = http.createServer(app);
 const io = require('socket.io')(server);
-
-io.listen(server);
 
 const rooms = {};
 getALLEmergencies(rooms);
@@ -72,7 +70,6 @@ io.on('connection', (socket) => {
     });
   });
 });
-
 server.listen(app.get('port'), () => {
   console.log(`App Running on port ${app.get('port')}!!!`);
 });

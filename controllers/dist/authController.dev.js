@@ -200,7 +200,7 @@ exports.isLoggedIn = function _callee4(req, res, next) {
       switch (_context4.prev = _context4.next) {
         case 0:
           if (!req.cookies.jwt) {
-            _context4.next = 19;
+            _context4.next = 20;
             break;
           }
 
@@ -224,32 +224,34 @@ exports.isLoggedIn = function _callee4(req, res, next) {
           return _context4.abrupt("return", next());
 
         case 10:
+          req.user = currentUser; // 3) Check if user changed password after the token was issued
+
           if (!currentUser.changedPasswordAfter(decoded.iat)) {
-            _context4.next = 12;
+            _context4.next = 13;
             break;
           }
 
           return _context4.abrupt("return", next());
 
-        case 12:
+        case 13:
           // THERE IS A LOGGED IN USER
           res.locals.user = currentUser;
           return _context4.abrupt("return", next());
 
-        case 16:
-          _context4.prev = 16;
+        case 17:
+          _context4.prev = 17;
           _context4.t0 = _context4["catch"](1);
           return _context4.abrupt("return", next());
 
-        case 19:
+        case 20:
           next();
 
-        case 20:
+        case 21:
         case "end":
           return _context4.stop();
       }
     }
-  }, null, null, [[1, 16]]);
+  }, null, null, [[1, 17]]);
 };
 
 exports.restrictTo = function () {

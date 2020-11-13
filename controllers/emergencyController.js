@@ -30,6 +30,7 @@ exports.createEmergency = catchAsync(async (req, res, next) => {
   req.body.active = true;
   req.body.user = user._id;
   req.body.createdAt = Date.now();
+  req.body.userName = user.name;
   const emergency = await Emergency.create(req.body);
   user.emergency = emergency._id;
   user.emergencyActive = true;

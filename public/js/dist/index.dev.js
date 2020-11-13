@@ -13,7 +13,41 @@ var _help = require("./help");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /* eslint-disable */
-// import anime from 'animejs';
+var socket = io('http://127.0.0.1:3000');
+var messageForm = document.getElementById('send-container');
+var messageContainer = document.getElementById('message-container');
+var messageInput = document.getElementById('message-input');
+
+function appendMessage(message) {
+  var messageElement = document.createElement('div');
+  messageElement.className = 'emergencyChatBox__message';
+  messageElement.innerText = message;
+  messageContainer.append(messageElement);
+}
+
+if (messageForm != null) {
+  var name = JSON.parse(document.getElementById('message-container').dataset.username);
+  var roomName = JSON.parse(document.getElementById('map').dataset.emergencyid);
+  appendMessage('You Joined');
+  socket.emit('new-user', roomName, name);
+  messageForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var message = messageInput.value;
+    appendMessage("You: ".concat(message));
+    socket.emit('send-chat-message', roomName, message);
+    messageInput.value = '';
+  });
+}
+
+socket.on('chat-message', function (data) {
+  appendMessage("".concat(data.name, ": ").concat(data.message));
+});
+socket.on('user-connected', function (name) {
+  appendMessage("".concat(name, " connected"));
+});
+socket.on('user-disconnected', function (name) {
+  appendMessage("".concat(name, " disconnected"));
+});
 var form = document.querySelector('#form');
 console.log(form);
 
@@ -44,8 +78,8 @@ if (EmergencySearch) {
       enableHighAccuracy: true
     });
     var distance = document.getElementById('helping_distance').value;
-    distance = distance * 1;
-    console.log('yeh ', distance); // emergencies/within/:distance/center/:latlng/unit/:unit
+    distance = distance * 1; // console.log('yeh ', distance);
+    // emergencies/within/:distance/center/:latlng/unit/:unit
 
     window.setTimeout(function () {
       location.assign("/emergencies/".concat(distance, "/").concat(locations[1], ",").concat(locations[0], "/km"));

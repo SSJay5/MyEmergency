@@ -35,9 +35,10 @@ var getALLEmergencies = catchAsync(function _callee(rooms) {
             rooms[e._id] = {
               users: {}
             };
-          }); // console.log(rooms);
+          });
+          console.log(rooms);
 
-        case 4:
+        case 5:
         case "end":
           return _context.stop();
       }
@@ -64,7 +65,6 @@ var server = http.createServer(app);
 
 var io = require('socket.io')(server);
 
-io.listen(server);
 var rooms = {};
 getALLEmergencies(rooms);
 

@@ -52,20 +52,21 @@ exports.createEmergency = catchAsync(function _callee(req, res, next) {
           req.body.active = true;
           req.body.user = user._id;
           req.body.createdAt = Date.now();
-          _context.next = 13;
+          req.body.userName = user.name;
+          _context.next = 14;
           return regeneratorRuntime.awrap(Emergency.create(req.body));
 
-        case 13:
+        case 14:
           emergency = _context.sent;
           user.emergency = emergency._id;
           user.emergencyActive = true;
-          _context.next = 18;
+          _context.next = 19;
           return regeneratorRuntime.awrap(User.findByIdAndUpdate(user._id, user, {
             "new": true,
             runValidators: true
           }));
 
-        case 18:
+        case 19:
           user = _context.sent;
           res.status(200).json({
             status: 'success',
@@ -74,7 +75,7 @@ exports.createEmergency = catchAsync(function _callee(req, res, next) {
             }
           });
 
-        case 20:
+        case 21:
         case "end":
           return _context.stop();
       }

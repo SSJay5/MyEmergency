@@ -13,7 +13,7 @@ block content
       .emergencies__Cards
         if emergencies !=undefined
           each emergency in emergencies
-            .emergencies__Card=`Created At: ${emergency.createdAt.toLocaleString('en-us',{day:'numeric',month:'long',year:'numeric'})}`
+            .emergencies__Card=`Created By: ${emergency.userName}`
               if `${user===undefined?null:user._id}`.toLowerCase() === `${emergency.user}`.toLowerCase() 
                 button.emergencies__Card-cancel.btn Delete
               else

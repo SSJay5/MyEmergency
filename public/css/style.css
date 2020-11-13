@@ -196,7 +196,7 @@ body {
   margin-top: 10rem !important; }
 
 .emergencyMap {
-  height: 95vh;
+  height: 70vh;
   width: 100wh;
   position: relative; }
 
@@ -510,7 +510,7 @@ body {
     object-fit: fill; }
 
 .emergencies {
-  min-height: 100vh;
+  min-height: 60vh;
   width: 100%; }
   .emergencies__searchBar {
     min-height: 10rem;

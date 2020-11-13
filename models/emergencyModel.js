@@ -5,6 +5,9 @@ const emergencySchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'User',
   },
+  userName: {
+    type: String,
+  },
   location: {
     type: {
       type: String,

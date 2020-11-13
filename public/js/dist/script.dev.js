@@ -1,39 +1,38 @@
-"use strict";
-
 /*eslint-disable*/
-var socket = io('https://enigmatic-coast-74172.herokuapp.com');
-var messageForm = document.getElementById('send-container');
-var messageContainer = document.getElementById('message-container');
-var messageInput = document.getElementById('message-input');
-io.connect();
-
-function appendMessage(message) {
-  var messageElement = document.createElement('div');
-  messageElement.className = 'emergencyChatBox__message';
-  messageElement.innerText = message;
-  messageContainer.append(messageElement);
-}
-
-if (messageForm != null) {
-  var name = JSON.parse(document.getElementById('message-container').dataset.username);
-  var roomName = JSON.parse(document.getElementById('map').dataset.emergencyid);
-  appendMessage('You Joined');
-  socket.emit('new-user', roomName, name);
-  messageForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var message = messageInput.value;
-    appendMessage("You: ".concat(message));
-    socket.emit('send-chat-message', roomName, message);
-    messageInput.value = '';
-  });
-}
-
-socket.on('chat-message', function (data) {
-  appendMessage("".concat(data.name, ": ").concat(data.message));
-});
-socket.on('user-connected', function (name) {
-  appendMessage("".concat(name, " connected"));
-});
-socket.on('user-disconnected', function (name) {
-  appendMessage("".concat(name, " disconnected"));
-});
+// const messageForm = document.getElementById('send-container');
+// const messageContainer = document.getElementById('message-container');
+// const messageInput = document.getElementById('message-input');
+// function appendMessage(message) {
+//   const messageElement = document.createElement('div');
+//   messageElement.className = 'emergencyChatBox__message';
+//   messageElement.innerText = message;
+//   messageContainer.append(messageElement);
+// }
+// if (messageForm != null) {
+//   const name = JSON.parse(
+//     document.getElementById('message-container').dataset.username
+//   );
+//   const roomName = JSON.parse(
+//     document.getElementById('map').dataset.emergencyid
+//   );
+//   appendMessage('You Joined');
+//   socket.emit('new-user', roomName, name);
+//   messageForm.addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     const message = messageInput.value;
+//     appendMessage(`You: ${message}`);
+//     socket.emit('send-chat-message', roomName, message);
+//     messageInput.value = '';
+//   });
+// }
+// socket.on('chat-message', (data) => {
+//   // appendMessage(`${data.name}: ${data.message}`);
+//   console.log('Hello');
+// });
+// socket.on('user-connected', (name) => {
+//   appendMessage(`${name} connected`);
+// });
+// socket.on('user-disconnected', (name) => {
+//   appendMessage(`${name} disconnected`);
+// });
+"use strict";
