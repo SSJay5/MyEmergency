@@ -9037,63 +9037,116 @@ var emergencyButton = document.getElementsByClassName('btn-emergency')[0];
 if (emergencyButton) {
   emergencyButton.addEventListener('click', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(f) {
-      var user, emergency;
+      var user, res, _res, emergency;
+
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.prev = 0;
-              _context2.next = 3;
+              navigator.geolocation.getCurrentPosition(function (data) {
+                locations[0] = data.coords.longitude;
+                locations[1] = data.coords.latitude;
+                (0, _mapbox.displayMap)(locations);
+                console.log(locations);
+              }, function (error) {
+                console.log(error);
+              }, {
+                enableHighAccuracy: true
+              });
+              _context2.prev = 1;
+              _context2.next = 4;
+              return (0, _axios.default)({
+                method: 'PATCH',
+                url: '/api/v1/users/updateMe',
+                data: {
+                  currentLocation: locations
+                }
+              });
+
+            case 4:
+              res = _context2.sent;
+              _context2.next = 10;
+              break;
+
+            case 7:
+              _context2.prev = 7;
+              _context2.t0 = _context2["catch"](1);
+              return _context2.abrupt("return", alert(_context2.t0.response.data.message));
+
+            case 10:
+              _context2.prev = 10;
+              _context2.next = 13;
               return (0, _axios.default)({
                 method: 'GET',
                 url: '/api/v1/users/me'
               });
 
-            case 3:
+            case 13:
               user = _context2.sent;
-              _context2.next = 9;
+              _context2.next = 19;
               break;
 
-            case 6:
-              _context2.prev = 6;
-              _context2.t0 = _context2["catch"](0);
-              return _context2.abrupt("return", alert(_context2.t0.response.data.message));
+            case 16:
+              _context2.prev = 16;
+              _context2.t1 = _context2["catch"](10);
+              return _context2.abrupt("return", alert(_context2.t1.response.data.message));
 
-            case 9:
+            case 19:
+              _context2.prev = 19;
+              _context2.next = 22;
+              return (0, _axios.default)({
+                method: 'PATCH',
+                url: '/api/v1/users/updateMe',
+                data: {
+                  currentLocation: locations
+                }
+              });
+
+            case 22:
+              _res = _context2.sent;
+              _context2.next = 28;
+              break;
+
+            case 25:
+              _context2.prev = 25;
+              _context2.t2 = _context2["catch"](19);
+              return _context2.abrupt("return", alert(_context2.t2.response.data.message));
+
+            case 28:
               if (!user.emergencyActive) {
-                _context2.next = 13;
+                _context2.next = 32;
                 break;
               }
 
               return _context2.abrupt("return", alert('Your Emergency Alert is already Active '));
 
-            case 13:
-              _context2.prev = 13;
-              _context2.next = 16;
+            case 32:
+              _context2.prev = 32;
+              _context2.next = 35;
               return (0, _axios.default)({
                 method: 'GET',
                 url: '/api/v1/emergencies'
               });
 
-            case 16:
+            case 35:
               emergency = _context2.sent;
               emergencyButton.style.animationName = 'scaleDown';
               emergencyButton.style.animationDuration = '1s';
               emergencyButton.remove();
-              _context2.next = 25;
+              _context2.next = 44;
               break;
 
-            case 22:
-              _context2.prev = 22;
-              _context2.t1 = _context2["catch"](13);
-              return _context2.abrupt("return", alert(_context2.t1.response.data.message));
+            case 41:
+              _context2.prev = 41;
+              _context2.t3 = _context2["catch"](32);
+              return _context2.abrupt("return", alert(_context2.t3.response.data.message));
 
-            case 25:
+            case 44:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[0, 6], [13, 22]]);
+      }, _callee2, null, [[1, 7], [10, 16], [19, 25], [32, 41]]);
     }));
 
     return function (_x2) {
@@ -9155,7 +9208,7 @@ var helpingLocation = [];
 if (helpButton) {
   helpButton.addEventListener('click', /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(e) {
-      var emergencyId, _res, _res2;
+      var emergencyId, _res2, _res3;
 
       return regeneratorRuntime.wrap(function _callee4$(_context4) {
         while (1) {
@@ -9179,8 +9232,8 @@ if (helpButton) {
               });
 
             case 6:
-              _res = _context4.sent;
-              helpingLocation = _res.data.data.location; // console.log(res.data);
+              _res2 = _context4.sent;
+              helpingLocation = _res2.data.data.location; // console.log(res.data);
 
               _context4.next = 13;
               break;
@@ -9202,7 +9255,7 @@ if (helpButton) {
               });
 
             case 16:
-              _res2 = _context4.sent;
+              _res3 = _context4.sent;
               _context4.next = 22;
               break;
 
@@ -9257,7 +9310,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63495" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50013" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

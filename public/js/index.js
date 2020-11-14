@@ -115,10 +115,46 @@ var emergencyButton = document.getElementsByClassName('btn-emergency')[0];
 if (emergencyButton) {
   emergencyButton.addEventListener('click', async (f) => {
     let user;
+    navigator.geolocation.getCurrentPosition(
+      (data) => {
+        locations[0] = data.coords.longitude;
+        locations[1] = data.coords.latitude;
+        displayMap(locations);
+        console.log(locations);
+      },
+      (error) => {
+        console.log(error);
+      },
+      {
+        enableHighAccuracy: true,
+      }
+    );
+    try {
+      let res = await axios({
+        method: 'PATCH',
+        url: '/api/v1/users/updateMe',
+        data: {
+          currentLocation: locations,
+        },
+      });
+    } catch (err) {
+      return alert(err.response.data.message);
+    }
     try {
       user = await axios({
         method: 'GET',
         url: '/api/v1/users/me',
+      });
+    } catch (err) {
+      return alert(err.response.data.message);
+    }
+    try {
+      let res = await axios({
+        method: 'PATCH',
+        url: '/api/v1/users/updateMe',
+        data: {
+          currentLocation: locations,
+        },
       });
     } catch (err) {
       return alert(err.response.data.message);
