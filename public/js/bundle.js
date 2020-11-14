@@ -9180,19 +9180,19 @@ if (helpButton) {
 
             case 6:
               _res = _context4.sent;
-              helpingLocation = _res.data.data.location;
-              console.log(_res.data);
-              _context4.next = 14;
+              helpingLocation = _res.data.data.location; // console.log(res.data);
+
+              _context4.next = 13;
               break;
 
-            case 11:
-              _context4.prev = 11;
+            case 10:
+              _context4.prev = 10;
               _context4.t0 = _context4["catch"](3);
               return _context4.abrupt("return", alert(_context4.t0.response.data.message));
 
-            case 14:
-              _context4.prev = 14;
-              _context4.next = 17;
+            case 13:
+              _context4.prev = 13;
+              _context4.next = 16;
               return (0, _axios.default)({
                 method: 'PATCH',
                 url: '/api/v1/users/updateMe',
@@ -9201,27 +9201,27 @@ if (helpButton) {
                 }
               });
 
-            case 17:
+            case 16:
               _res2 = _context4.sent;
-              _context4.next = 23;
+              _context4.next = 22;
               break;
 
-            case 20:
-              _context4.prev = 20;
-              _context4.t1 = _context4["catch"](14);
+            case 19:
+              _context4.prev = 19;
+              _context4.t1 = _context4["catch"](13);
               return _context4.abrupt("return", alert(_context4.t1.response.data.message));
 
-            case 23:
-              console.log(helpingLocation);
-              console.log(locations);
+            case 22:
+              // console.log(helpingLocation);
+              // console.log(locations);
               (0, _help.help)(helpingLocation, locations);
 
-            case 26:
+            case 23:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[3, 11], [14, 20]]);
+      }, _callee4, null, [[3, 10], [13, 19]]);
     }));
 
     return function (_x4) {

@@ -197,7 +197,7 @@ if (helpButton) {
         url: `/api/v1/emergencies/${emergencyId}`,
       });
       helpingLocation = res.data.data.location;
-      console.log(res.data);
+      // console.log(res.data);
     } catch (err) {
       return alert(err.response.data.message);
     }
@@ -214,8 +214,8 @@ if (helpButton) {
       return alert(err.response.data.message);
     }
 
-    console.log(helpingLocation);
-    console.log(locations);
+    // console.log(helpingLocation);
+    // console.log(locations);
     help(helpingLocation, locations);
   });
 }

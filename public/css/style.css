@@ -471,7 +471,7 @@ body {
     position: relative;
     border-radius: 3px;
     background-color: #664d44;
-    height: 5rem;
+    min-height: 5rem;
     width: 95%;
     left: 50%;
     transform: translateX(-50%);
