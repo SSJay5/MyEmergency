@@ -9032,15 +9032,85 @@ if (deleteEmergencyButton) {
   }());
 }
 
+var emergencyButton = document.getElementsByClassName('btn-emergency')[0];
+
+if (emergencyButton) {
+  emergencyButton.addEventListener('click', /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(f) {
+      var user, emergency;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return (0, _axios.default)({
+                method: 'GET',
+                url: '/api/v1/users/me'
+              });
+
+            case 3:
+              user = _context2.sent;
+              _context2.next = 9;
+              break;
+
+            case 6:
+              _context2.prev = 6;
+              _context2.t0 = _context2["catch"](0);
+              return _context2.abrupt("return", alert(_context2.t0.response.data.message));
+
+            case 9:
+              if (!user.emergencyActive) {
+                _context2.next = 13;
+                break;
+              }
+
+              return _context2.abrupt("return", alert('Your Emergency Alert is already Active '));
+
+            case 13:
+              _context2.prev = 13;
+              _context2.next = 16;
+              return (0, _axios.default)({
+                method: 'GET',
+                url: '/api/v1/emergencies'
+              });
+
+            case 16:
+              emergency = _context2.sent;
+              emergencyButton.style.animationName = 'scaleDown';
+              emergencyButton.style.animationDuration = '1s';
+              emergencyButton.remove();
+              _context2.next = 25;
+              break;
+
+            case 22:
+              _context2.prev = 22;
+              _context2.t1 = _context2["catch"](13);
+              return _context2.abrupt("return", alert(_context2.t1.response.data.message));
+
+            case 25:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 6], [13, 22]]);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }());
+}
+
 (0, _mapbox.displayMap)(locations);
 var refreshButton = document.getElementsByClassName('btn-refresh')[0];
 
 if (refreshButton) {
   refreshButton.addEventListener('click', /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(f) {
-      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(f) {
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
               navigator.geolocation.getCurrentPosition(function (data) {
                 locations[0] = data.coords.longitude;
@@ -9055,14 +9125,14 @@ if (refreshButton) {
 
             case 1:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }));
 
-    return function (_x2) {
-      return _ref2.apply(this, arguments);
+    return function (_x3) {
+      return _ref3.apply(this, arguments);
     };
   }());
 
@@ -9077,76 +9147,6 @@ if (refreshButton) {
   } catch (err) {
     return alert(err.response.data.message);
   }
-}
-
-var emergencyButton = document.getElementsByClassName('btn-emergency')[0];
-
-if (emergencyButton) {
-  emergencyButton.addEventListener('click', /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(f) {
-      var user, emergency;
-      return regeneratorRuntime.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.prev = 0;
-              _context3.next = 3;
-              return (0, _axios.default)({
-                method: 'GET',
-                url: '/api/v1/users/me'
-              });
-
-            case 3:
-              user = _context3.sent;
-              _context3.next = 9;
-              break;
-
-            case 6:
-              _context3.prev = 6;
-              _context3.t0 = _context3["catch"](0);
-              return _context3.abrupt("return", alert(_context3.t0.response.data.message));
-
-            case 9:
-              if (!user.emergencyActive) {
-                _context3.next = 13;
-                break;
-              }
-
-              return _context3.abrupt("return", alert('Your Emergency Alert is already Active '));
-
-            case 13:
-              _context3.prev = 13;
-              _context3.next = 16;
-              return (0, _axios.default)({
-                method: 'GET',
-                url: '/api/v1/emergencies'
-              });
-
-            case 16:
-              emergency = _context3.sent;
-              emergencyButton.style.animationName = 'scaleDown';
-              emergencyButton.style.animationDuration = '1s';
-              emergencyButton.remove();
-              _context3.next = 25;
-              break;
-
-            case 22:
-              _context3.prev = 22;
-              _context3.t1 = _context3["catch"](13);
-              return _context3.abrupt("return", alert(_context3.t1.response.data.message));
-
-            case 25:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3, null, [[0, 6], [13, 22]]);
-    }));
-
-    return function (_x3) {
-      return _ref3.apply(this, arguments);
-    };
-  }());
 }
 
 var helpButton = document.getElementsByClassName('btn-help')[0];

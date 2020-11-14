@@ -110,7 +110,36 @@ if (deleteEmergencyButton) {
     }
   });
 }
+var emergencyButton = document.getElementsByClassName('btn-emergency')[0];
 
+if (emergencyButton) {
+  emergencyButton.addEventListener('click', async (f) => {
+    let user;
+    try {
+      user = await axios({
+        method: 'GET',
+        url: '/api/v1/users/me',
+      });
+    } catch (err) {
+      return alert(err.response.data.message);
+    }
+    if (user.emergencyActive) {
+      return alert('Your Emergency Alert is already Active ');
+    } else {
+      try {
+        const emergency = await axios({
+          method: 'GET',
+          url: '/api/v1/emergencies',
+        });
+        emergencyButton.style.animationName = 'scaleDown';
+        emergencyButton.style.animationDuration = '1s';
+        emergencyButton.remove();
+      } catch (err) {
+        return alert(err.response.data.message);
+      }
+    }
+  });
+}
 displayMap(locations);
 const refreshButton = document.getElementsByClassName('btn-refresh')[0];
 if (refreshButton) {
@@ -141,37 +170,6 @@ if (refreshButton) {
   } catch (err) {
     return alert(err.response.data.message);
   }
-}
-
-var emergencyButton = document.getElementsByClassName('btn-emergency')[0];
-
-if (emergencyButton) {
-  emergencyButton.addEventListener('click', async (f) => {
-    let user;
-    try {
-      user = await axios({
-        method: 'GET',
-        url: '/api/v1/users/me',
-      });
-    } catch (err) {
-      return alert(err.response.data.message);
-    }
-    if (user.emergencyActive) {
-      return alert('Your Emergency Alert is already Active ');
-    } else {
-      try {
-        const emergency = await axios({
-          method: 'GET',
-          url: '/api/v1/emergencies',
-        });
-        emergencyButton.style.animationName = 'scaleDown';
-        emergencyButton.style.animationDuration = '1s';
-        emergencyButton.remove();
-      } catch (err) {
-        return alert(err.response.data.message);
-      }
-    }
-  });
 }
 var helpButton = document.getElementsByClassName('btn-help')[0];
 let helpingLocation = [];
