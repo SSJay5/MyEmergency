@@ -8921,6 +8921,20 @@ var messageForm = document.getElementById('send-container');
 var messageContainer = document.getElementById('message-container');
 var messageInput = document.getElementById('message-input');
 
+var getMyCurrnetLocation = function getMyCurrnetLocation() {
+  var currLocation = [null, null];
+  navigator.geolocation.getCurrentPosition(function (data) {
+    currLocation[0] = data.coords.longitude;
+    currLocation[1] = data.coords.latitude;
+    (0, _mapbox.displayMap)(currLocation); // console.log(locations);
+  }, function (error) {
+    return alert('Please Turn On Your GPS !!!');
+  }, {
+    enableHighAccuracy: true
+  });
+  return currentLocation;
+};
+
 function appendMessage(message) {
   var messageElement = document.createElement('div');
   messageElement.className = 'emergencyChatBox__message';
@@ -8970,16 +8984,12 @@ var locations = [72.82119, 18.959125];
 if (EmergencySearch) {
   EmergencySearch.addEventListener('click', function (e) {
     e.preventDefault();
-    navigator.geolocation.getCurrentPosition(function (data) {
-      locations[0] = data.coords.longitude;
-      locations[1] = data.coords.latitude;
-      (0, _mapbox.displayMap)(locations);
-      console.log(locations);
-    }, function (error) {
-      console.log(error);
-    }, {
-      enableHighAccuracy: true
-    });
+    locations = getMyCurrnetLocation();
+
+    if (locations[0] == null || locations[1] == null) {
+      return aleart('Please Provide Your Location');
+    }
+
     var distance = document.getElementById('helping_distance').value;
     distance = distance * 1; // console.log('yeh ', distance);
     // emergencies/within/:distance/center/:latlng/unit/:unit
@@ -9037,24 +9047,23 @@ var emergencyButton = document.getElementsByClassName('btn-emergency')[0];
 if (emergencyButton) {
   emergencyButton.addEventListener('click', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(f) {
-      var user, res, _res, emergency;
-
+      var user, res, emergency;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              navigator.geolocation.getCurrentPosition(function (data) {
-                locations[0] = data.coords.longitude;
-                locations[1] = data.coords.latitude;
-                (0, _mapbox.displayMap)(locations);
-                console.log(locations);
-              }, function (error) {
-                console.log(error);
-              }, {
-                enableHighAccuracy: true
-              });
-              _context2.prev = 1;
-              _context2.next = 4;
+              locations = getMyCurrnetLocation();
+
+              if (!(locations[0] == null || locations[1] == null)) {
+                _context2.next = 3;
+                break;
+              }
+
+              return _context2.abrupt("return", aleart('Please Provide Your Location'));
+
+            case 3:
+              _context2.prev = 3;
+              _context2.next = 6;
               return (0, _axios.default)({
                 method: 'PATCH',
                 url: '/api/v1/users/updateMe',
@@ -9063,90 +9072,69 @@ if (emergencyButton) {
                 }
               });
 
-            case 4:
+            case 6:
               res = _context2.sent;
-              _context2.next = 10;
+              _context2.next = 12;
               break;
 
-            case 7:
-              _context2.prev = 7;
-              _context2.t0 = _context2["catch"](1);
+            case 9:
+              _context2.prev = 9;
+              _context2.t0 = _context2["catch"](3);
               return _context2.abrupt("return", alert(_context2.t0.response.data.message));
 
-            case 10:
-              _context2.prev = 10;
-              _context2.next = 13;
+            case 12:
+              _context2.prev = 12;
+              _context2.next = 15;
               return (0, _axios.default)({
                 method: 'GET',
                 url: '/api/v1/users/me'
               });
 
-            case 13:
+            case 15:
               user = _context2.sent;
-              _context2.next = 19;
+              _context2.next = 21;
               break;
 
-            case 16:
-              _context2.prev = 16;
-              _context2.t1 = _context2["catch"](10);
+            case 18:
+              _context2.prev = 18;
+              _context2.t1 = _context2["catch"](12);
               return _context2.abrupt("return", alert(_context2.t1.response.data.message));
 
-            case 19:
-              _context2.prev = 19;
-              _context2.next = 22;
-              return (0, _axios.default)({
-                method: 'PATCH',
-                url: '/api/v1/users/updateMe',
-                data: {
-                  currentLocation: locations
-                }
-              });
-
-            case 22:
-              _res = _context2.sent;
-              _context2.next = 28;
-              break;
-
-            case 25:
-              _context2.prev = 25;
-              _context2.t2 = _context2["catch"](19);
-              return _context2.abrupt("return", alert(_context2.t2.response.data.message));
-
-            case 28:
+            case 21:
               if (!user.emergencyActive) {
-                _context2.next = 32;
+                _context2.next = 25;
                 break;
               }
 
               return _context2.abrupt("return", alert('Your Emergency Alert is already Active '));
 
-            case 32:
-              _context2.prev = 32;
-              _context2.next = 35;
+            case 25:
+              _context2.prev = 25;
+              _context2.next = 28;
               return (0, _axios.default)({
                 method: 'GET',
                 url: '/api/v1/emergencies'
               });
 
-            case 35:
+            case 28:
               emergency = _context2.sent;
               emergencyButton.style.animationName = 'scaleDown';
               emergencyButton.style.animationDuration = '1s';
               emergencyButton.remove();
-              _context2.next = 44;
+              _context2.next = 37;
               break;
 
-            case 41:
-              _context2.prev = 41;
-              _context2.t3 = _context2["catch"](32);
-              return _context2.abrupt("return", alert(_context2.t3.response.data.message));
+            case 34:
+              _context2.prev = 34;
+              _context2.t2 = _context2["catch"](25);
+              return _context2.abrupt("return", alert(_context2.t2.response.data.message));
 
-            case 44:
+            case 37:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[1, 7], [10, 16], [19, 25], [32, 41]]);
+      }, _callee2, null, [[3, 9], [12, 18], [25, 34]]);
     }));
 
     return function (_x2) {
@@ -9165,18 +9153,16 @@ if (refreshButton) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              navigator.geolocation.getCurrentPosition(function (data) {
-                locations[0] = data.coords.longitude;
-                locations[1] = data.coords.latitude;
-                (0, _mapbox.displayMap)(locations);
-                console.log(locations);
-              }, function (error) {
-                console.log(error);
-              }, {
-                enableHighAccuracy: true
-              });
+              locations = getMyCurrnetLocation();
 
-            case 1:
+              if (!(locations[0] == null || locations[1] == null)) {
+                _context3.next = 3;
+                break;
+              }
+
+              return _context3.abrupt("return", aleart('Please Provide Your Location'));
+
+            case 3:
             case "end":
               return _context3.stop();
           }
@@ -9208,44 +9194,46 @@ var helpingLocation = [];
 if (helpButton) {
   helpButton.addEventListener('click', /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(e) {
-      var emergencyId, _res2, _res3;
+      var emergencyId, _res, _res2;
 
       return regeneratorRuntime.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
               e.preventDefault();
-              navigator.geolocation.getCurrentPosition(function (data) {
-                locations[0] = data.coords.longitude;
-                locations[1] = data.coords.latitude;
-              }, function (error) {
-                return console.log(error);
-              }, {
-                enableHighAccuracy: true
-              });
+              locations = getMyCurrnetLocation();
+
+              if (!(locations[0] == null || locations[1] == null)) {
+                _context4.next = 4;
+                break;
+              }
+
+              return _context4.abrupt("return", aleart('Please Provide Your Location'));
+
+            case 4:
               emergencyId = JSON.parse(document.getElementById('map').dataset.emergencyid);
-              _context4.prev = 3;
-              _context4.next = 6;
+              _context4.prev = 5;
+              _context4.next = 8;
               return (0, _axios.default)({
                 method: 'GET',
                 url: "/api/v1/emergencies/".concat(emergencyId)
               });
 
-            case 6:
-              _res2 = _context4.sent;
-              helpingLocation = _res2.data.data.location; // console.log(res.data);
+            case 8:
+              _res = _context4.sent;
+              helpingLocation = _res.data.data.location; // console.log(res.data);
 
-              _context4.next = 13;
+              _context4.next = 15;
               break;
 
-            case 10:
-              _context4.prev = 10;
-              _context4.t0 = _context4["catch"](3);
+            case 12:
+              _context4.prev = 12;
+              _context4.t0 = _context4["catch"](5);
               return _context4.abrupt("return", alert(_context4.t0.response.data.message));
 
-            case 13:
-              _context4.prev = 13;
-              _context4.next = 16;
+            case 15:
+              _context4.prev = 15;
+              _context4.next = 18;
               return (0, _axios.default)({
                 method: 'PATCH',
                 url: '/api/v1/users/updateMe',
@@ -9254,27 +9242,27 @@ if (helpButton) {
                 }
               });
 
-            case 16:
-              _res3 = _context4.sent;
-              _context4.next = 22;
+            case 18:
+              _res2 = _context4.sent;
+              _context4.next = 24;
               break;
 
-            case 19:
-              _context4.prev = 19;
-              _context4.t1 = _context4["catch"](13);
+            case 21:
+              _context4.prev = 21;
+              _context4.t1 = _context4["catch"](15);
               return _context4.abrupt("return", alert(_context4.t1.response.data.message));
 
-            case 22:
+            case 24:
               // console.log(helpingLocation);
               // console.log(locations);
               (0, _help.help)(helpingLocation, locations);
 
-            case 23:
+            case 25:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[3, 10], [13, 19]]);
+      }, _callee4, null, [[5, 12], [15, 21]]);
     }));
 
     return function (_x4) {
@@ -9310,7 +9298,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50013" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50976" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

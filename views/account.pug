@@ -8,11 +8,11 @@ block content
       .row
         .input-field.col.s6
           input#first_name.validate(type='text') 
-          label(for='first_name') First Name
+          label(for='first_name')= `${user.name.split(' ')[0]}`
       .row
         .input-field.col.s6
           input#last_name.validate(type='text')
-          label(for='last_name') Last Name
+          label(for='last_name')= `${user.name.split(' ')[1]}`
       .row
         .form-user-data__profile-photo
           img(src='img/user/default.jpg' alt='' srcset='')

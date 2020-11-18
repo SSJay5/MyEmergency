@@ -11,6 +11,24 @@ const messageForm = document.getElementById('send-container');
 const messageContainer = document.getElementById('message-container');
 const messageInput = document.getElementById('message-input');
 
+const getMyCurrnetLocation = () => {
+  let currLocation = [null, null];
+  navigator.geolocation.getCurrentPosition(
+    (data) => {
+      currLocation[0] = data.coords.longitude;
+      currLocation[1] = data.coords.latitude;
+      displayMap(currLocation);
+      // console.log(locations);
+    },
+    (error) => {
+      return alert('Please Turn On Your GPS !!!');
+    },
+    {
+      enableHighAccuracy: true,
+    }
+  );
+  return currentLocation;
+};
 function appendMessage(message) {
   const messageElement = document.createElement('div');
   messageElement.className = 'emergencyChatBox__message';
@@ -66,24 +84,13 @@ let locations = [72.82119, 18.959125];
 if (EmergencySearch) {
   EmergencySearch.addEventListener('click', (e) => {
     e.preventDefault();
-    navigator.geolocation.getCurrentPosition(
-      (data) => {
-        locations[0] = data.coords.longitude;
-        locations[1] = data.coords.latitude;
-        displayMap(locations);
-        console.log(locations);
-      },
-      (error) => {
-        console.log(error);
-      },
-      {
-        enableHighAccuracy: true,
-      }
-    );
+    locations = getMyCurrnetLocation();
+    if (locations[0] == null || locations[1] == null) {
+      return aleart('Please Provide Your Location');
+    }
     let distance = document.getElementById('helping_distance').value;
     distance = distance * 1;
     // console.log('yeh ', distance);
-
     // emergencies/within/:distance/center/:latlng/unit/:unit
     window.setTimeout(() => {
       location.assign(
@@ -115,20 +122,10 @@ var emergencyButton = document.getElementsByClassName('btn-emergency')[0];
 if (emergencyButton) {
   emergencyButton.addEventListener('click', async (f) => {
     let user;
-    navigator.geolocation.getCurrentPosition(
-      (data) => {
-        locations[0] = data.coords.longitude;
-        locations[1] = data.coords.latitude;
-        displayMap(locations);
-        console.log(locations);
-      },
-      (error) => {
-        console.log(error);
-      },
-      {
-        enableHighAccuracy: true,
-      }
-    );
+    locations = getMyCurrnetLocation();
+    if (locations[0] == null || locations[1] == null) {
+      return aleart('Please Provide Your Location');
+    }
     try {
       let res = await axios({
         method: 'PATCH',
@@ -144,17 +141,6 @@ if (emergencyButton) {
       user = await axios({
         method: 'GET',
         url: '/api/v1/users/me',
-      });
-    } catch (err) {
-      return alert(err.response.data.message);
-    }
-    try {
-      let res = await axios({
-        method: 'PATCH',
-        url: '/api/v1/users/updateMe',
-        data: {
-          currentLocation: locations,
-        },
       });
     } catch (err) {
       return alert(err.response.data.message);
@@ -180,20 +166,10 @@ displayMap(locations);
 const refreshButton = document.getElementsByClassName('btn-refresh')[0];
 if (refreshButton) {
   refreshButton.addEventListener('click', async (f) => {
-    navigator.geolocation.getCurrentPosition(
-      (data) => {
-        locations[0] = data.coords.longitude;
-        locations[1] = data.coords.latitude;
-        displayMap(locations);
-        console.log(locations);
-      },
-      (error) => {
-        console.log(error);
-      },
-      {
-        enableHighAccuracy: true,
-      }
-    );
+    locations = getMyCurrnetLocation();
+    if (locations[0] == null || locations[1] == null) {
+      return aleart('Please Provide Your Location');
+    }
   });
   try {
     let res = await axios({
@@ -212,18 +188,10 @@ let helpingLocation = [];
 if (helpButton) {
   helpButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    navigator.geolocation.getCurrentPosition(
-      (data) => {
-        locations[0] = data.coords.longitude;
-        locations[1] = data.coords.latitude;
-      },
-      (error) => {
-        return console.log(error);
-      },
-      {
-        enableHighAccuracy: true,
-      }
-    );
+    locations = getMyCurrnetLocation();
+    if (locations[0] == null || locations[1] == null) {
+      return aleart('Please Provide Your Location');
+    }
     const emergencyId = JSON.parse(
       document.getElementById('map').dataset.emergencyid
     );
