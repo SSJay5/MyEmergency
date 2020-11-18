@@ -3,16 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.login = void 0;
+exports.signup = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /*eslint-disable*/
-var login = function login(email, password) {
+var signup = function signup(name, email, password, passwordConfirm) {
   var res;
-  return regeneratorRuntime.async(function login$(_context) {
+  return regeneratorRuntime.async(function signup$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
@@ -20,10 +20,12 @@ var login = function login(email, password) {
           _context.next = 3;
           return regeneratorRuntime.awrap((0, _axios["default"])({
             method: 'POST',
-            url: '/api/v1/users/login',
+            url: '/api/v1/users/signUp',
             data: {
+              name: name,
               email: email,
-              password: password
+              password: password,
+              passwordConfirm: passwordConfirm
             }
           }));
 
@@ -31,12 +33,11 @@ var login = function login(email, password) {
           res = _context.sent;
 
           if (res.data.status === 'success') {
-            alert('Logged in Successfully');
+            alert('Siggned in Successfully');
             window.setTimeout(function () {
               location.assign('/');
             }, 1500);
-          } // console.log(res);
-
+          }
 
           _context.next = 10;
           break;
@@ -54,4 +55,4 @@ var login = function login(email, password) {
   }, null, null, [[0, 7]]);
 };
 
-exports.login = login;
+exports.signup = signup;

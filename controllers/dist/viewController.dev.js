@@ -85,7 +85,7 @@ exports.getEmergency = catchAsync(function _callee3(req, res, next) {
             break;
           }
 
-          return _context3.abrupt("return", next(new AppError('User Has deleted this emergency Aleart!!!', 404)));
+          return _context3.abrupt("return", next(new AppError('User Has deleted this emergency Alert!!!', 404)));
 
         case 5:
           res.status(200).render('emergency', {

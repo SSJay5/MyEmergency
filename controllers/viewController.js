@@ -33,7 +33,7 @@ exports.getEmergency = catchAsync(async (req, res, next) => {
   const emergency = await Emergency.findById(req.params.id);
 
   if (!emergency) {
-    return next(new AppError('User Has deleted this emergency Aleart!!!', 404));
+    return next(new AppError('User Has deleted this emergency Alert!!!', 404));
   }
   res.status(200).render('emergency', {
     title: 'Emergency',

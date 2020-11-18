@@ -35,7 +35,7 @@ exports.createEmergency = catchAsync(function _callee(req, res, next) {
             break;
           }
 
-          return _context.abrupt("return", next(new AppError('Your Emergency Aleart is Active To view Go to Emergencies section or To create new One First delete Previous One', 400)));
+          return _context.abrupt("return", next(new AppError('Your Emergency Alert is Active To view Go to Emergencies section or To create new One First delete Previous One', 400)));
 
         case 5:
           if (!(user.currentLocation.coordinates.length === 0)) {
@@ -99,7 +99,7 @@ exports.deleteMyEmergency = catchAsync(function _callee2(req, res, next) {
             break;
           }
 
-          return _context2.abrupt("return", next(new AppError('Emergency Aleart is already deleted', 404)));
+          return _context2.abrupt("return", next(new AppError('Emergency Alert is already deleted', 404)));
 
         case 5:
           _context2.next = 7;

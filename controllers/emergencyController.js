@@ -10,7 +10,7 @@ exports.createEmergency = catchAsync(async (req, res, next) => {
   if (user.emergencyActive) {
     return next(
       new AppError(
-        'Your Emergency Aleart is Active To view Go to Emergencies section or To create new One First delete Previous One',
+        'Your Emergency Alert is Active To view Go to Emergencies section or To create new One First delete Previous One',
         400
       )
     );
@@ -51,7 +51,7 @@ exports.deleteMyEmergency = catchAsync(async (req, res, next) => {
   const emergency = await Emergency.findById(req.user.emergency);
 
   if (!emergency) {
-    return next(new AppError('Emergency Aleart is already deleted', 404));
+    return next(new AppError('Emergency Alert is already deleted', 404));
   }
   await Emergency.findByIdAndDelete(emergency._id);
 
