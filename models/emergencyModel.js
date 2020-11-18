@@ -24,6 +24,7 @@ const emergencySchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  chats: [],
 });
 
 emergencySchema.pre(/^find/, function (next) {

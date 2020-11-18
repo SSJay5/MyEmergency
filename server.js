@@ -4,6 +4,7 @@ const http = require('http');
 const app = require('./app');
 const Emergency = require('./models/emergencyModel');
 const catchAsync = require('./utils/catchAsync');
+const AppError = require('./utils/appError');
 
 const getALLEmergencies = catchAsync(async (rooms) => {
   const emergencies = await Emergency.find();
@@ -13,6 +14,21 @@ const getALLEmergencies = catchAsync(async (rooms) => {
   });
   console.log(rooms);
 });
+
+const addChat = catchAsync(async (room, name, message) => {
+  const emergency = await Emergency.findById(room);
+  // console.log(emergency);
+  if (!emergency) {
+    return new AppError('Emergency Not found', 400);
+  }
+  emergency.chats.push(`${name}: ${message}`);
+  console.log(emergency);
+  await Emergency.findByIdAndUpdate(room, emergency, {
+    new: true,
+    runValidators: true,
+  });
+});
+
 process.on('uncaughtException', (err) => {
   console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...');
   console.log(err.name, err.message);
@@ -56,6 +72,7 @@ io.on('connection', (socket) => {
     socket.to(room).broadcast.emit('user-connected', name);
   });
   socket.on('send-chat-message', (room, message) => {
+    addChat(room, rooms[room].users[socket.id], message);
     socket.to(room).broadcast.emit('chat-message', {
       message: message,
       name: rooms[room].users[socket.id],

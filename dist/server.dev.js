@@ -20,6 +20,8 @@ var Emergency = require('./models/emergencyModel');
 
 var catchAsync = require('./utils/catchAsync');
 
+var AppError = require('./utils/appError');
+
 var getALLEmergencies = catchAsync(function _callee(rooms) {
   var emergencies;
   return regeneratorRuntime.async(function _callee$(_context) {
@@ -41,6 +43,41 @@ var getALLEmergencies = catchAsync(function _callee(rooms) {
         case 5:
         case "end":
           return _context.stop();
+      }
+    }
+  });
+});
+var addChat = catchAsync(function _callee2(room, name, message) {
+  var emergency;
+  return regeneratorRuntime.async(function _callee2$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.next = 2;
+          return regeneratorRuntime.awrap(Emergency.findById(room));
+
+        case 2:
+          emergency = _context2.sent;
+
+          if (emergency) {
+            _context2.next = 5;
+            break;
+          }
+
+          return _context2.abrupt("return", new AppError('Emergency Not found', 400));
+
+        case 5:
+          emergency.chats.push("".concat(name, ": ").concat(message));
+          console.log(emergency);
+          _context2.next = 9;
+          return regeneratorRuntime.awrap(Emergency.findByIdAndUpdate(room, emergency, {
+            "new": true,
+            runValidators: true
+          }));
+
+        case 9:
+        case "end":
+          return _context2.stop();
       }
     }
   });
@@ -93,6 +130,7 @@ io.on('connection', function (socket) {
     socket.to(room).broadcast.emit('user-connected', name);
   });
   socket.on('send-chat-message', function (room, message) {
+    addChat(room, rooms[room].users[socket.id], message);
     socket.to(room).broadcast.emit('chat-message', {
       message: message,
       name: rooms[room].users[socket.id]
