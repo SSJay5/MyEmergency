@@ -176,6 +176,9 @@ if (emergencyButton) {
         });
         emergencyButton.style.animationName = 'scaleDown';
         emergencyButton.style.animationDuration = '1s';
+        document.getElementById('map').dataset.emergencyid = JSON.stringify(
+          emergency._id
+        );
         emergencyButton.remove();
       } catch (err) {
         return alert(err.response.data.message);

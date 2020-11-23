@@ -231,21 +231,22 @@ if (emergencyButton) {
             emergency = _context2.sent;
             emergencyButton.style.animationName = 'scaleDown';
             emergencyButton.style.animationDuration = '1s';
+            document.getElementById('map').dataset.emergencyid = JSON.stringify(emergency._id);
             emergencyButton.remove();
-            _context2.next = 37;
+            _context2.next = 38;
             break;
 
-          case 34:
-            _context2.prev = 34;
+          case 35:
+            _context2.prev = 35;
             _context2.t2 = _context2["catch"](25);
             return _context2.abrupt("return", alert(_context2.t2.response.data.message));
 
-          case 37:
+          case 38:
           case "end":
             return _context2.stop();
         }
       }
-    }, null, null, [[3, 9], [12, 18], [25, 34]]);
+    }, null, null, [[3, 9], [12, 18], [25, 35]]);
   });
 }
 
