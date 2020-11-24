@@ -149,7 +149,8 @@ var emergencyButton = document.getElementsByClassName('btn-emergency')[0];
 
 if (emergencyButton) {
   emergencyButton.addEventListener('click', function _callee2(f) {
-    var user, res, emergency;
+    var user, res, emergency, _Map;
+
     return regeneratorRuntime.async(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -185,68 +186,55 @@ if (emergencyButton) {
 
           case 6:
             res = _context2.sent;
-            _context2.next = 12;
-            break;
-
-          case 9:
-            _context2.prev = 9;
-            _context2.t0 = _context2["catch"](3);
-            return _context2.abrupt("return", alert(_context2.t0.response.data.message));
-
-          case 12:
-            _context2.prev = 12;
-            _context2.next = 15;
+            _context2.next = 9;
             return regeneratorRuntime.awrap((0, _axios["default"])({
               method: 'GET',
               url: '/api/v1/users/me'
             }));
 
-          case 15:
+          case 9:
             user = _context2.sent;
-            _context2.next = 21;
-            break;
 
-          case 18:
-            _context2.prev = 18;
-            _context2.t1 = _context2["catch"](12);
-            return _context2.abrupt("return", alert(_context2.t1.response.data.message));
-
-          case 21:
             if (!user.emergencyActive) {
-              _context2.next = 25;
+              _context2.next = 14;
               break;
             }
 
             return _context2.abrupt("return", alert('Your Emergency Alert is already Active '));
 
-          case 25:
-            _context2.prev = 25;
-            _context2.next = 28;
+          case 14:
+            _context2.next = 16;
             return regeneratorRuntime.awrap((0, _axios["default"])({
               method: 'GET',
               url: '/api/v1/emergencies'
             }));
 
-          case 28:
+          case 16:
             emergency = _context2.sent;
             emergencyButton.style.animationName = 'scaleDown';
             emergencyButton.style.animationDuration = '1s';
-            document.getElementById('map').dataset.emergencyid = JSON.stringify(emergency._id);
+            _Map = document.getElementById('map');
+
+            _Map.setAttribute('data-emergencyid', JSON.stringify(emergency.data.data.data._id)); // console.log(Map);
+
+
             emergencyButton.remove();
-            _context2.next = 38;
+
+          case 22:
+            _context2.next = 27;
             break;
 
-          case 35:
-            _context2.prev = 35;
-            _context2.t2 = _context2["catch"](25);
-            return _context2.abrupt("return", alert(_context2.t2.response.data.message));
+          case 24:
+            _context2.prev = 24;
+            _context2.t0 = _context2["catch"](3);
+            return _context2.abrupt("return", alert(_context2.t0.response.data.message));
 
-          case 38:
+          case 27:
           case "end":
             return _context2.stop();
         }
       }
-    }, null, null, [[3, 9], [12, 18], [25, 35]]);
+    }, null, null, [[3, 24]]);
   });
 }
 

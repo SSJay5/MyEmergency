@@ -155,34 +155,29 @@ if (emergencyButton) {
           currentLocation: locations,
         },
       });
-    } catch (err) {
-      return alert(err.response.data.message);
-    }
-    try {
       user = await axios({
         method: 'GET',
         url: '/api/v1/users/me',
       });
-    } catch (err) {
-      return alert(err.response.data.message);
-    }
-    if (user.emergencyActive) {
-      return alert('Your Emergency Alert is already Active ');
-    } else {
-      try {
+      if (user.emergencyActive) {
+        return alert('Your Emergency Alert is already Active ');
+      } else {
         const emergency = await axios({
           method: 'GET',
           url: '/api/v1/emergencies',
         });
         emergencyButton.style.animationName = 'scaleDown';
         emergencyButton.style.animationDuration = '1s';
-        document.getElementById('map').dataset.emergencyid = JSON.stringify(
-          emergency._id
+        let Map = document.getElementById('map');
+        Map.setAttribute(
+          'data-emergencyid',
+          JSON.stringify(emergency.data.data.data._id)
         );
+        // console.log(Map);
         emergencyButton.remove();
-      } catch (err) {
-        return alert(err.response.data.message);
       }
+    } catch (err) {
+      return alert(err.response.data.message);
     }
   });
 }
