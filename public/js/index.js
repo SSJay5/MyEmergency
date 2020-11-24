@@ -20,18 +20,20 @@ function appendMessage(message) {
   messageContainer.append(messageElement);
 }
 if (messageForm != null) {
-  const name = JSON.parse(
+  let name = JSON.parse(
     document.getElementById('message-container').dataset.username
   );
-  const roomName = JSON.parse(
-    document.getElementById('map').dataset.emergencyid
-  );
+  let roomName = JSON.parse(document.getElementById('map').dataset.emergencyid);
   appendMessage('You Joined');
 
   socket.emit('new-user', roomName, name);
 
   messageForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    roomName = JSON.parse(document.getElementById('map').dataset.emergencyid);
+    name = JSON.parse(
+      document.getElementById('message-container').dataset.username
+    );
     const message = messageInput.value;
     appendMessage(`You: ${message}`);
     socket.emit('send-chat-message', roomName, message);

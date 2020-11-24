@@ -9069,6 +9069,8 @@ if (messageForm != null) {
   socket.emit('new-user', roomName, name);
   messageForm.addEventListener('submit', function (e) {
     e.preventDefault();
+    roomName = JSON.parse(document.getElementById('map').dataset.emergencyid);
+    name = JSON.parse(document.getElementById('message-container').dataset.username);
     var message = messageInput.value;
     appendMessage("You: ".concat(message));
     socket.emit('send-chat-message', roomName, message);
