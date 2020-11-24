@@ -154,6 +154,7 @@ if (emergencyButton) {
     if (locations[0] == null || locations[1] == null) {
       return alert('Please Provide Your Location');
     }
+    displayMap(locations);
     try {
       let res = await axios({
         method: 'PATCH',
@@ -217,6 +218,7 @@ if (refreshButton) {
     if (locations[0] == null || locations[1] == null) {
       return alert('Please Provide Your Location');
     }
+    displayMap(locations);
     try {
       let res = await axios({
         method: 'PATCH',
@@ -226,7 +228,7 @@ if (refreshButton) {
         },
       });
     } catch (err) {
-      return alert(err.response.data.message);
+      return alert('Please Login To Continue');
     }
   });
 }

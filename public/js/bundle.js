@@ -9219,8 +9219,9 @@ if (emergencyButton) {
               return _context2.abrupt("return", alert('Please Provide Your Location'));
 
             case 3:
-              _context2.prev = 3;
-              _context2.next = 6;
+              (0, _mapbox.displayMap)(locations);
+              _context2.prev = 4;
+              _context2.next = 7;
               return (0, _axios.default)({
                 method: 'PATCH',
                 url: '/api/v1/users/updateMe',
@@ -9229,32 +9230,32 @@ if (emergencyButton) {
                 }
               });
 
-            case 6:
+            case 7:
               res = _context2.sent;
-              _context2.next = 9;
+              _context2.next = 10;
               return (0, _axios.default)({
                 method: 'GET',
                 url: '/api/v1/users/me'
               });
 
-            case 9:
+            case 10:
               user = _context2.sent;
 
               if (!user.emergencyActive) {
-                _context2.next = 14;
+                _context2.next = 15;
                 break;
               }
 
               return _context2.abrupt("return", alert('Your Emergency Alert is already Active '));
 
-            case 14:
-              _context2.next = 16;
+            case 15:
+              _context2.next = 17;
               return (0, _axios.default)({
                 method: 'GET',
                 url: '/api/v1/emergencies'
               });
 
-            case 16:
+            case 17:
               emergency = _context2.sent;
               emergencyButton.style.animationName = 'scaleDown';
               emergencyButton.style.animationDuration = '1s';
@@ -9265,24 +9266,24 @@ if (emergencyButton) {
 
               emergencyButton.remove();
 
-            case 22:
+            case 23:
               name = JSON.parse(document.getElementById('message-container').dataset.username);
               roomName = JSON.parse(document.getElementById('map').getAttribute('data-emergencyid'));
               socket.emit('new-user', roomName, name);
-              _context2.next = 30;
+              _context2.next = 31;
               break;
 
-            case 27:
-              _context2.prev = 27;
-              _context2.t0 = _context2["catch"](3);
+            case 28:
+              _context2.prev = 28;
+              _context2.t0 = _context2["catch"](4);
               return _context2.abrupt("return", alert(_context2.t0.response.data.message));
 
-            case 30:
+            case 31:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[3, 27]]);
+      }, _callee2, null, [[4, 28]]);
     }));
 
     return function (_x2) {
@@ -9321,8 +9322,9 @@ if (refreshButton) {
               return _context3.abrupt("return", alert('Please Provide Your Location'));
 
             case 3:
-              _context3.prev = 3;
-              _context3.next = 6;
+              (0, _mapbox.displayMap)(locations);
+              _context3.prev = 4;
+              _context3.next = 7;
               return (0, _axios.default)({
                 method: 'PATCH',
                 url: '/api/v1/users/updateMe',
@@ -9331,22 +9333,22 @@ if (refreshButton) {
                 }
               });
 
-            case 6:
+            case 7:
               res = _context3.sent;
-              _context3.next = 12;
+              _context3.next = 13;
               break;
 
-            case 9:
-              _context3.prev = 9;
-              _context3.t0 = _context3["catch"](3);
-              return _context3.abrupt("return", alert(_context3.t0.response.data.message));
+            case 10:
+              _context3.prev = 10;
+              _context3.t0 = _context3["catch"](4);
+              return _context3.abrupt("return", alert('Please Login To Continue'));
 
-            case 12:
+            case 13:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[3, 9]]);
+      }, _callee3, null, [[4, 10]]);
     }));
 
     return function (_x3) {
@@ -9474,7 +9476,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60967" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64994" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
