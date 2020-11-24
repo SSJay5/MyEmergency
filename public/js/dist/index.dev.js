@@ -21,6 +21,8 @@ var socket = io('https://myemergency.herokuapp.com');
 var messageForm = document.getElementById('send-container');
 var messageContainer = document.getElementById('message-container');
 var messageInput = document.getElementById('message-input');
+var roomName;
+var name;
 
 function appendMessage(message) {
   var messageElement = document.createElement('div');
@@ -30,14 +32,15 @@ function appendMessage(message) {
 }
 
 if (messageForm != null) {
-  var name = JSON.parse(document.getElementById('message-container').dataset.username);
-  var roomName = JSON.parse(document.getElementById('map').dataset.emergencyid);
+  name = JSON.parse(document.getElementById('message-container').dataset.username);
+  roomName = JSON.parse(document.getElementById('map').getAttribute('data-emergencyid')); // console.log(name);
+
   appendMessage('You Joined');
   socket.emit('new-user', roomName, name);
   messageForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    roomName = JSON.parse(document.getElementById('map').dataset.emergencyid);
-    name = JSON.parse(document.getElementById('message-container').dataset.username);
+    roomName = JSON.parse(document.getElementById('map').getAttribute('data-emergencyid'));
+    console.log(roomName);
     var message = messageInput.value;
     appendMessage("You: ".concat(message));
     socket.emit('send-chat-message', roomName, message);
@@ -60,8 +63,8 @@ if (form) {
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-    console.log(email, password);
+    var password = document.getElementById('password').value; // console.log(email, password);
+
     (0, _login.login)(email, password);
   });
 }
@@ -223,20 +226,23 @@ if (emergencyButton) {
             emergencyButton.remove();
 
           case 22:
-            _context2.next = 27;
+            name = JSON.parse(document.getElementById('message-container').dataset.username);
+            roomName = JSON.parse(document.getElementById('map').getAttribute('data-emergencyid'));
+            socket.emit('new-user', roomName, name);
+            _context2.next = 30;
             break;
 
-          case 24:
-            _context2.prev = 24;
+          case 27:
+            _context2.prev = 27;
             _context2.t0 = _context2["catch"](3);
             return _context2.abrupt("return", alert(_context2.t0.response.data.message));
 
-          case 27:
+          case 30:
           case "end":
             return _context2.stop();
         }
       }
-    }, null, null, [[3, 24]]);
+    }, null, null, [[3, 27]]);
   });
 }
 

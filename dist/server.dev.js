@@ -37,10 +37,9 @@ var getALLEmergencies = catchAsync(function _callee(rooms) {
             rooms[e._id] = {
               users: {}
             };
-          });
-          console.log(rooms);
+          }); // console.log(rooms);
 
-        case 5:
+        case 4:
         case "end":
           return _context.stop();
       }
@@ -67,15 +66,15 @@ var addChat = catchAsync(function _callee2(room, name, message) {
           return _context2.abrupt("return", new AppError('Emergency Not found', 400));
 
         case 5:
-          emergency.chats.push("".concat(name, ": ").concat(message));
-          console.log(emergency);
-          _context2.next = 9;
+          emergency.chats.push("".concat(name, ": ").concat(message)); // console.log(emergency);
+
+          _context2.next = 8;
           return regeneratorRuntime.awrap(Emergency.findByIdAndUpdate(room, emergency, {
             "new": true,
             runValidators: true
           }));
 
-        case 9:
+        case 8:
         case "end":
           return _context2.stop();
       }
@@ -130,6 +129,7 @@ io.on('connection', function (socket) {
     socket.to(room).broadcast.emit('user-connected', name);
   });
   socket.on('send-chat-message', function (room, message) {
+    console.log(rooms[room]);
     addChat(room, rooms[room].users[socket.id], message);
     socket.to(room).broadcast.emit('chat-message', {
       message: message,

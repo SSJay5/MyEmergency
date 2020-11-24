@@ -12,7 +12,7 @@ const getALLEmergencies = catchAsync(async (rooms) => {
   emergencies.forEach((e) => {
     rooms[e._id] = { users: {} };
   });
-  console.log(rooms);
+  // console.log(rooms);
 });
 
 const addChat = catchAsync(async (room, name, message) => {
@@ -22,7 +22,7 @@ const addChat = catchAsync(async (room, name, message) => {
     return new AppError('Emergency Not found', 400);
   }
   emergency.chats.push(`${name}: ${message}`);
-  console.log(emergency);
+  // console.log(emergency);
   await Emergency.findByIdAndUpdate(room, emergency, {
     new: true,
     runValidators: true,
@@ -72,6 +72,7 @@ io.on('connection', (socket) => {
     socket.to(room).broadcast.emit('user-connected', name);
   });
   socket.on('send-chat-message', (room, message) => {
+    console.log(rooms[room]);
     addChat(room, rooms[room].users[socket.id], message);
     socket.to(room).broadcast.emit('chat-message', {
       message: message,

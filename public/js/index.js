@@ -13,6 +13,8 @@ const messageForm = document.getElementById('send-container');
 const messageContainer = document.getElementById('message-container');
 const messageInput = document.getElementById('message-input');
 
+let roomName;
+let name;
 function appendMessage(message) {
   const messageElement = document.createElement('div');
   messageElement.className = 'emergencyChatBox__message';
@@ -20,20 +22,23 @@ function appendMessage(message) {
   messageContainer.append(messageElement);
 }
 if (messageForm != null) {
-  let name = JSON.parse(
+  name = JSON.parse(
     document.getElementById('message-container').dataset.username
   );
-  let roomName = JSON.parse(document.getElementById('map').dataset.emergencyid);
+  roomName = JSON.parse(
+    document.getElementById('map').getAttribute('data-emergencyid')
+  );
+  // console.log(name);
   appendMessage('You Joined');
 
   socket.emit('new-user', roomName, name);
 
   messageForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    roomName = JSON.parse(document.getElementById('map').dataset.emergencyid);
-    name = JSON.parse(
-      document.getElementById('message-container').dataset.username
+    roomName = JSON.parse(
+      document.getElementById('map').getAttribute('data-emergencyid')
     );
+    console.log(roomName);
     const message = messageInput.value;
     appendMessage(`You: ${message}`);
     socket.emit('send-chat-message', roomName, message);
@@ -59,7 +64,7 @@ if (form) {
     e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    console.log(email, password);
+    // console.log(email, password);
     login(email, password);
   });
 }
@@ -178,6 +183,13 @@ if (emergencyButton) {
         // console.log(Map);
         emergencyButton.remove();
       }
+      name = JSON.parse(
+        document.getElementById('message-container').dataset.username
+      );
+      roomName = JSON.parse(
+        document.getElementById('map').getAttribute('data-emergencyid')
+      );
+      socket.emit('new-user', roomName, name);
     } catch (err) {
       return alert(err.response.data.message);
     }
