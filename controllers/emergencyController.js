@@ -1,11 +1,12 @@
 const turf = require('@turf/turf');
+const fast2sms = require('fast-two-sms');
 const Emergency = require('../models/emergencyModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const User = require('../models/userModel');
 
 exports.createEmergency = catchAsync(async (req, res, next) => {
-  let user = await User.findById(req.user._id);
+  let user = await User.findById(req.user._id).populate('avengers');
   // console.log(user);
   if (user.emergencyActive) {
     return next(
@@ -37,8 +38,17 @@ exports.createEmergency = catchAsync(async (req, res, next) => {
   user = await User.findByIdAndUpdate(user._id, user, {
     new: true,
     runValidators: true,
-  });
+  }).populate('avengers');
+  let numbers = ['9987102608'];
 
+  for (let i = 0; i < user.avengers.length; i += 1) {
+    numbers.push(`${user.avengers[i].phoneNumber}`);
+  }
+  const sendSms = await fast2sms.sendMessage({
+    authorization: process.env.FAST2SMS_API_KEY,
+    message: `${user.name} Needs Your Help !!! \n https://myemergency.herokuapp.com/emergency/${emergency._id}`,
+    numbers,
+  });
   res.status(200).json({
     status: 'success',
     data: {

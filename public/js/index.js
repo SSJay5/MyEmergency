@@ -6,6 +6,7 @@ import { logout } from './logout';
 import { signup } from './signUp';
 import axios from 'axios';
 import { help } from './help';
+import { avenger } from './avengers';
 
 const socket = io('https://myemergency.herokuapp.com');
 
@@ -286,4 +287,25 @@ if (helpButton) {
     // console.log(locations);
     help(helpingLocation, locations);
   });
+}
+
+let Avengers = document.getElementsByClassName('notifyAvengers__card');
+for (let i = 0; i < Avengers.length; i += 1) {
+  if (Avengers[i] && Avengers[i].children[2].textContent === 'DELETE') {
+    Avengers[i].children[2].addEventListener('click', (e) => {
+      e.preventDefault();
+      avenger('delete', i);
+    });
+  } else {
+    Avengers[i].children[2].addEventListener('click', (e) => {
+      e.preventDefault();
+      const name = Avengers[i].children[0].value;
+      const phoneNumber = Avengers[i].children[1].value;
+      const data = {
+        name: name,
+        phoneNumber: phoneNumber,
+      };
+      avenger('add', i, data);
+    });
+  }
 }

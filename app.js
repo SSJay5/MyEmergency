@@ -14,6 +14,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
 const emergencyRouter = require('./routes/emergencyRoutes');
 const viewRouter = require('./routes/viewRoutes');
+const avengerRouter = require('./routes/avengerRoutes');
 
 //Start Expess APP
 const app = express();
@@ -72,6 +73,7 @@ app.use(
 app.use('/', viewRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/emergencies', emergencyRouter);
+app.use('/api/v1/avengers', avengerRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!!!`, 404));

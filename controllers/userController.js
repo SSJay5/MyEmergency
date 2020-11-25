@@ -17,7 +17,7 @@ const filterObj = (obj, ...allowedFields) => {
 
 exports.getMe = catchAsync(async (req, res, next) => {
   // console.log(req.user);
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req.user._id).populate('avengers');
   if (!user) {
     return next(new AppError('No User found', 404));
   }

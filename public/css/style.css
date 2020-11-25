@@ -488,8 +488,8 @@ body {
   .notifyAvengers__card {
     position: relative;
     display: inline-block;
-    background-color: #252423;
-    height: 25rem;
+    background-color: #eee;
+    height: 26.8rem;
     width: 25%;
     border-radius: 2rem;
     float: left; }
@@ -499,6 +499,58 @@ body {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%); }
+    .notifyAvengers__card-username, .notifyAvengers__card-phoneNumber {
+      position: relative;
+      background-color: orangered;
+      display: inline-block;
+      height: 6rem;
+      width: 80%;
+      font-size: 2rem;
+      text-align: center;
+      text-transform: uppercase;
+      vertical-align: middle;
+      line-height: 5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 2rem; }
+      @media only screen and (max-width: 75em) {
+        .notifyAvengers__card-username, .notifyAvengers__card-phoneNumber {
+          font-size-adjust: 2rem; } }
+    .notifyAvengers__card-button-delete {
+      position: relative;
+      background-color: red;
+      display: inline-block;
+      height: 6rem;
+      width: 80%;
+      font-size: 2rem;
+      text-align: center;
+      text-transform: uppercase;
+      vertical-align: middle;
+      line-height: 5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 2rem; }
+      @media only screen and (max-width: 75em) {
+        .notifyAvengers__card-button-delete {
+          font-size-adjust: 2rem; } }
+    .notifyAvengers__card-button-add {
+      position: relative;
+      background-color: lightgreen;
+      display: inline-block;
+      height: 6rem;
+      width: 80%;
+      font-size: 2rem;
+      text-align: center;
+      text-transform: uppercase;
+      vertical-align: middle;
+      line-height: 5rem;
+      text-color: #252423;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 2rem; }
+      @media only screen and (max-width: 75em) {
+        .notifyAvengers__card-button-add {
+          font-size-adjust: 2rem; } }
 
 .form-user-data__profile-photo {
   width: 8rem;

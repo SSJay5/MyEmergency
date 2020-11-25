@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../public/css/materialize.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../public/css/icon-font.css" />
+    <link rel="stylesheet" href="../public/css/style.css" />
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+
+    <title>My Emergency</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navigation">
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Logo</a>
+          <a href="#" data-target="slide-out" class="sidenav-trigger left"
+            ><i class="material-icons">menu</i></a
+          >
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="emergencies.html">Emergencies</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Sign Up</a></li>
+            <li>
+              <a href="account.html"
+                ><div class="navigation__user">
+                  <img class="circle" src="img/user/default.jpg" /></div
+              ></a>
+            </li>
+            <li><a href="#">Log Out</a></li>
+          </ul>
+        </div>
+      </nav>
+      <ul id="slide-out" class="sidenav">
+        <li>
+          <div class="user-view">
+            <div class="background">
+              <img src="/img/black.jpg" />
+            </div>
+            <a href="#user"
+              ><img class="circle" src="/img/user/default.jpg"
+            /></a>
+            <a href="#name"><span class="white-text name">John Doe</span></a>
+            <a href="#email"
+              ><span class="white-text email">jdandturk@gmail.com</span></a
+            >
+          </div>
+        </li>
+        <li><a class="waves-effect" href="index.html">Home</a></li>
+        <li><a class="waves-effect" href="emergencies.html">Emergencies</a></li>
+        <li><a class="waves-effect" href="#">Login</a></li>
+        <li><a class="waves-effect" href="#">Sign Up</a></li>
+        <li><a class="waves-effect" href="#">Log Out</a></li>
+      </ul>
+    </header>
+    <section class="notifyAvengers">
+      <h2
+        class="heading-secondary notifyAvengers__heading u-center-text u-margin-bottom-big u-margin-top-big"
+      >
+        notify Avengers
+      </h2>
+      <div class="row">
+        <form class="col-1-of-3 notifyAvengers__card">
+          <div class="notifyAvengers__card-username"></div>
+          <div class="notifyAvengers__card-phoneNumber"></div>
+          <button class="notifyAvengers__card-button-delete">DELETE</button>
+        </form>
+        <form class="col-1-of-3 notifyAvengers__card">
+          <div class="notifyAvengers__card-username"></div>
+          <div class="notifyAvengers__card-phoneNumber"></div>
+          <button class="notifyAvengers__card-button-delete">DELETE</button>
+        </form>
+        <form class="col-1-of-3 notifyAvengers__card">
+          <div class="notifyAvengers__card-username"></div>
+          <div class="notifyAvengers__card-phoneNumber"></div>
+          <button class="notifyAvengers__card-button-add">ADD</button>
+        </form>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="footer__logo-box">
+        <picture class="footer__logo">
+          <source
+            srcset="
+              img/logo-green-small-1x.png 1x,
+              img/logo-green-small-2x.png 2x
+            "
+            media="(max-width:37.5em)"
+            src="img/logo-green-small-2x.png"
+          />
+          <img
+            srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x"
+            alt="Full logo"
+          />
+        </picture>
+      </div>
+      <div class="row">
+        <div class="col-1-of-2">
+          <div class="footer__navigation">
+            <ul class="footer__list">
+              <li class="footer__item">
+                <a href="" class="footer__link">Company</a>
+              </li>
+              <li class="footer__item">
+                <a href="" class="footer__link">Contact us</a>
+              </li>
+              <li class="footer__item">
+                <a href="" class="footer__link">Carrers</a>
+              </li>
+              <li class="footer__item">
+                <a href="" class="footer__link">Privacy Policy</a>
+              </li>
+              <li class="footer__item">
+                <a href="" class="footer__link">Terms</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-1-of-2">
+          <p class="footer__copyright">
+            Built by <a href="#" class="footer__link">Jay Kotak </a> his
+            Personal Project <a href="#" class="footer__link">MyEmergency </a>.
+            Copyright &copy; Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Qui, corporis hic quo asperiores quae vel quas, nemo assumenda
+            illum sint voluptate, enim nulla nesciunt consequatur? Harum
+            inventore doloribus perspiciatis accusantium.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

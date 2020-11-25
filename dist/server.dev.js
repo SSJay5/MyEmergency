@@ -129,7 +129,7 @@ io.on('connection', function (socket) {
     socket.to(room).broadcast.emit('user-connected', name);
   });
   socket.on('send-chat-message', function (room, message) {
-    console.log(rooms[room]);
+    // console.log(rooms[room]);
     addChat(room, rooms[room].users[socket.id], message);
     socket.to(room).broadcast.emit('chat-message', {
       message: message,

@@ -65,60 +65,102 @@ block content
       h2.heading-secondary.emergencyChatBox__heading.u-center-text.u-margin-bottom-small.u-margin-top-small
         | Chat Section
       #message-container.row.emergencyChatBox__messenger(data-username = `${user===undefined?null:JSON.stringify(user.name)}`)
+        if user
+          if emergency
+            each chat in emergency.chats
+              -let Chat = chat.split(':')[0]==user.name?`You:${chat.split(':')[1]}`:chat;
+                .emergencyChatBox__message=Chat
       form#send-container.row
         input#message-input(type='text')
         if(user)
           button#send-button.btn(type='submit') Send
         else
           a.btn(href='/login') Send
-    section.notifyAvengers
-      h2.heading-secondary.notifyAvengers__heading.u-center-text.u-margin-bottom-big.u-margin-top-big
-        | Notify Avengers
-      .row
-        .col-1-of-3.notifyAvengers__card
-          a.notifyAvengers__card-addButton
-            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
-              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
-              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
-        .col-1-of-3.notifyAvengers__card
-          a.notifyAvengers__card-addButton
-            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
-              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
-              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
-        .col-1-of-3.notifyAvengers__card
-          a.notifyAvengers__card-addButton
-            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
-              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
-              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
-      .row
-        .col-1-of-3.notifyAvengers__card
-          a.notifyAvengers__card-addButton
-            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
-              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
-              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
-        .col-1-of-3.notifyAvengers__card
-          a.notifyAvengers__card-addButton
-            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
-              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
-              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
-        .col-1-of-3.notifyAvengers__card
-          a.notifyAvengers__card-addButton
-            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
-              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
-              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
-      .row
-        .col-1-of-3.notifyAvengers__card
-          a.notifyAvengers__card-addButton
-            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
-              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
-              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
-        .col-1-of-3.notifyAvengers__card
-          a.notifyAvengers__card-addButton
-            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
-              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
-              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
-        .col-1-of-3.notifyAvengers__card
-          a.notifyAvengers__card-addButton
-            svg.bi.bi-plus-circle(width='8em' height='8em' viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg')
-              path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
-              path(fill-rule='evenodd' d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
+    if user
+      section.notifyAvengers
+        h2.heading-secondary.notifyAvengers__heading.u-center-text.u-margin-bottom-big.u-margin-top-big
+          | notify Avengers
+        .row
+          form.col-1-of-3.notifyAvengers__card
+            if user.avengers.length > 0 
+              .notifyAvengers__card-username=user.avengers[0].name
+              .notifyAvengers__card-phoneNumber=user.avengers[0].phoneNumber
+              button.notifyAvengers__card-button-delete DELETE
+            else
+              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              button.notifyAvengers__card-button-add ADD            
+          form.col-1-of-3.notifyAvengers__card
+            if user.avengers.length > 1 
+              .notifyAvengers__card-username=user.avengers[1].name
+              .notifyAvengers__card-phoneNumber=user.avengers[1].phoneNumber
+              button.notifyAvengers__card-button-delete DELETE
+            else
+              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              button.notifyAvengers__card-button-add ADD            
+          form.col-1-of-3.notifyAvengers__card
+            if user.avengers.length > 2 
+              .notifyAvengers__card-username=user.avengers[2].name
+              .notifyAvengers__card-phoneNumber=user.avengers[2].phoneNumber
+              button.notifyAvengers__card-button-delete DELETE
+            else
+              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              button.notifyAvengers__card-button-add ADD            
+        .row
+          form.col-1-of-3.notifyAvengers__card
+            if user.avengers.length > 3 
+              .notifyAvengers__card-username=user.avengers[3].name
+              .notifyAvengers__card-phoneNumber=user.avengers[3].phoneNumber
+              button.notifyAvengers__card-button-delete DELETE
+            else
+              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              button.notifyAvengers__card-button-add ADD            
+          form.col-1-of-3.notifyAvengers__card
+            if user.avengers.length > 4 
+              .notifyAvengers__card-username=user.avengers[4].name
+              .notifyAvengers__card-phoneNumber=user.avengers[4].phoneNumber
+              button.notifyAvengers__card-button-delete DELETE
+            else
+              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              button.notifyAvengers__card-button-add ADD            
+          form.col-1-of-3.notifyAvengers__card
+            if user.avengers.length > 5 
+              .notifyAvengers__card-username=user.avengers[5].name
+              .notifyAvengers__card-phoneNumber=user.avengers[5].phoneNumber
+              button.notifyAvengers__card-button-delete DELETE
+            else
+              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              button.notifyAvengers__card-button-add ADD            
+        .row
+          form.col-1-of-3.notifyAvengers__card
+            if user.avengers.length > 6 
+              .notifyAvengers__card-username=user.avengers[6].name
+              .notifyAvengers__card-phoneNumber=user.avengers[6].phoneNumber
+              button.notifyAvengers__card-button-delete DELETE
+            else
+              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              button.notifyAvengers__card-button-add ADD            
+          form.col-1-of-3.notifyAvengers__card
+            if user.avengers.length > 7 
+              .notifyAvengers__card-username=user.avengers[7].name
+              .notifyAvengers__card-phoneNumber=user.avengers[7].phoneNumber
+              button.notifyAvengers__card-button-delete DELETE
+            else
+              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              button.notifyAvengers__card-button-add ADD            
+          form.col-1-of-3.notifyAvengers__card
+            if user.avengers.length > 8 
+              .notifyAvengers__card-username=user.avengers[8].name
+              .notifyAvengers__card-phoneNumber=user.avengers[8].phoneNumber
+              button.notifyAvengers__card-button-delete DELETE
+            else
+              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              button.notifyAvengers__card-button-add ADD            

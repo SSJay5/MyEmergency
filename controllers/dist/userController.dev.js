@@ -32,7 +32,7 @@ exports.getMe = catchAsync(function _callee(req, res, next) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return regeneratorRuntime.awrap(User.findById(req.user._id));
+          return regeneratorRuntime.awrap(User.findById(req.user._id).populate('avengers'));
 
         case 2:
           user = _context.sent;

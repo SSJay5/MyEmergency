@@ -16,23 +16,47 @@ var Emergency = require('../models/emergencyModel');
 
 var User = require('../models/userModel');
 
-exports.getHomePage = function (req, res) {
-  res.status(200).render('home', {
-    title: 'Home'
-  });
-};
-
-exports.getAllEmergencies = catchAsync(function _callee(req, res, next) {
-  var emergencies;
+exports.getHomePage = catchAsync(function _callee(req, res) {
+  var emergency;
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
+          if (!req.user) {
+            _context.next = 4;
+            break;
+          }
+
+          _context.next = 3;
+          return regeneratorRuntime.awrap(Emergency.findById(req.user.emergency));
+
+        case 3:
+          emergency = _context.sent;
+
+        case 4:
+          res.status(200).render('home', {
+            title: 'Home',
+            emergency: emergency
+          });
+
+        case 5:
+        case "end":
+          return _context.stop();
+      }
+    }
+  });
+});
+exports.getAllEmergencies = catchAsync(function _callee2(req, res, next) {
+  var emergencies;
+  return regeneratorRuntime.async(function _callee2$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.next = 2;
           return regeneratorRuntime.awrap(Emergency.find());
 
         case 2:
-          emergencies = _context.sent;
+          emergencies = _context2.sent;
           res.status(200).render('emergencies', {
             title: 'All Emergencies',
             emergencies: emergencies
@@ -40,7 +64,7 @@ exports.getAllEmergencies = catchAsync(function _callee(req, res, next) {
 
         case 4:
         case "end":
-          return _context.stop();
+          return _context2.stop();
       }
     }
   });
@@ -52,10 +76,10 @@ exports.getMyAccountDetails = function (req, res) {
   });
 };
 
-exports.getLoginForm = catchAsync(function _callee2(req, res, next) {
-  return regeneratorRuntime.async(function _callee2$(_context2) {
+exports.getLoginForm = catchAsync(function _callee3(req, res, next) {
+  return regeneratorRuntime.async(function _callee3$(_context3) {
     while (1) {
-      switch (_context2.prev = _context2.next) {
+      switch (_context3.prev = _context3.next) {
         case 0:
           res.status(200).render('login', {
             title: 'Login'
@@ -63,29 +87,29 @@ exports.getLoginForm = catchAsync(function _callee2(req, res, next) {
 
         case 1:
         case "end":
-          return _context2.stop();
+          return _context3.stop();
       }
     }
   });
 });
-exports.getEmergency = catchAsync(function _callee3(req, res, next) {
+exports.getEmergency = catchAsync(function _callee4(req, res, next) {
   var emergency;
-  return regeneratorRuntime.async(function _callee3$(_context3) {
+  return regeneratorRuntime.async(function _callee4$(_context4) {
     while (1) {
-      switch (_context3.prev = _context3.next) {
+      switch (_context4.prev = _context4.next) {
         case 0:
-          _context3.next = 2;
+          _context4.next = 2;
           return regeneratorRuntime.awrap(Emergency.findById(req.params.id));
 
         case 2:
-          emergency = _context3.sent;
+          emergency = _context4.sent;
 
           if (emergency) {
-            _context3.next = 5;
+            _context4.next = 5;
             break;
           }
 
-          return _context3.abrupt("return", next(new AppError('User Has deleted this emergency Alert!!!', 404)));
+          return _context4.abrupt("return", next(new AppError('User Has deleted this emergency Alert!!!', 404)));
 
         case 5:
           res.status(200).render('emergency', {
@@ -95,35 +119,35 @@ exports.getEmergency = catchAsync(function _callee3(req, res, next) {
 
         case 6:
         case "end":
-          return _context3.stop();
+          return _context4.stop();
       }
     }
   });
 }); // emergencies/within/:distance/center/:latlng/unit/:unit
 
-exports.getEmergencies = catchAsync(function _callee4(req, res, next) {
+exports.getEmergencies = catchAsync(function _callee5(req, res, next) {
   var user, _req$params, distance, latlng, unit, _latlng$split, _latlng$split2, lat, lng, radius, emergencies;
 
-  return regeneratorRuntime.async(function _callee4$(_context4) {
+  return regeneratorRuntime.async(function _callee5$(_context5) {
     while (1) {
-      switch (_context4.prev = _context4.next) {
+      switch (_context5.prev = _context5.next) {
         case 0:
           if (!req.user) {
             res.redirect('/login');
           }
 
-          _context4.next = 3;
+          _context5.next = 3;
           return regeneratorRuntime.awrap(User.findById(req.user._id));
 
         case 3:
-          user = _context4.sent;
+          user = _context5.sent;
 
           if (!(user.currentLocation.length === 0)) {
-            _context4.next = 6;
+            _context5.next = 6;
             break;
           }
 
-          return _context4.abrupt("return", next(new AppError('Please Set Your current Loaction or switch On GPS before helping', 400)));
+          return _context5.abrupt("return", next(new AppError('Please Set Your current Loaction or switch On GPS before helping', 400)));
 
         case 6:
           _req$params = req.params, distance = _req$params.distance, latlng = _req$params.latlng, unit = _req$params.unit;
@@ -134,7 +158,7 @@ exports.getEmergencies = catchAsync(function _callee4(req, res, next) {
             next(new AppError('Please provide latitude and longitude in the format lat,lng.', 400));
           }
 
-          _context4.next = 12;
+          _context5.next = 12;
           return regeneratorRuntime.awrap(Emergency.find({
             location: {
               $geoWithin: {
@@ -144,7 +168,7 @@ exports.getEmergencies = catchAsync(function _callee4(req, res, next) {
           }));
 
         case 12:
-          emergencies = _context4.sent;
+          emergencies = _context5.sent;
           res.status(200).render('emergencywithin', {
             title: 'Emergencies',
             emergencies: emergencies,
@@ -153,7 +177,7 @@ exports.getEmergencies = catchAsync(function _callee4(req, res, next) {
 
         case 14:
         case "end":
-          return _context4.stop();
+          return _context5.stop();
       }
     }
   });

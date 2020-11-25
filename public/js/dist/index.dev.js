@@ -14,6 +14,8 @@ var _axios = _interopRequireDefault(require("axios"));
 
 var _help = require("./help");
 
+var _avengers = require("./avengers");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /* eslint-disable */
@@ -390,4 +392,30 @@ if (helpButton) {
       }
     }, null, null, [[5, 12], [15, 21]]);
   });
+}
+
+var Avengers = document.getElementsByClassName('notifyAvengers__card');
+
+var _loop = function _loop(i) {
+  if (Avengers[i] && Avengers[i].children[2].textContent === 'DELETE') {
+    Avengers[i].children[2].addEventListener('click', function (e) {
+      e.preventDefault();
+      (0, _avengers.avenger)('delete', i);
+    });
+  } else {
+    Avengers[i].children[2].addEventListener('click', function (e) {
+      e.preventDefault();
+      var name = Avengers[i].children[0].value;
+      var phoneNumber = Avengers[i].children[1].value;
+      var data = {
+        name: name,
+        phoneNumber: phoneNumber
+      };
+      (0, _avengers.avenger)('add', i, data);
+    });
+  }
+};
+
+for (var i = 0; i < Avengers.length; i += 1) {
+  _loop(i);
 }

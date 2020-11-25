@@ -9,8 +9,8 @@
   &__card {
     position: relative;
     display: inline-block;
-    background-color: $color-grey-dark-4;
-    height: 25rem;
+    background-color: $color-grey-light-2;
+    height: 26.8rem;
     width: 25%;
     border-radius: 2rem;
     float: left;
@@ -18,6 +18,62 @@
     &-addButton {
       background-color: $color-grey-dark-4;
       @include absCenter;
+    }
+    &-username,
+    &-phoneNumber {
+      position: relative;
+      background-color: orangered;
+      display: inline-block;
+      height: 6rem;
+      width: 80%;
+      font-size: 2rem;
+      text-align: center;
+      text-transform: uppercase;
+      vertical-align: middle;
+      line-height: 5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      @include respond(tab-land) {
+        font-size-adjust: 2rem;
+      }
+      margin-top: 2rem;
+    }
+    &-button-delete {
+      position: relative;
+      background-color: red;
+      display: inline-block;
+      height: 6rem;
+      width: 80%;
+      font-size: 2rem;
+      text-align: center;
+      text-transform: uppercase;
+      vertical-align: middle;
+      line-height: 5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      @include respond(tab-land) {
+        font-size-adjust: 2rem;
+      }
+      margin-top: 2rem;
+    }
+    &-button-add {
+      position: relative;
+      background-color: lightgreen;
+      display: inline-block;
+      height: 6rem;
+      width: 80%;
+      font-size: 2rem;
+      text-align: center;
+      text-transform: uppercase;
+      vertical-align: middle;
+      line-height: 5rem;
+      text-color: #252423;
+      left: 50%;
+      transform: translateX(-50%);
+      @include respond(tab-land) {
+        font-size-adjust: 2rem;
+      }
+      margin-top: 2rem;
     }
   }
 }

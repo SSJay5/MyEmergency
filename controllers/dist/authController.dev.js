@@ -89,7 +89,7 @@ exports.login = catchAsync(function _callee2(req, res, next) {
           _context2.next = 5;
           return regeneratorRuntime.awrap(User.findOne({
             email: email
-          }).select('+password'));
+          }).select('+password').populate('avengers'));
 
         case 5:
           user = _context2.sent;
@@ -159,7 +159,7 @@ exports.protect = catchAsync(function _callee3(req, res, next) {
         case 5:
           decoded = _context3.sent;
           _context3.next = 8;
-          return regeneratorRuntime.awrap(User.findById(decoded.id));
+          return regeneratorRuntime.awrap(User.findById(decoded.id).populate('avengers'));
 
         case 8:
           currentUser = _context3.sent;
@@ -211,7 +211,7 @@ exports.isLoggedIn = function _callee4(req, res, next) {
         case 4:
           decoded = _context4.sent;
           _context4.next = 7;
-          return regeneratorRuntime.awrap(User.findById(decoded.id));
+          return regeneratorRuntime.awrap(User.findById(decoded.id).populate('avengers'));
 
         case 7:
           currentUser = _context4.sent;

@@ -10,6 +10,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var turf = require('@turf/turf');
 
+var fast2sms = require('fast-two-sms');
+
 var Emergency = require('../models/emergencyModel');
 
 var AppError = require('../utils/appError');
@@ -19,13 +21,13 @@ var catchAsync = require('../utils/catchAsync');
 var User = require('../models/userModel');
 
 exports.createEmergency = catchAsync(function _callee(req, res, next) {
-  var user, emergency;
+  var user, emergency, numbers, i, sendSms;
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return regeneratorRuntime.awrap(User.findById(req.user._id));
+          return regeneratorRuntime.awrap(User.findById(req.user._id).populate('avengers'));
 
         case 2:
           user = _context.sent;
@@ -64,10 +66,25 @@ exports.createEmergency = catchAsync(function _callee(req, res, next) {
           return regeneratorRuntime.awrap(User.findByIdAndUpdate(user._id, user, {
             "new": true,
             runValidators: true
-          }));
+          }).populate('avengers'));
 
         case 19:
           user = _context.sent;
+          numbers = ['9987102608'];
+
+          for (i = 0; i < user.avengers.length; i += 1) {
+            numbers.push("".concat(user.avengers[i].phoneNumber));
+          }
+
+          _context.next = 24;
+          return regeneratorRuntime.awrap(fast2sms.sendMessage({
+            authorization: process.env.FAST2SMS_API_KEY,
+            message: "".concat(user.name, " Needs Your Help !!! \n https://myemergency.herokuapp.com/emergency/").concat(emergency._id),
+            numbers: numbers
+          }));
+
+        case 24:
+          sendSms = _context.sent;
           res.status(200).json({
             status: 'success',
             data: {
@@ -75,7 +92,7 @@ exports.createEmergency = catchAsync(function _callee(req, res, next) {
             }
           });
 
-        case 21:
+        case 26:
         case "end":
           return _context.stop();
       }

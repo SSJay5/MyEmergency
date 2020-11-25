@@ -3,11 +3,16 @@ const AppError = require('../utils/appError');
 const Emergency = require('../models/emergencyModel');
 const User = require('../models/userModel');
 
-exports.getHomePage = (req, res) => {
+exports.getHomePage = catchAsync(async (req, res) => {
+  let emergency;
+  if (req.user) {
+    emergency = await Emergency.findById(req.user.emergency);
+  }
   res.status(200).render('home', {
     title: 'Home',
+    emergency,
   });
-};
+});
 
 exports.getAllEmergencies = catchAsync(async (req, res, next) => {
   const emergencies = await Emergency.find();

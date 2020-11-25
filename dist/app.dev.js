@@ -28,7 +28,9 @@ var userRouter = require('./routes/userRoutes');
 
 var emergencyRouter = require('./routes/emergencyRoutes');
 
-var viewRouter = require('./routes/viewRoutes'); //Start Expess APP
+var viewRouter = require('./routes/viewRoutes');
+
+var avengerRouter = require('./routes/avengerRoutes'); //Start Expess APP
 
 
 var app = express();
@@ -74,6 +76,7 @@ app.use(hpp({
 app.use('/', viewRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/emergencies', emergencyRouter);
+app.use('/api/v1/avengers', avengerRouter);
 app.all('*', function (req, res, next) {
   next(new AppError("Can't find ".concat(req.originalUrl, " on this server!!!"), 404));
 });

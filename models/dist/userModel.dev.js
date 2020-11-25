@@ -167,5 +167,10 @@ userSchema.methods.createPasswordResetToken = function () {
   return resetToken;
 };
 
+userSchema.virtual('avengers', {
+  ref: 'Avenger',
+  foreignField: 'user',
+  localField: '_id'
+});
 var User = mongoose.model('User', userSchema);
 module.exports = User;
