@@ -421,7 +421,7 @@ body {
       text-transform: uppercase;
       vertical-align: middle;
       line-height: 5rem;
-      text-color: #252423;
+      color: white;
       float: left;
       margin: 2rem 0rem 2rem 0rem; }
       @media only screen and (max-width: 75em) {
@@ -433,6 +433,8 @@ body {
           width: 55%; } }
     .nationalEmergencyHelpline__Card-phone {
       display: inline-block;
+      background-color: #252423;
+      color: white;
       height: 6rem;
       width: 52%;
       margin: 2rem;
@@ -501,7 +503,7 @@ body {
       transform: translate(-50%, -50%); }
     .notifyAvengers__card-username, .notifyAvengers__card-phoneNumber {
       position: relative;
-      background-color: orangered;
+      background-color: #ee602c;
       display: inline-block;
       height: 6rem;
       width: 80%;
@@ -602,6 +604,20 @@ body {
   .login-from__heading {
     color: black; }
   .login-from__input-button {
+    position: absolute;
+    left: 50%;
+    transform: translateY(-50%); }
+
+.section-signup-form {
+  height: 80vh;
+  width: 100vw; }
+
+.signup-from {
+  height: 100%;
+  width: 100%; }
+  .signup-from__heading {
+    color: black; }
+  .signup-from__input-button {
     position: absolute;
     left: 50%;
     transform: translateY(-50%); }

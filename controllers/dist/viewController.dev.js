@@ -92,24 +92,40 @@ exports.getLoginForm = catchAsync(function _callee3(req, res, next) {
     }
   });
 });
-exports.getEmergency = catchAsync(function _callee4(req, res, next) {
-  var emergency;
+exports.getSignupForm = catchAsync(function _callee4(req, res, next) {
   return regeneratorRuntime.async(function _callee4$(_context4) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
-          _context4.next = 2;
+          res.status(200).render('signup', {
+            title: 'Signup'
+          });
+
+        case 1:
+        case "end":
+          return _context4.stop();
+      }
+    }
+  });
+});
+exports.getEmergency = catchAsync(function _callee5(req, res, next) {
+  var emergency;
+  return regeneratorRuntime.async(function _callee5$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          _context5.next = 2;
           return regeneratorRuntime.awrap(Emergency.findById(req.params.id));
 
         case 2:
-          emergency = _context4.sent;
+          emergency = _context5.sent;
 
           if (emergency) {
-            _context4.next = 5;
+            _context5.next = 5;
             break;
           }
 
-          return _context4.abrupt("return", next(new AppError('User Has deleted this emergency Alert!!!', 404)));
+          return _context5.abrupt("return", next(new AppError('User Has deleted this emergency Alert!!!', 404)));
 
         case 5:
           res.status(200).render('emergency', {
@@ -119,35 +135,35 @@ exports.getEmergency = catchAsync(function _callee4(req, res, next) {
 
         case 6:
         case "end":
-          return _context4.stop();
+          return _context5.stop();
       }
     }
   });
 }); // emergencies/within/:distance/center/:latlng/unit/:unit
 
-exports.getEmergencies = catchAsync(function _callee5(req, res, next) {
+exports.getEmergencies = catchAsync(function _callee6(req, res, next) {
   var user, _req$params, distance, latlng, unit, _latlng$split, _latlng$split2, lat, lng, radius, emergencies;
 
-  return regeneratorRuntime.async(function _callee5$(_context5) {
+  return regeneratorRuntime.async(function _callee6$(_context6) {
     while (1) {
-      switch (_context5.prev = _context5.next) {
+      switch (_context6.prev = _context6.next) {
         case 0:
           if (!req.user) {
             res.redirect('/login');
           }
 
-          _context5.next = 3;
+          _context6.next = 3;
           return regeneratorRuntime.awrap(User.findById(req.user._id));
 
         case 3:
-          user = _context5.sent;
+          user = _context6.sent;
 
           if (!(user.currentLocation.length === 0)) {
-            _context5.next = 6;
+            _context6.next = 6;
             break;
           }
 
-          return _context5.abrupt("return", next(new AppError('Please Set Your current Loaction or switch On GPS before helping', 400)));
+          return _context6.abrupt("return", next(new AppError('Please Set Your current Loaction or switch On GPS before helping', 400)));
 
         case 6:
           _req$params = req.params, distance = _req$params.distance, latlng = _req$params.latlng, unit = _req$params.unit;
@@ -158,7 +174,7 @@ exports.getEmergencies = catchAsync(function _callee5(req, res, next) {
             next(new AppError('Please provide latitude and longitude in the format lat,lng.', 400));
           }
 
-          _context5.next = 12;
+          _context6.next = 12;
           return regeneratorRuntime.awrap(Emergency.find({
             location: {
               $geoWithin: {
@@ -168,7 +184,7 @@ exports.getEmergencies = catchAsync(function _callee5(req, res, next) {
           }));
 
         case 12:
-          emergencies = _context5.sent;
+          emergencies = _context6.sent;
           res.status(200).render('emergencywithin', {
             title: 'Emergencies',
             emergencies: emergencies,
@@ -177,7 +193,7 @@ exports.getEmergencies = catchAsync(function _callee5(req, res, next) {
 
         case 14:
         case "end":
-          return _context5.stop();
+          return _context6.stop();
       }
     }
   });

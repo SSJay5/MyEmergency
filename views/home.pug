@@ -16,51 +16,45 @@ block content
             img(src='./img/police.png' alt='' srcset='')
           .nationalEmergencyHelpline__Card-userName
             font Police
-          .nationalEmergencyHelpline__Card-phone
-            font 100
-          .btn-copy.nationalEmergencyHelpline__Card-btn
+          input.browser-default.nationalEmergencyHelpline__Card-phone#PoliceN(type='number' value="100" readonly='')
+          button.btn-copy.nationalEmergencyHelpline__Card-btn.button#Police
             font Copy
         .col-1-of-3.nationalEmergencyHelpline__Card
           .nationalEmergencyHelpline__Card-icon
             img(src='./img/ambulance.png' alt='' srcset='')
           .nationalEmergencyHelpline__Card-userName
             font Ambulance
-          .nationalEmergencyHelpline__Card-phone
-            font 102
-          .btn-copy.nationalEmergencyHelpline__Card-btn Copy
+          input.browser-default.nationalEmergencyHelpline__Card-phone#AmbulanceN(type='number' value="102" readonly='')
+          button.btn-copy.nationalEmergencyHelpline__Card-btn.button#Ambulance Copy
         .col-1-of-3.nationalEmergencyHelpline__Card
           .nationalEmergencyHelpline__Card-icon
             img(src='./img/fireBrigade.png' alt='' srcset='')
           .nationalEmergencyHelpline__Card-userName
             font Fire Brigade
-          .nationalEmergencyHelpline__Card-phone
-            font 101
-          .btn-copy.nationalEmergencyHelpline__Card-btn Copy
+          input.browser-default.nationalEmergencyHelpline__Card-phone#FireN(type='number' value="101" readonly='')
+          button.btn-copy.nationalEmergencyHelpline__Card-btn.button#Fire Copy
       .row
         .col-1-of-3.nationalEmergencyHelpline__Card
           .nationalEmergencyHelpline__Card-icon
             img(src='./img/ndrf.webp' alt='' srcset='')
           .nationalEmergencyHelpline__Card-userName
             font NDRF
-          .nationalEmergencyHelpline__Card-phone
-            font 9711077372
-          .btn-copy.nationalEmergencyHelpline__Card-btn Copy
+          input.browser-default.nationalEmergencyHelpline__Card-phone#NDRFN(type='number' value="9711077372" readonly='')
+          button.btn-copy.nationalEmergencyHelpline__Card-btn.button#NDRF Copy
         .col-1-of-3.nationalEmergencyHelpline__Card
           .nationalEmergencyHelpline__Card-icon
             img(src='./img/woman.png' alt='' srcset='')
           .nationalEmergencyHelpline__Card-userName.text-wrap
             font Women Helpline
-          .nationalEmergencyHelpline__Card-phone
-            font 1091
-          .btn-copy.nationalEmergencyHelpline__Card-btn Copy
+          input.browser-default.nationalEmergencyHelpline__Card-phone#WomenN(type='number' value="1091" readonly='')
+          button.btn-copy.nationalEmergencyHelpline__Card-btn.button#Women Copy
         .col-1-of-3.nationalEmergencyHelpline__Card
           .nationalEmergencyHelpline__Card-icon
             img(src='./img/siren.png' alt='' srcset='')
           .nationalEmergencyHelpline__Card-userName
             font Emergency
-          .nationalEmergencyHelpline__Card-phone
-            font 112
-          .btn-copy.nationalEmergencyHelpline__Card-btn Copy
+          input.browser-default.nationalEmergencyHelpline__Card-phone#NemergencyN(type='number' value="112" readonly='')
+          button.btn-copy.nationalEmergencyHelpline__Card-btn.button#Nemergency Copy
     section.emergencyChatBox
       h2.heading-secondary.emergencyChatBox__heading.u-center-text.u-margin-bottom-small.u-margin-top-small
         | Chat Section
@@ -87,8 +81,8 @@ block content
               .notifyAvengers__card-phoneNumber=user.avengers[0].phoneNumber
               button.notifyAvengers__card-button-delete DELETE
             else
-              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
-              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              input.browser-default.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.browser-default.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
               button.notifyAvengers__card-button-add ADD            
           form.col-1-of-3.notifyAvengers__card
             if user.avengers.length > 1 
@@ -96,8 +90,8 @@ block content
               .notifyAvengers__card-phoneNumber=user.avengers[1].phoneNumber
               button.notifyAvengers__card-button-delete DELETE
             else
-              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
-              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              input.browser-default.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.browser-default.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
               button.notifyAvengers__card-button-add ADD            
           form.col-1-of-3.notifyAvengers__card
             if user.avengers.length > 2 
@@ -105,8 +99,8 @@ block content
               .notifyAvengers__card-phoneNumber=user.avengers[2].phoneNumber
               button.notifyAvengers__card-button-delete DELETE
             else
-              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
-              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              input.browser-default.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.browser-default.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
               button.notifyAvengers__card-button-add ADD            
         .row
           form.col-1-of-3.notifyAvengers__card
@@ -115,8 +109,8 @@ block content
               .notifyAvengers__card-phoneNumber=user.avengers[3].phoneNumber
               button.notifyAvengers__card-button-delete DELETE
             else
-              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
-              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              input.browser-default.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.browser-default.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
               button.notifyAvengers__card-button-add ADD            
           form.col-1-of-3.notifyAvengers__card
             if user.avengers.length > 4 
@@ -124,8 +118,8 @@ block content
               .notifyAvengers__card-phoneNumber=user.avengers[4].phoneNumber
               button.notifyAvengers__card-button-delete DELETE
             else
-              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
-              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              input.browser-default.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.browser-default.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
               button.notifyAvengers__card-button-add ADD            
           form.col-1-of-3.notifyAvengers__card
             if user.avengers.length > 5 
@@ -133,8 +127,8 @@ block content
               .notifyAvengers__card-phoneNumber=user.avengers[5].phoneNumber
               button.notifyAvengers__card-button-delete DELETE
             else
-              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
-              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              input.browser-default.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.browser-default.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
               button.notifyAvengers__card-button-add ADD            
         .row
           form.col-1-of-3.notifyAvengers__card
@@ -143,8 +137,8 @@ block content
               .notifyAvengers__card-phoneNumber=user.avengers[6].phoneNumber
               button.notifyAvengers__card-button-delete DELETE
             else
-              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
-              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              input.browser-default.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.browser-default.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
               button.notifyAvengers__card-button-add ADD            
           form.col-1-of-3.notifyAvengers__card
             if user.avengers.length > 7 
@@ -152,8 +146,8 @@ block content
               .notifyAvengers__card-phoneNumber=user.avengers[7].phoneNumber
               button.notifyAvengers__card-button-delete DELETE
             else
-              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
-              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              input.browser-default.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.browser-default.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
               button.notifyAvengers__card-button-add ADD            
           form.col-1-of-3.notifyAvengers__card
             if user.avengers.length > 8 
@@ -161,6 +155,6 @@ block content
               .notifyAvengers__card-phoneNumber=user.avengers[8].phoneNumber
               button.notifyAvengers__card-button-delete DELETE
             else
-              input.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
-              input.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
+              input.browser-default.notifyAvengers__card-username(type='text' placeholder='Name of Avenger')
+              input.browser-default.notifyAvengers__card-phoneNumber(type='text' placeholder='His Phone Number')
               button.notifyAvengers__card-button-add ADD            

@@ -22,6 +22,14 @@ function appendMessage(message) {
   messageElement.innerText = message;
   messageContainer.append(messageElement);
 }
+function isGoodNumber(n) {
+  for (let i = 0; i < n.length; i += 1) {
+    if (n[i] < '0' || n[i] > '9') {
+      return false;
+    }
+  }
+  return true;
+}
 if (messageForm != null) {
   name = JSON.parse(
     document.getElementById('message-container').dataset.username
@@ -80,6 +88,21 @@ if (logoutButton[1]) {
     logout();
   });
 }
+const signUpForm = document.getElementById('signup');
+if (signUpForm) {
+  signUpForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('passwordConfirm').value;
+
+    if (password !== passwordConfirm) {
+      return alert('Entered Passwords Do not match');
+    }
+    signup(name, email, password, passwordConfirm);
+  });
+}
 var EmergencySearch = document.querySelector('#search-emergencies');
 let locations = [72.82119, 18.959125];
 if (EmergencySearch) {
@@ -104,6 +127,9 @@ if (EmergencySearch) {
       return alert('Please Provide Your Location');
     }
     let distance = document.getElementById('helping_distance').value;
+    if (!isGoodNumber(distance)) {
+      return alert('Please Enter A Valid Number');
+    }
     distance = distance * 1;
     // console.log('yeh ', distance);
     // emergencies/within/:distance/center/:latlng/unit/:unit
@@ -301,6 +327,9 @@ for (let i = 0; i < Avengers.length; i += 1) {
       e.preventDefault();
       const name = Avengers[i].children[0].value;
       const phoneNumber = Avengers[i].children[1].value;
+      if (!isGoodNumber(phoneNumber) || phoneNumber.length != 10) {
+        return alert('Please Enter a valid Indian Phone Number');
+      }
       const data = {
         name: name,
         phoneNumber: phoneNumber,
@@ -309,3 +338,40 @@ for (let i = 0; i < Avengers.length; i += 1) {
     });
   }
 }
+
+const Police = document.getElementById('Police');
+Police.addEventListener('click', () => {
+  const number = document.getElementById('PoliceN');
+  number.select();
+  document.execCommand('copy');
+});
+const Ambulance = document.getElementById('Ambulance');
+Ambulance.addEventListener('click', () => {
+  const number = document.getElementById('AmbulanceN');
+  number.select();
+  document.execCommand('copy');
+});
+const Fire = document.getElementById('Fire');
+Fire.addEventListener('click', () => {
+  const number = document.getElementById('FireN');
+  number.select();
+  document.execCommand('copy');
+});
+const NDRF = document.getElementById('NDRF');
+NDRF.addEventListener('click', () => {
+  const number = document.getElementById('NDRFN');
+  number.select();
+  document.execCommand('copy');
+});
+const Women = document.getElementById('Women');
+Women.addEventListener('click', () => {
+  const number = document.getElementById('WomenN');
+  number.select();
+  document.execCommand('copy');
+});
+const Nemergency = document.getElementById('Nemergency');
+Nemergency.addEventListener('click', () => {
+  const number = document.getElementById('NemergencyN');
+  number.select();
+  document.execCommand('copy');
+});

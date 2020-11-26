@@ -7,7 +7,8 @@ var viewController = require('../controllers/viewController');
 var authController = require('../controllers/authController');
 
 var router = express.Router();
-router.get('/login', viewController.getLoginForm); // router.use(authController.protect);
+router.get('/login', viewController.getLoginForm);
+router.get('/signup', viewController.getSignupForm); // router.use(authController.protect);
 
 router.use(authController.isLoggedIn);
 router.get('/', viewController.getHomePage);

@@ -33,6 +33,11 @@ exports.getLoginForm = catchAsync(async (req, res, next) => {
     title: 'Login',
   });
 });
+exports.getSignupForm = catchAsync(async (req, res, next) => {
+  res.status(200).render('signup', {
+    title: 'Signup',
+  });
+});
 
 exports.getEmergency = catchAsync(async (req, res, next) => {
   const emergency = await Emergency.findById(req.params.id);

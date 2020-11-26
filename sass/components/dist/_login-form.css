@@ -1,5 +1,35 @@
-.login-form {
-  height: 60vh;
-  width: 60%;
-  background-color: orangered;
+.section-login-form {
+  height: 80vh;
+  width: 100vw;
+}
+
+.login-from {
+  height: 100%;
+  width: 100%;
+}
+.login-from__heading {
+  color: black;
+}
+.login-from__input-button {
+  position: absolute;
+  left: 50%;
+  transform: translateY(-50%);
+}
+
+.section-signup-form {
+  height: 80vh;
+  width: 100vw;
+}
+
+.signup-from {
+  height: 100%;
+  width: 100%;
+}
+.signup-from__heading {
+  color: black;
+}
+.signup-from__input-button {
+  position: absolute;
+  left: 50%;
+  transform: translateY(-50%);
 }

@@ -1,0 +1,17 @@
+extends base
+
+block content
+  main.section-signup-form
+    section.signup-from#signup
+      h1.login-form__heading.u-center-text.u-margin-top-big
+        | SignUP Form
+      form
+        input#name(type='text' placeholder='Your Name')
+        br
+        input#email(type='text' placeholder='Email')
+        br
+        input#password(type='password' placeholder='Password')
+        br
+        input#passwordConfirm(type='password' placeholder='Password Confirm')
+        br
+        button(type='submit') Submit form

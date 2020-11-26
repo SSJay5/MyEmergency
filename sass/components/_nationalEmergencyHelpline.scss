@@ -38,7 +38,7 @@
       text-transform: uppercase;
       vertical-align: middle;
       line-height: 5rem;
-      text-color: #252423;
+      color: white;
       @include respond(tab-land) {
         width: 57%;
         font-size-adjust: 2rem;
@@ -51,6 +51,8 @@
     }
     &-phone {
       display: inline-block;
+      background-color: $color-grey-dark-4;
+      color: white;
       height: 6rem;
       width: 52%;
       @include respond(tab-land) {
@@ -59,7 +61,7 @@
       @include respond(tab-port) {
         width: 52%;
       }
-       @include respond(phone) {
+      @include respond(phone) {
         width: 40%;
       }
       margin: 2rem;

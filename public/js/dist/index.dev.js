@@ -33,6 +33,16 @@ function appendMessage(message) {
   messageContainer.append(messageElement);
 }
 
+function isGoodNumber(n) {
+  for (var i = 0; i < n.length; i += 1) {
+    if (n[i] < '0' || n[i] > '9') {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 if (messageForm != null) {
   name = JSON.parse(document.getElementById('message-container').dataset.username);
   roomName = JSON.parse(document.getElementById('map').getAttribute('data-emergencyid')); // console.log(name);
@@ -85,6 +95,24 @@ if (logoutButton[1]) {
   });
 }
 
+var signUpForm = document.getElementById('signup');
+
+if (signUpForm) {
+  signUpForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var passwordConfirm = document.getElementById('passwordConfirm').value;
+
+    if (password !== passwordConfirm) {
+      return alert('Entered Passwords Do not match');
+    }
+
+    (0, _signUp.signup)(name, email, password, passwordConfirm);
+  });
+}
+
 var EmergencySearch = document.querySelector('#search-emergencies');
 var locations = [72.82119, 18.959125];
 
@@ -107,6 +135,11 @@ if (EmergencySearch) {
     }
 
     var distance = document.getElementById('helping_distance').value;
+
+    if (!isGoodNumber(distance)) {
+      return alert('Please Enter A Valid Number');
+    }
+
     distance = distance * 1; // console.log('yeh ', distance);
     // emergencies/within/:distance/center/:latlng/unit/:unit
 
@@ -407,6 +440,11 @@ var _loop = function _loop(i) {
       e.preventDefault();
       var name = Avengers[i].children[0].value;
       var phoneNumber = Avengers[i].children[1].value;
+
+      if (!isGoodNumber(phoneNumber) || phoneNumber.length != 10) {
+        return alert('Please Enter a valid Indian Phone Number');
+      }
+
       var data = {
         name: name,
         phoneNumber: phoneNumber
@@ -419,3 +457,40 @@ var _loop = function _loop(i) {
 for (var i = 0; i < Avengers.length; i += 1) {
   _loop(i);
 }
+
+var Police = document.getElementById('Police');
+Police.addEventListener('click', function () {
+  var number = document.getElementById('PoliceN');
+  number.select();
+  document.execCommand('copy');
+});
+var Ambulance = document.getElementById('Ambulance');
+Ambulance.addEventListener('click', function () {
+  var number = document.getElementById('AmbulanceN');
+  number.select();
+  document.execCommand('copy');
+});
+var Fire = document.getElementById('Fire');
+Fire.addEventListener('click', function () {
+  var number = document.getElementById('FireN');
+  number.select();
+  document.execCommand('copy');
+});
+var NDRF = document.getElementById('NDRF');
+NDRF.addEventListener('click', function () {
+  var number = document.getElementById('NDRFN');
+  number.select();
+  document.execCommand('copy');
+});
+var Women = document.getElementById('Women');
+Women.addEventListener('click', function () {
+  var number = document.getElementById('WomenN');
+  number.select();
+  document.execCommand('copy');
+});
+var Nemergency = document.getElementById('Nemergency');
+Nemergency.addEventListener('click', function () {
+  var number = document.getElementById('NemergencyN');
+  number.select();
+  document.execCommand('copy');
+});

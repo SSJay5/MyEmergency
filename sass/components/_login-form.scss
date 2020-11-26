@@ -17,3 +17,22 @@
     }
   }
 }
+.section-signup-form {
+  height: 80vh;
+  width: 100vw;
+}
+.signup-from {
+  height: 100%;
+  width: 100%;
+
+  &__heading {
+    color: black;
+  }
+  &__input {
+    &-button {
+      position: absolute;
+      left: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
