@@ -13,7 +13,9 @@ header
           li
             a(href='/account')
               .navigation__user
-                img.circle(src='/img/user/default.jpg')
+                img.circle(src=`/img/user/${user.photo}`,alt='/img/user/default.jpg')
+          li
+            a(href='/account')=`${user.name}`
           li
             a(class='logout') Log Out
         else
@@ -28,7 +30,7 @@ header
           img(src='/img/black.jpg')
         if user
           a(href='/account')
-            img.circle(src=`/img/user/${user.photo}`)
+            img(src=`/img/user/${user.photo}`, alt='User photo')
           a(href='/account')
             span.white-text.name=`${user.name}`
           a(href='/account')

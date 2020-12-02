@@ -20,6 +20,10 @@ var _resetPassword = require("./resetPassword");
 
 var _forgotPassword = require("./forgotPassword");
 
+var _updateUserData = require("./updateUserData");
+
+var _updateUserPassword = require("./updateUserPassword");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /* eslint-disable */
@@ -539,3 +543,33 @@ if (Nemergency) Nemergency.addEventListener('click', function () {
   number.select();
   document.execCommand('copy');
 });
+var updateUserDataForm = document.getElementById('updateUserDetails-form');
+
+if (updateUserDataForm) {
+  updateUserDataForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var form = new FormData();
+    form.append('name', document.getElementById('name').value);
+    form.append('email', document.getElementById('email').value);
+    form.append('photo', document.getElementById('photo').files[0]);
+    console.log(form);
+    (0, _updateUserData.updateUserData)(form);
+  });
+}
+
+var updateUserPasswordForm = document.getElementById('updateUser-password');
+
+if (updateUserPasswordForm) {
+  updateUserPasswordForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var passwordCurrent = document.getElementById('current_password').value;
+    var password = document.getElementById('new_password').value;
+    var passwordConfirm = document.getElementById('confirm_password').value;
+
+    if (password != passwordConfirm) {
+      return alert('Entered Passwords do not match');
+    }
+
+    (0, _updateUserPassword.updateUserPassword)(passwordCurrent, password);
+  });
+}

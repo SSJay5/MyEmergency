@@ -9,6 +9,8 @@ import { help } from './help';
 import { avenger } from './avengers';
 import { resetPassword } from './resetPassword';
 import { forgotPassword } from './forgotPassword';
+import { updateUserData } from './updateUserData';
+import { updateUserPassword } from './updateUserPassword';
 
 const socket = io('https://myemergency.herokuapp.com');
 
@@ -411,3 +413,33 @@ if (Nemergency)
     number.select();
     document.execCommand('copy');
   });
+
+const updateUserDataForm = document.getElementById('updateUserDetails-form');
+
+if (updateUserDataForm) {
+  updateUserDataForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = new FormData();
+    form.append('name', document.getElementById('name').value);
+    form.append('email', document.getElementById('email').value);
+    form.append('photo', document.getElementById('photo').files[0]);
+    console.log(form);
+    updateUserData(form);
+  });
+}
+
+const updateUserPasswordForm = document.getElementById('updateUser-password');
+
+if (updateUserPasswordForm) {
+  updateUserPasswordForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const passwordCurrent = document.getElementById('current_password').value;
+    const password = document.getElementById('new_password').value;
+    const passwordConfirm = document.getElementById('confirm_password').value;
+
+    if (password != passwordConfirm) {
+      return alert('Entered Passwords do not match');
+    }
+    updateUserPassword(passwordCurrent, password);
+  });
+}

@@ -8,6 +8,7 @@ router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router.post('/logout', authController.logout);
 
+router.patch('/updateMyPassword', authController.updatePassword);
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
 
@@ -16,7 +17,12 @@ router.use(authController.protect);
 
 router.get('/me', userController.getMe, userController.getUser);
 router.delete('/deleteMe', userController.deleteMe);
-router.patch('/updateMe', userController.updateMe);
+router.patch(
+  '/updateMe',
+  userController.uploadUserPhoto,
+  userController.resizeUserPhoto,
+  userController.updateMe
+);
 router.patch('/addHelpingLocation', userController.addDefaultHelpingLocation);
 // ADMIN Controlls
 router.use(authController.restrictTo('admin'));
