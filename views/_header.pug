@@ -30,7 +30,7 @@ header
           img(src='/img/black.jpg')
         if user
           a(href='/account')
-            img(src=`/img/user/${user.photo}`, alt='User photo')
+            img.navigation__user.circle(src=`/img/user/${user.photo}`, alt='User photo')
           a(href='/account')
             span.white-text.name=`${user.name}`
           a(href='/account')
