@@ -1,24 +1,22 @@
 /*eslint-disable*/
-
 import axios from 'axios';
 
-export const login = async (email, password) => {
+export const resetPassword = async (password, token) => {
   try {
     const res = await axios({
-      method: 'POST',
-      url: '/api/v1/users/login',
+      method: 'PATCH',
+      url: `/api/v1/users/resetPassword/${token}`,
       data: {
-        email,
-        password,
+        password: password,
+        passwordConfirm: password,
       },
     });
     if (res.data.status === 'success') {
-      alert('Logged in Successfully');
+      alert('Password Changed Successfully');
       window.setTimeout(() => {
         location.assign('/');
       }, 1500);
     }
-    // console.log(res);
   } catch (err) {
     return alert(err.response.data.message);
   }

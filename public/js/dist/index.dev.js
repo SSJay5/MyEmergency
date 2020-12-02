@@ -16,6 +16,10 @@ var _help = require("./help");
 
 var _avengers = require("./avengers");
 
+var _resetPassword = require("./resetPassword");
+
+var _forgotPassword = require("./forgotPassword");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /* eslint-disable */
@@ -282,7 +286,7 @@ if (emergencyButton) {
   });
 }
 
-(0, _mapbox.displayMap)(locations);
+if (document.getElementById('map')) (0, _mapbox.displayMap)(locations);
 var refreshButton = document.getElementsByClassName('btn-refresh')[0];
 
 if (refreshButton) {
@@ -430,7 +434,7 @@ if (helpButton) {
 var Avengers = document.getElementsByClassName('notifyAvengers__card');
 
 var _loop = function _loop(i) {
-  if (Avengers[i] && Avengers[i].children[2].textContent === 'DELETE') {
+  if (Avengers[i] != null && Avengers[i].children[2].textContent === 'DELETE') {
     Avengers[i].children[2].addEventListener('click', function (e) {
       e.preventDefault();
       (0, _avengers.avenger)('delete', i);
@@ -458,38 +462,79 @@ for (var i = 0; i < Avengers.length; i += 1) {
   _loop(i);
 }
 
+var resetPasswordForm = document.getElementById('reset-passwordForm');
+
+if (resetPasswordForm) {
+  resetPasswordForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var password = document.getElementById('password').value;
+    var passwordConfirm = document.getElementById('passwordConfirm').value;
+
+    if (password != passwordConfirm) {
+      return alert('Enterd Passwords Do not match');
+    }
+
+    var url = window.location.href;
+    var token = url.split('/'); // console.log(password, passwordConfirm, token[token.length - 1]);
+
+    (0, _resetPassword.resetPassword)(password, "".concat(token[token.length - 1]));
+  });
+}
+
+var forgotPasswordForm = document.getElementById('forgotPassword-form');
+
+if (forgotPasswordForm) {
+  forgotPasswordForm.addEventListener('submit', function _callee5(e) {
+    var email;
+    return regeneratorRuntime.async(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            e.preventDefault();
+            email = document.getElementById('email').value;
+            (0, _forgotPassword.forgotPassword)(email);
+
+          case 3:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    });
+  });
+}
+
 var Police = document.getElementById('Police');
-Police.addEventListener('click', function () {
+if (Police) Police.addEventListener('click', function () {
   var number = document.getElementById('PoliceN');
   number.select();
   document.execCommand('copy');
 });
 var Ambulance = document.getElementById('Ambulance');
-Ambulance.addEventListener('click', function () {
+if (Ambulance) Ambulance.addEventListener('click', function () {
   var number = document.getElementById('AmbulanceN');
   number.select();
   document.execCommand('copy');
 });
 var Fire = document.getElementById('Fire');
-Fire.addEventListener('click', function () {
+if (Fire) Fire.addEventListener('click', function () {
   var number = document.getElementById('FireN');
   number.select();
   document.execCommand('copy');
 });
 var NDRF = document.getElementById('NDRF');
-NDRF.addEventListener('click', function () {
+if (NDRF) NDRF.addEventListener('click', function () {
   var number = document.getElementById('NDRFN');
   number.select();
   document.execCommand('copy');
 });
 var Women = document.getElementById('Women');
-Women.addEventListener('click', function () {
+if (Women) Women.addEventListener('click', function () {
   var number = document.getElementById('WomenN');
   number.select();
   document.execCommand('copy');
 });
 var Nemergency = document.getElementById('Nemergency');
-Nemergency.addEventListener('click', function () {
+if (Nemergency) Nemergency.addEventListener('click', function () {
   var number = document.getElementById('NemergencyN');
   number.select();
   document.execCommand('copy');

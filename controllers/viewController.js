@@ -87,3 +87,15 @@ exports.getEmergencies = catchAsync(async (req, res, next) => {
     user,
   });
 });
+
+exports.getResetPasswordForm = (req, res, next) => {
+  res.status(200).render('resetPassword', {
+    title: 'Reset Password',
+  });
+};
+
+exports.getForgotPasswordForm = (req, res, next) => {
+  res.status(200).render('forgotPassword', {
+    title: 'Forgot Password',
+  });
+};

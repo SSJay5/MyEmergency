@@ -198,3 +198,15 @@ exports.getEmergencies = catchAsync(function _callee6(req, res, next) {
     }
   });
 });
+
+exports.getResetPasswordForm = function (req, res, next) {
+  res.status(200).render('resetPassword', {
+    title: 'Reset Password'
+  });
+};
+
+exports.getForgotPasswordForm = function (req, res, next) {
+  res.status(200).render('forgotPassword', {
+    title: 'Forgot Password'
+  });
+};

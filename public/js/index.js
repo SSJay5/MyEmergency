@@ -7,6 +7,8 @@ import { signup } from './signUp';
 import axios from 'axios';
 import { help } from './help';
 import { avenger } from './avengers';
+import { resetPassword } from './resetPassword';
+import { forgotPassword } from './forgotPassword';
 
 const socket = io('https://myemergency.herokuapp.com');
 
@@ -223,7 +225,8 @@ if (emergencyButton) {
     }
   });
 }
-displayMap(locations);
+if (document.getElementById('map')) displayMap(locations);
+
 const refreshButton = document.getElementsByClassName('btn-refresh')[0];
 if (refreshButton) {
   refreshButton.addEventListener('click', async (f) => {
@@ -317,7 +320,7 @@ if (helpButton) {
 
 let Avengers = document.getElementsByClassName('notifyAvengers__card');
 for (let i = 0; i < Avengers.length; i += 1) {
-  if (Avengers[i] && Avengers[i].children[2].textContent === 'DELETE') {
+  if (Avengers[i] != null && Avengers[i].children[2].textContent === 'DELETE') {
     Avengers[i].children[2].addEventListener('click', (e) => {
       e.preventDefault();
       avenger('delete', i);
@@ -339,39 +342,72 @@ for (let i = 0; i < Avengers.length; i += 1) {
   }
 }
 
+const resetPasswordForm = document.getElementById('reset-passwordForm');
+
+if (resetPasswordForm) {
+  resetPasswordForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('passwordConfirm').value;
+    if (password != passwordConfirm) {
+      return alert('Enterd Passwords Do not match');
+    }
+    const url = window.location.href;
+    const token = url.split('/');
+    // console.log(password, passwordConfirm, token[token.length - 1]);
+    resetPassword(password, `${token[token.length - 1]}`);
+  });
+}
+
+const forgotPasswordForm = document.getElementById('forgotPassword-form');
+
+if (forgotPasswordForm) {
+  forgotPasswordForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    forgotPassword(email);
+  });
+}
+
 const Police = document.getElementById('Police');
-Police.addEventListener('click', () => {
-  const number = document.getElementById('PoliceN');
-  number.select();
-  document.execCommand('copy');
-});
+if (Police)
+  Police.addEventListener('click', () => {
+    const number = document.getElementById('PoliceN');
+    number.select();
+    document.execCommand('copy');
+  });
 const Ambulance = document.getElementById('Ambulance');
-Ambulance.addEventListener('click', () => {
-  const number = document.getElementById('AmbulanceN');
-  number.select();
-  document.execCommand('copy');
-});
+if (Ambulance)
+  Ambulance.addEventListener('click', () => {
+    const number = document.getElementById('AmbulanceN');
+    number.select();
+    document.execCommand('copy');
+  });
 const Fire = document.getElementById('Fire');
-Fire.addEventListener('click', () => {
-  const number = document.getElementById('FireN');
-  number.select();
-  document.execCommand('copy');
-});
+if (Fire)
+  Fire.addEventListener('click', () => {
+    const number = document.getElementById('FireN');
+    number.select();
+    document.execCommand('copy');
+  });
 const NDRF = document.getElementById('NDRF');
-NDRF.addEventListener('click', () => {
-  const number = document.getElementById('NDRFN');
-  number.select();
-  document.execCommand('copy');
-});
+if (NDRF)
+  NDRF.addEventListener('click', () => {
+    const number = document.getElementById('NDRFN');
+    number.select();
+    document.execCommand('copy');
+  });
 const Women = document.getElementById('Women');
-Women.addEventListener('click', () => {
-  const number = document.getElementById('WomenN');
-  number.select();
-  document.execCommand('copy');
-});
+if (Women)
+  Women.addEventListener('click', () => {
+    const number = document.getElementById('WomenN');
+    number.select();
+    document.execCommand('copy');
+  });
 const Nemergency = document.getElementById('Nemergency');
-Nemergency.addEventListener('click', () => {
-  const number = document.getElementById('NemergencyN');
-  number.select();
-  document.execCommand('copy');
-});
+if (Nemergency)
+  Nemergency.addEventListener('click', () => {
+    const number = document.getElementById('NemergencyN');
+    number.select();
+    document.execCommand('copy');
+  });

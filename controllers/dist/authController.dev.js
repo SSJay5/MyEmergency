@@ -13,6 +13,8 @@ var catchAsync = require('../utils/catchAsync');
 
 var AppError = require('../utils/appError');
 
+var Email = require('../utils/email');
+
 var signToken = function signToken(id) {
   return jwt.sign({
     id: id
@@ -267,70 +269,157 @@ exports.restrictTo = function () {
 
     next();
   };
-}; // exports.forgotPassword = catchAsync(async (req, res, next) => {
-//   // 1) Get user based on POSTed email
-//   const user = await User.findOne({ email: req.body.email });
-//   if (!user) {
-//     return next(new AppError('There is no user with email address.', 404));
-//   }
-//   // 2) Generate the random reset token
-//   const resetToken = user.createPasswordResetToken();
-//   await user.save({ validateBeforeSave: false });
-//   // 3) Send it to user's email
-//   try {
-//     const resetURL = `${req.protocol}://${req.get(
-//       'host'
-//     )}/api/v1/users/resetPassword/${resetToken}`;
-//     await new Email(user, resetURL).sendPasswordReset();
-//     res.status(200).json({
-//       status: 'success',
-//       message: 'Token sent to email!',
-//     });
-//   } catch (err) {
-//     user.passwordResetToken = undefined;
-//     user.passwordResetExpires = undefined;
-//     await user.save({ validateBeforeSave: false });
-//     return next(
-//       new AppError('There was an error sending the email. Try again later!'),
-//       500
-//     );
-//   }
-// });
-// exports.resetPassword = catchAsync(async (req, res, next) => {
-//   // 1) Get user based on the token
-//   const hashedToken = crypto
-//     .createHash('sha256')
-//     .update(req.params.token)
-//     .digest('hex');
-//   const user = await User.findOne({
-//     passwordResetToken: hashedToken,
-//     passwordResetExpires: { $gt: Date.now() },
-//   });
-//   // 2) If token has not expired, and there is user, set the new password
-//   if (!user) {
-//     return next(new AppError('Token is invalid or has expired', 400));
-//   }
-//   user.password = req.body.password;
-//   user.passwordConfirm = req.body.passwordConfirm;
-//   user.passwordResetToken = undefined;
-//   user.passwordResetExpires = undefined;
-//   await user.save();
-//   // 3) Update changedPasswordAt property for the user
-//   // 4) Log the user in, send JWT
-//   createSendToken(user, 200, res);
-// });
-// exports.updatePassword = catchAsync(async (req, res, next) => {
-//   // 1) Get user from collection
-//   const user = await User.findById(req.user.id).select('+password');
-//   // 2) Check if POSTed current password is correct
-//   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
-//     return next(new AppError('Your current password is wrong.', 401));
-//   }
-//   // 3) If so, update password
-//   user.password = req.body.password;
-//   user.passwordConfirm = req.body.passwordConfirm;
-//   await user.save();
-//   // User.findByIdAndUpdate will NOT work as intended!
-//   // 4) Log user in, send JWT
-//   createSendToken(user, 200, res);
-// });
+};
+
+exports.forgotPassword = catchAsync(function _callee5(req, res, next) {
+  var user, resetToken, resetURL;
+  return regeneratorRuntime.async(function _callee5$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          _context5.next = 2;
+          return regeneratorRuntime.awrap(User.findOne({
+            email: req.body.email
+          }));
+
+        case 2:
+          user = _context5.sent;
+
+          if (user) {
+            _context5.next = 5;
+            break;
+          }
+
+          return _context5.abrupt("return", next(new AppError('There is no user with email address.', 404)));
+
+        case 5:
+          // 2) Generate the random reset token
+          resetToken = user.createPasswordResetToken();
+          _context5.next = 8;
+          return regeneratorRuntime.awrap(user.save({
+            validateBeforeSave: false
+          }));
+
+        case 8:
+          _context5.prev = 8;
+          resetURL = "".concat(req.protocol, "://").concat(req.get('host'), "/users/resetPassword/").concat(resetToken);
+          _context5.next = 12;
+          return regeneratorRuntime.awrap(new Email(user, resetURL).sendPasswordReset());
+
+        case 12:
+          res.status(200).json({
+            status: 'success',
+            message: 'Token sent to email!'
+          });
+          _context5.next = 22;
+          break;
+
+        case 15:
+          _context5.prev = 15;
+          _context5.t0 = _context5["catch"](8);
+          user.passwordResetToken = undefined;
+          user.passwordResetExpires = undefined;
+          _context5.next = 21;
+          return regeneratorRuntime.awrap(user.save({
+            validateBeforeSave: false
+          }));
+
+        case 21:
+          return _context5.abrupt("return", next(new AppError('There was an error sending the email. Try again later!'), 500));
+
+        case 22:
+        case "end":
+          return _context5.stop();
+      }
+    }
+  }, null, null, [[8, 15]]);
+});
+exports.resetPassword = catchAsync(function _callee6(req, res, next) {
+  var hashedToken, user;
+  return regeneratorRuntime.async(function _callee6$(_context6) {
+    while (1) {
+      switch (_context6.prev = _context6.next) {
+        case 0:
+          // 1) Get user based on the token
+          hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
+          _context6.next = 3;
+          return regeneratorRuntime.awrap(User.findOne({
+            passwordResetToken: hashedToken,
+            passwordResetExpires: {
+              $gt: Date.now()
+            }
+          }));
+
+        case 3:
+          user = _context6.sent;
+
+          if (user) {
+            _context6.next = 6;
+            break;
+          }
+
+          return _context6.abrupt("return", next(new AppError('Token is invalid or has expired', 400)));
+
+        case 6:
+          user.password = req.body.password;
+          user.passwordConfirm = req.body.passwordConfirm;
+          user.passwordResetToken = undefined;
+          user.passwordResetExpires = undefined; // console.log(user);
+
+          _context6.next = 12;
+          return regeneratorRuntime.awrap(user.save());
+
+        case 12:
+          // console.log('save hogaya');
+          // 3) Update changedPasswordAt property for the user
+          // 4) Log the user in, send JWT
+          createSendToken(user, 200, res);
+
+        case 13:
+        case "end":
+          return _context6.stop();
+      }
+    }
+  });
+});
+exports.updatePassword = catchAsync(function _callee7(req, res, next) {
+  var user;
+  return regeneratorRuntime.async(function _callee7$(_context7) {
+    while (1) {
+      switch (_context7.prev = _context7.next) {
+        case 0:
+          _context7.next = 2;
+          return regeneratorRuntime.awrap(User.findById(req.user.id).select('+password'));
+
+        case 2:
+          user = _context7.sent;
+          _context7.next = 5;
+          return regeneratorRuntime.awrap(user.correctPassword(req.body.passwordCurrent, user.password));
+
+        case 5:
+          if (_context7.sent) {
+            _context7.next = 7;
+            break;
+          }
+
+          return _context7.abrupt("return", next(new AppError('Your current password is wrong.', 401)));
+
+        case 7:
+          // 3) If so, update password
+          user.password = req.body.password;
+          user.passwordConfirm = req.body.passwordConfirm;
+          _context7.next = 11;
+          return regeneratorRuntime.awrap(user.save());
+
+        case 11:
+          // User.findByIdAndUpdate will NOT work as intended!
+          // 4) Log user in, send JWT
+          createSendToken(user, 200, res);
+
+        case 12:
+        case "end":
+          return _context7.stop();
+      }
+    }
+  });
+});

@@ -9,6 +9,7 @@ router.get('/signup', viewController.getSignupForm);
 
 router.use(authController.isLoggedIn);
 
+router.get('/users/resetPassword/:token', viewController.getResetPasswordForm);
 router.get('/', viewController.getHomePage);
 router.get('/AllEmergencies', viewController.getAllEmergencies);
 
@@ -18,4 +19,5 @@ router.get(
 );
 router.get('/emergency/:id', viewController.getEmergency);
 router.get('/account', viewController.getMyAccountDetails);
+router.get('/forgotPassword', viewController.getForgotPasswordForm);
 module.exports = router;

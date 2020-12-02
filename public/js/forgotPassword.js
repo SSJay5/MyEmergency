@@ -2,23 +2,18 @@
 
 import axios from 'axios';
 
-export const login = async (email, password) => {
+export const forgotPassword = async (email) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: '/api/v1/users/login',
+      url: '/api/v1/users/forgotpassword',
       data: {
         email,
-        password,
       },
     });
     if (res.data.status === 'success') {
-      alert('Logged in Successfully');
-      window.setTimeout(() => {
-        location.assign('/');
-      }, 1500);
+      alert('Token was sent to your Email Successfully');
     }
-    // console.log(res);
   } catch (err) {
     return alert(err.response.data.message);
   }
