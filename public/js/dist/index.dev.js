@@ -573,3 +573,11 @@ if (updateUserPasswordForm) {
     (0, _updateUserPassword.updateUserPassword)(passwordCurrent, password);
   });
 }
+
+var scrollDown = document.getElementsByClassName('btn-scroll__helpline')[0];
+
+if (scrollDown) {
+  scrollDown.addEventListener('click', function () {
+    window.scrollBy(0, 600);
+  });
+}

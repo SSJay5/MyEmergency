@@ -443,3 +443,10 @@ if (updateUserPasswordForm) {
     updateUserPassword(passwordCurrent, password);
   });
 }
+const scrollDown = document.getElementsByClassName('btn-scroll__helpline')[0];
+
+if (scrollDown) {
+  scrollDown.addEventListener('click', () => {
+    window.scrollBy(0, 600);
+  });
+}

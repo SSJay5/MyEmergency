@@ -24,9 +24,12 @@
   &-refresh {
     position: absolute;
     z-index: 100;
-    background-color: orangered;
-    top: 60vh;
-    left: 80vw;
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    background-color: rgba($color-grey-light-1, $alpha: 0.8);
+    top: 67vh;
+    left: 85vw;
   }
   &-copy {
     height: 6rem;
@@ -65,8 +68,20 @@
   &-help {
     position: absolute;
     z-index: 100;
-    background-color: orangered;
-    top: 85vh;
-    left: 80vw;
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    background-color: rgba($color-grey-light-1, $alpha: 0.8);
+    top: 67vh;
+    left: 85vw;
+  }
+  &-scroll__helpline {
+    position: absolute;
+    z-index: 100;
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    left: 49%;
+    top: 72vh;
   }
 }

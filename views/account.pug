@@ -15,7 +15,7 @@ block content
           label(for='email')= 'Email'
       .row
         .form-user-data__profile-photo
-          img(src=`/img/user/${user.photo}`, alt='User photo')
+          img(src=`/img/user/${user.photo}` onerror="this.onerror=null; this.src='/img/user/default.jpg'" alt='')
         div
           input.form__upload(type='file', accept='image/*', id='photo', name='photo')
       input(type='submit')

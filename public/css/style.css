@@ -337,9 +337,12 @@ body {
 .btn-refresh {
   position: absolute;
   z-index: 100;
-  background-color: orangered;
-  top: 60vh;
-  left: 80vw; }
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  background-color: rgba(247, 247, 247, 0.8);
+  top: 67vh;
+  left: 85vw; }
 
 .btn-copy {
   height: 6rem;
@@ -375,9 +378,21 @@ body {
 .btn-help {
   position: absolute;
   z-index: 100;
-  background-color: orangered;
-  top: 85vh;
-  left: 80vw; }
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  background-color: rgba(247, 247, 247, 0.8);
+  top: 67vh;
+  left: 85vw; }
+
+.btn-scroll__helpline {
+  position: absolute;
+  z-index: 100;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  left: 49%;
+  top: 72vh; }
 
 .marker {
   background-image: url("../img/location-pin.png");

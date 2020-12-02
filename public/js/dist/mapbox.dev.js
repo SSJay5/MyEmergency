@@ -11,7 +11,7 @@ var displayMap = function displayMap(locations) {
     container: 'map',
     // container id
     style: 'mapbox://styles/jayss5/ckgkhc0js0tlh19nx8qw40cgf',
-    scrollZoom: false,
+    scrollZoom: true,
     center: locations,
     zoom: 16
   }); // var geolocate = new mapboxgl.GeolocateControl({

@@ -20,7 +20,7 @@ export const help = async (helpingLocation, Location, option = 'driving') => {
     let map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/jayss5/ckgkhc0js0tlh19nx8qw40cgf',
-      scrollZoom: false,
+      scrollZoom: true,
       center: coordinates[0],
       zoom: 16,
     });

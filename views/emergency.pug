@@ -3,7 +3,10 @@ extends base
 block content
   main
     section.emergencyMap
-      button.btn-help Refresh
+      button.btn-scroll__helpline
+        i.medium.material-icons arrow_downward
+      button.btn-help 
+        i.medium.material-icons gps_fixed
       #map(data-emergencyId = `${JSON.stringify(emergency._id)}`)
     section.emergencyChatBox
       h2.heading-secondary.emergencyChatBox__heading.u-center-text.u-margin-bottom-small.u-margin-top-small
