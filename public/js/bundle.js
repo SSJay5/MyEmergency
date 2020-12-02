@@ -9524,7 +9524,7 @@ if (EmergencySearch) {
       locations[1] = data.coords.latitude; // displayMap(currLocation);
       // console.log(currLocation);
     }, function (error) {
-      console.log(error);
+      // console.log(error);
       return alert('Please Turn On Your GPS !!!');
     }, {
       enableHighAccuracy: true

@@ -59,8 +59,8 @@ if (messageForm != null) {
   socket.emit('new-user', roomName, name);
   messageForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    roomName = JSON.parse(document.getElementById('map').getAttribute('data-emergencyid'));
-    console.log(roomName);
+    roomName = JSON.parse(document.getElementById('map').getAttribute('data-emergencyid')); // console.log(roomName);
+
     var message = messageInput.value;
     appendMessage("You: ".concat(message));
     socket.emit('send-chat-message', roomName, message);
@@ -551,8 +551,8 @@ if (updateUserDataForm) {
     var form = new FormData();
     form.append('name', document.getElementById('name').value);
     form.append('email', document.getElementById('email').value);
-    form.append('photo', document.getElementById('photo').files[0]);
-    console.log(form);
+    form.append('photo', document.getElementById('photo').files[0]); // console.log(form);
+
     (0, _updateUserData.updateUserData)(form);
   });
 }

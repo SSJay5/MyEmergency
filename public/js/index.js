@@ -51,7 +51,7 @@ if (messageForm != null) {
     roomName = JSON.parse(
       document.getElementById('map').getAttribute('data-emergencyid')
     );
-    console.log(roomName);
+    // console.log(roomName);
     const message = messageInput.value;
     appendMessage(`You: ${message}`);
     socket.emit('send-chat-message', roomName, message);
@@ -423,7 +423,7 @@ if (updateUserDataForm) {
     form.append('name', document.getElementById('name').value);
     form.append('email', document.getElementById('email').value);
     form.append('photo', document.getElementById('photo').files[0]);
-    console.log(form);
+    // console.log(form);
     updateUserData(form);
   });
 }
