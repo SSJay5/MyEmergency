@@ -1,7 +1,7 @@
 .emergencyChatBox {
   height: 80rem;
   width: 100%;
-  background-color: $color-grey-dark-3;
+  background-color: rgb(51, 50, 50);
   position: relative;
   font-size: 10rem;
   &__heading {
@@ -23,7 +23,8 @@
   &__message {
     position: relative;
     border-radius: 3px;
-    background-color: rgb(102, 77, 68);
+    background-color: black;
+    color: #f6ff56;
     min-height: 5rem;
     width: 95%;
     left: 50%;
@@ -31,4 +32,10 @@
     margin: 1rem;
     font-size: 3rem;
   }
+}
+#send-button {
+  background-color: #a4ff4f;
+  width: 7rem;
+  font-weight: 700;
+  font-size: 2rem;
 }

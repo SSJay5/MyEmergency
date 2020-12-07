@@ -253,7 +253,7 @@ body {
     width: calc( 3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem); }
 
 .footer {
-  background-color: #333;
+  background-color: #363636;
   padding: 10rem 0;
   font-size: 1.4rem;
   color: #f7f7f7; }
@@ -285,7 +285,7 @@ body {
       margin-right: 1.5rem; }
   .footer__link:link, .footer__link:visited {
     color: #f7f7f7;
-    background-color: #333;
+    background-color: #363636;
     text-decoration: none;
     text-transform: uppercase;
     display: inline-block;
@@ -305,7 +305,7 @@ body {
         width: 100%; } }
 
 .navigation {
-  background-color: black; }
+  background-color: #363636; }
   .navigation__user {
     width: 4rem; }
     .navigation__user img {
@@ -337,8 +337,8 @@ body {
 .btn-refresh {
   position: absolute;
   z-index: 100;
-  height: 6rem;
-  width: 6rem;
+  height: 5rem;
+  width: 5rem;
   border-radius: 50%;
   background-color: rgba(247, 247, 247, 0.8);
   top: 67vh;
@@ -347,8 +347,10 @@ body {
 .btn-copy {
   height: 6rem;
   width: 8rem;
-  background-color: #55c57a;
-  border-radius: 10px; }
+  background-color: #ffc730;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 2rem; }
 
 .btn-floating {
   background-color: red;
@@ -378,8 +380,8 @@ body {
 .btn-help {
   position: absolute;
   z-index: 100;
-  height: 6rem;
-  width: 6rem;
+  height: 5rem;
+  width: 5rem;
   border-radius: 50%;
   background-color: rgba(247, 247, 247, 0.8);
   top: 67vh;
@@ -388,11 +390,14 @@ body {
 .btn-scroll__helpline {
   position: absolute;
   z-index: 100;
-  height: 6rem;
-  width: 6rem;
+  height: 5rem;
+  width: 5rem;
   border-radius: 50%;
-  left: 49%;
+  left: 50%;
+  transform: translateX(-50%);
   top: 72vh; }
+  .btn-scroll__helpline:active, .btn-scroll__helpline::selection {
+    background-color: rgba(247, 247, 247, 0.8); }
 
 .marker {
   background-image: url("../img/location-pin.png");
@@ -404,13 +409,13 @@ body {
 .nationalEmergencyHelpline {
   min-height: 80rem;
   padding: 2rem;
-  background-color: #424d5c; }
+  background-color: black; }
   .nationalEmergencyHelpline__heading {
     width: 100%; }
   .nationalEmergencyHelpline__Card {
     position: relative;
     display: inline-block;
-    background-color: #252423;
+    background-color: #999;
     height: 20rem;
     border-radius: 2rem; }
     .nationalEmergencyHelpline__Card-icon {
@@ -437,6 +442,7 @@ body {
       vertical-align: middle;
       line-height: 5rem;
       color: white;
+      font-weight: 600;
       float: left;
       margin: 2rem 0rem 2rem 0rem; }
       @media only screen and (max-width: 75em) {
@@ -448,7 +454,7 @@ body {
           width: 55%; } }
     .nationalEmergencyHelpline__Card-phone {
       display: inline-block;
-      background-color: #252423;
+      background-color: #363636;
       color: white;
       height: 6rem;
       width: 52%;
@@ -467,7 +473,7 @@ body {
 .emergencyChatBox {
   height: 80rem;
   width: 100%;
-  background-color: #333;
+  background-color: #333232;
   position: relative;
   font-size: 10rem; }
   .emergencyChatBox__heading {
@@ -487,7 +493,8 @@ body {
   .emergencyChatBox__message {
     position: relative;
     border-radius: 3px;
-    background-color: #664d44;
+    background-color: black;
+    color: #f6ff56;
     min-height: 5rem;
     width: 95%;
     left: 50%;
@@ -495,30 +502,41 @@ body {
     margin: 1rem;
     font-size: 3rem; }
 
+#send-button {
+  background-color: #a4ff4f;
+  width: 7rem;
+  font-weight: 700;
+  font-size: 2rem; }
+
 .notifyAvengers {
   min-height: 80rem;
   width: 100%;
-  background-color: #999;
+  background-color: black;
   padding: 2rem; }
   .notifyAvengers__heading {
     width: 100%; }
   .notifyAvengers__card {
+    border-color: black;
+    border-width: 2px;
     position: relative;
     display: inline-block;
-    background-color: #eee;
+    background-color: #777;
     height: 26.8rem;
     width: 25%;
     border-radius: 2rem;
     float: left; }
     .notifyAvengers__card-addButton {
-      background-color: #252423;
+      background-color: #363636;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%); }
     .notifyAvengers__card-username, .notifyAvengers__card-phoneNumber {
+      border-color: black;
+      border-width: 2px;
+      border-radius: 10px;
       position: relative;
-      background-color: #ee602c;
+      background-color: #a832fb;
       display: inline-block;
       height: 6rem;
       width: 80%;
@@ -529,11 +547,14 @@ body {
       line-height: 5rem;
       left: 50%;
       transform: translateX(-50%);
-      margin-top: 2rem; }
+      margin-top: 2rem;
+      color: white;
+      font-weight: 500; }
       @media only screen and (max-width: 75em) {
         .notifyAvengers__card-username, .notifyAvengers__card-phoneNumber {
           font-size-adjust: 2rem; } }
     .notifyAvengers__card-button-delete {
+      border-radius: 10rem;
       position: relative;
       background-color: red;
       display: inline-block;
@@ -551,8 +572,9 @@ body {
         .notifyAvengers__card-button-delete {
           font-size-adjust: 2rem; } }
     .notifyAvengers__card-button-add {
+      border-radius: 10rem;
       position: relative;
-      background-color: lightgreen;
+      background-color: #4074f1;
       display: inline-block;
       height: 6rem;
       width: 80%;
@@ -561,7 +583,7 @@ body {
       text-transform: uppercase;
       vertical-align: middle;
       line-height: 5rem;
-      text-color: #252423;
+      font-weight: 700;
       left: 50%;
       transform: translateX(-50%);
       margin-top: 2rem; }
@@ -694,7 +716,7 @@ body {
   margin-bottom: 7px; }
 
 .chat-messages .message .meta span {
-  color: #777; }
+  color: #777777; }
 
 .chat-form-container {
   padding: 20px 30px;

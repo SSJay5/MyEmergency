@@ -393,7 +393,7 @@ body {
 }
 
 .navigation {
-  background-color: black;
+  background-color: #333;
 }
 .navigation__user {
   width: 4rem;
@@ -428,9 +428,12 @@ body {
 .btn-refresh {
   position: absolute;
   z-index: 100;
-  background-color: orangered;
-  top: 60vh;
-  left: 80vw;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  background-color: rgba(247, 247, 247, 0.8);
+  top: 67vh;
+  left: 85vw;
 }
 .btn-copy {
   height: 6rem;
@@ -466,9 +469,25 @@ body {
 .btn-help {
   position: absolute;
   z-index: 100;
-  background-color: orangered;
-  top: 85vh;
-  left: 80vw;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  background-color: rgba(247, 247, 247, 0.8);
+  top: 67vh;
+  left: 85vw;
+}
+.btn-scroll__helpline {
+  position: absolute;
+  z-index: 100;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 72vh;
+}
+.btn-scroll__helpline:active, .btn-scroll__helpline::selection {
+  background-color: rgba(247, 247, 247, 0.8);
 }
 
 .marker {
@@ -482,7 +501,7 @@ body {
 .nationalEmergencyHelpline {
   min-height: 80rem;
   padding: 2rem;
-  background-color: #424d5c;
+  background-color: black;
 }
 .nationalEmergencyHelpline__heading {
   width: 100%;
@@ -490,7 +509,7 @@ body {
 .nationalEmergencyHelpline__Card {
   position: relative;
   display: inline-block;
-  background-color: #252423;
+  background-color: #333;
   height: 20rem;
   border-radius: 2rem;
 }
@@ -520,7 +539,7 @@ body {
   text-transform: uppercase;
   vertical-align: middle;
   line-height: 5rem;
-  text-color: #252423;
+  color: white;
   float: left;
   margin: 2rem 0rem 2rem 0rem;
 }
@@ -537,6 +556,8 @@ body {
 }
 .nationalEmergencyHelpline__Card-phone {
   display: inline-block;
+  background-color: #252423;
+  color: white;
   height: 6rem;
   width: 52%;
   margin: 2rem;
@@ -561,7 +582,7 @@ body {
 .emergencyChatBox {
   height: 80rem;
   width: 100%;
-  background-color: #333;
+  background-color: black;
   position: relative;
   font-size: 10rem;
 }
@@ -585,7 +606,7 @@ body {
   position: relative;
   border-radius: 3px;
   background-color: #664d44;
-  height: 5rem;
+  min-height: 5rem;
   width: 95%;
   left: 50%;
   transform: translateX(-50%);
@@ -596,7 +617,7 @@ body {
 .notifyAvengers {
   min-height: 80rem;
   width: 100%;
-  background-color: #999;
+  background-color: black;
   padding: 2rem;
 }
 .notifyAvengers__heading {
@@ -605,18 +626,79 @@ body {
 .notifyAvengers__card {
   position: relative;
   display: inline-block;
-  background-color: #252423;
-  height: 25rem;
+  background-color: #eee;
+  height: 26.8rem;
   width: 25%;
   border-radius: 2rem;
   float: left;
 }
 .notifyAvengers__card-addButton {
-  background-color: #252423;
+  background-color: #333;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.notifyAvengers__card-username, .notifyAvengers__card-phoneNumber {
+  position: relative;
+  background-color: #ee602c;
+  display: inline-block;
+  height: 6rem;
+  width: 80%;
+  font-size: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  line-height: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 2rem;
+}
+@media only screen and (max-width: 75em) {
+  .notifyAvengers__card-username, .notifyAvengers__card-phoneNumber {
+    font-size-adjust: 2rem;
+  }
+}
+.notifyAvengers__card-button-delete {
+  position: relative;
+  background-color: red;
+  display: inline-block;
+  height: 6rem;
+  width: 80%;
+  font-size: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  line-height: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 2rem;
+}
+@media only screen and (max-width: 75em) {
+  .notifyAvengers__card-button-delete {
+    font-size-adjust: 2rem;
+  }
+}
+.notifyAvengers__card-button-add {
+  position: relative;
+  background-color: lightgreen;
+  display: inline-block;
+  height: 6rem;
+  width: 80%;
+  font-size: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  line-height: 5rem;
+  text-color: #252423;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 2rem;
+}
+@media only screen and (max-width: 75em) {
+  .notifyAvengers__card-button-add {
+    font-size-adjust: 2rem;
+  }
 }
 
 .form-user-data__profile-photo {
@@ -680,6 +762,24 @@ body {
   color: black;
 }
 .login-from__input-button {
+  position: absolute;
+  left: 50%;
+  transform: translateY(-50%);
+}
+
+.section-signup-form {
+  height: 80vh;
+  width: 100vw;
+}
+
+.signup-from {
+  height: 100%;
+  width: 100%;
+}
+.signup-from__heading {
+  color: black;
+}
+.signup-from__input-button {
   position: absolute;
   left: 50%;
   transform: translateY(-50%);
@@ -752,7 +852,7 @@ body {
 }
 
 .chat-messages .message .meta span {
-  color: #777;
+  color: #777777;
 }
 
 .chat-form-container {

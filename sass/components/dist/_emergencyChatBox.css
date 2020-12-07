@@ -1,0 +1,35 @@
+.emergencyChatBox {
+  height: 80rem;
+  width: 100%;
+  background-color: black;
+  position: relative;
+  font-size: 10rem;
+}
+.emergencyChatBox__heading {
+  position: absolute;
+  width: 100%;
+  top: 7%;
+}
+.emergencyChatBox__messenger {
+  overflow: scroll;
+  height: 70%;
+  width: 90%;
+  background-color: #333232;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+}
+.emergencyChatBox__message {
+  position: relative;
+  border-radius: 3px;
+  background-color: black;
+  color: #ffc730;
+  min-height: 5rem;
+  width: 95%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 1rem;
+  font-size: 3rem;
+}

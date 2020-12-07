@@ -1,28 +1,33 @@
 .notifyAvengers {
   min-height: 80rem;
   width: 100%;
-  background-color: $color-grey-dark-2;
+  background-color: black;
   padding: 2rem;
   &__heading {
     width: 100%;
   }
   &__card {
+    border-color: black;
+    border-width: 2px;
     position: relative;
     display: inline-block;
-    background-color: $color-grey-light-2;
+    background-color: $color-grey-dark-1;
     height: 26.8rem;
     width: 25%;
     border-radius: 2rem;
     float: left;
 
     &-addButton {
-      background-color: $color-grey-dark-4;
+      background-color: $color-grey-dark-3;
       @include absCenter;
     }
     &-username,
     &-phoneNumber {
+      border-color: black;
+      border-width: 2px;
+      border-radius: 10px;
       position: relative;
-      background-color: rgb(238, 96, 44);
+      background-color: #a832fb;
       display: inline-block;
       height: 6rem;
       width: 80%;
@@ -37,8 +42,11 @@
         font-size-adjust: 2rem;
       }
       margin-top: 2rem;
+      color: white;
+      font-weight: 500;
     }
     &-button-delete {
+      border-radius: 10rem;
       position: relative;
       background-color: red;
       display: inline-block;
@@ -57,8 +65,9 @@
       margin-top: 2rem;
     }
     &-button-add {
+      border-radius: 10rem;
       position: relative;
-      background-color: lightgreen;
+      background-color: #4074f1;
       display: inline-block;
       height: 6rem;
       width: 80%;
@@ -67,7 +76,7 @@
       text-transform: uppercase;
       vertical-align: middle;
       line-height: 5rem;
-      text-color: #252423;
+      font-weight: 700;
       left: 50%;
       transform: translateX(-50%);
       @include respond(tab-land) {
