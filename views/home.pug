@@ -69,7 +69,7 @@ block content
               -let Chat = chat.split(':')[0]==user.name?`You:${chat.split(':')[1]}`:chat;
                 .emergencyChatBox__message=Chat
       form#send-container.row
-        input#message-input(type='text')
+        input#message-input(type='text' placeholder='      Enter Your Message')
         if(user)
           button#send-button.btn(type='submit') Send
         else

@@ -34,8 +34,14 @@
   }
 }
 #send-button {
+  position: absolute;
   background-color: #a4ff4f;
   width: 7rem;
   font-weight: 700;
   font-size: 2rem;
+  width: 95%;
+  border-radius: 10px;
+  left: 50%;
+  top: 4rem;
+  transform: translateX(-50%);
 }

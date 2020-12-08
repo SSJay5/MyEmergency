@@ -40,6 +40,7 @@
       line-height: 5rem;
       color: white;
       font-weight: 600;
+      text-shadow: 0.1rem 0.1rem 0.3rem black;
       @include respond(tab-land) {
         width: 57%;
         font-size-adjust: 2rem;
@@ -51,11 +52,14 @@
       margin: 2rem 0rem 2rem 0rem;
     }
     &-phone {
+      text-align: center;
+      border-radius: 10px;
       display: inline-block;
       background-color: $color-grey-dark-3;
       color: white;
       height: 6rem;
       width: 52%;
+      font-size: 3rem;
       @include respond(tab-land) {
         width: 40%;
       }

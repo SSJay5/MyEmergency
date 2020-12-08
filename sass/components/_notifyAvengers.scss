@@ -19,6 +19,7 @@
 
     &-addButton {
       background-color: $color-grey-dark-3;
+
       @include absCenter;
     }
     &-username,
@@ -63,6 +64,17 @@
         font-size-adjust: 2rem;
       }
       margin-top: 2rem;
+      &:hover {
+        transform: translateY(-0.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+      }
+      &:active,
+      &:focus {
+        outline: none;
+        transform: translateY(-0.1rem);
+        box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+        background-color: red;
+      }
     }
     &-button-add {
       border-radius: 10rem;
@@ -83,6 +95,17 @@
         font-size-adjust: 2rem;
       }
       margin-top: 2rem;
+      &:hover {
+        transform: translate(-50%, -0.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+      }
+      &:active,
+      &:focus {
+        outline: none;
+        transform: translate(-50%,-0.1rem);
+        box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+        background-color: #4074f1;
+      }
     }
   }
 }

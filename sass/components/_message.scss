@@ -1,9 +1,13 @@
 #send-container {
   background-color: $color-grey-dark-1;
-  min-height: 8rem;
+  min-height: 4rem;
   width: 90%;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   top: 70rem;
+  border-radius: 10rem;
+}
+#message-input {
+  overflow: hidden;
 }
