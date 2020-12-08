@@ -709,7 +709,6 @@ body {
     object-fit: fill; }
 
 .emergencies {
-  min-height: 60vh;
   width: 100%; }
   .emergencies__searchBar {
     text-align: center;
@@ -728,7 +727,7 @@ body {
         .emergencies__searchBar-distance-val {
           width: 25rem;
           font-size: 2rem;
-          height: 4rem; } }
+          height: 3rem; } }
     .emergencies__searchBar-text {
       font-size: 3rem;
       color: #00d672; }
