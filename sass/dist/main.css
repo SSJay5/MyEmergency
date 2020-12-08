@@ -323,7 +323,7 @@ body {
 }
 
 .footer {
-  background-color: #333;
+  background-color: #363636;
   padding: 10rem 0;
   font-size: 1.4rem;
   color: #f7f7f7;
@@ -368,7 +368,7 @@ body {
 }
 .footer__link:link, .footer__link:visited {
   color: #f7f7f7;
-  background-color: #333;
+  background-color: #363636;
   text-decoration: none;
   text-transform: uppercase;
   display: inline-block;
@@ -393,7 +393,7 @@ body {
 }
 
 .navigation {
-  background-color: #333;
+  background-color: #363636;
 }
 .navigation__user {
   width: 4rem;
@@ -402,6 +402,16 @@ body {
   width: 100%;
   height: auto;
   object-fit: fill;
+}
+
+#blurLayer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  z-index: 50;
+  background-color: transparent;
 }
 
 .btn-emergency {
@@ -427,25 +437,61 @@ body {
 }
 .btn-refresh {
   position: absolute;
-  z-index: 100;
+  z-index: 0;
   height: 5rem;
   width: 5rem;
+  text-align: center;
   border-radius: 50%;
   background-color: rgba(247, 247, 247, 0.8);
   top: 67vh;
   left: 85vw;
 }
+.btn-refresh:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+.btn-refresh:active, .btn-refresh:focus {
+  outline: none;
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  background-color: rgba(247, 247, 247, 0.8);
+}
 .btn-copy {
   height: 6rem;
   width: 8rem;
-  background-color: #55c57a;
+  background-color: #ffc730;
   border-radius: 10px;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.btn-copy:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+.btn-copy:active, .btn-copy:focus {
+  outline: none;
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  background-color: #ffc730;
 }
 .btn-floating {
   background-color: red;
   height: 1rem;
   width: 1rem;
   opacity: 0.3;
+}
+.btn-floating:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+.btn-floating:active, .btn-floating:focus {
+  outline: none;
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+.btn-text:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 .btn-text:link, .btn-text:visited {
   font-size: 1.6rem;
@@ -462,11 +508,13 @@ body {
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
 }
-.btn-text:active {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  transform: translateY(0);
+.btn-text:active, .btn-text:focus {
+  outline: none;
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 .btn-help {
+  transition: all 0.2s;
   position: absolute;
   z-index: 100;
   height: 5rem;
@@ -476,9 +524,18 @@ body {
   top: 67vh;
   left: 85vw;
 }
+.btn-help:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+.btn-help:active, .btn-help:focus {
+  outline: none;
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
 .btn-scroll__helpline {
   position: absolute;
-  z-index: 100;
+  z-index: 0;
   height: 5rem;
   width: 5rem;
   border-radius: 50%;
@@ -486,7 +543,9 @@ body {
   transform: translateX(-50%);
   top: 72vh;
 }
-.btn-scroll__helpline:active, .btn-scroll__helpline::selection {
+.btn-scroll__helpline:active, .btn-scroll__helpline:focus {
+  outline: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   background-color: rgba(247, 247, 247, 0.8);
 }
 
@@ -509,7 +568,7 @@ body {
 .nationalEmergencyHelpline__Card {
   position: relative;
   display: inline-block;
-  background-color: #333;
+  background-color: #999;
   height: 20rem;
   border-radius: 2rem;
 }
@@ -540,6 +599,8 @@ body {
   vertical-align: middle;
   line-height: 5rem;
   color: white;
+  font-weight: 600;
+  text-shadow: 0.1rem 0.1rem 0.3rem black;
   float: left;
   margin: 2rem 0rem 2rem 0rem;
 }
@@ -555,11 +616,14 @@ body {
   }
 }
 .nationalEmergencyHelpline__Card-phone {
+  text-align: center;
+  border-radius: 10px;
   display: inline-block;
-  background-color: #252423;
+  background-color: #363636;
   color: white;
   height: 6rem;
   width: 52%;
+  font-size: 3rem;
   margin: 2rem;
   position: relative;
 }
@@ -580,9 +644,9 @@ body {
 }
 
 .emergencyChatBox {
-  height: 80rem;
+  height: 81rem;
   width: 100%;
-  background-color: black;
+  background-color: #1e2428;
   position: relative;
   font-size: 10rem;
 }
@@ -590,6 +654,7 @@ body {
   position: absolute;
   width: 100%;
   top: 7%;
+  background-image: linear-gradient(to right, white, #2998ff, #5643fa);
 }
 .emergencyChatBox__messenger {
   overflow: scroll;
@@ -602,15 +667,31 @@ body {
   transform: translate(-50%, -50%);
   border-radius: 1rem;
 }
+@media only screen and (max-width: 75em) {
+  .emergencyChatBox__messenger {
+    width: 95%;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .emergencyChatBox__messenger {
+    width: 99%;
+  }
+}
+.emergencyChatBox__messenger::-webkit-scrollbar {
+  display: none;
+}
 .emergencyChatBox__message {
   position: relative;
   border-radius: 3px;
-  background-color: #664d44;
+  background-color: black;
+  word-wrap: break-word;
+  color: #f6ff56;
   min-height: 5rem;
   width: 95%;
   left: 50%;
   transform: translateX(-50%);
-  margin: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   font-size: 3rem;
 }
 
@@ -624,24 +705,29 @@ body {
   width: 100%;
 }
 .notifyAvengers__card {
+  border-color: black;
+  border-width: 2px;
   position: relative;
   display: inline-block;
-  background-color: #eee;
+  background-color: #777;
   height: 26.8rem;
   width: 25%;
   border-radius: 2rem;
   float: left;
 }
 .notifyAvengers__card-addButton {
-  background-color: #333;
+  background-color: #363636;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 .notifyAvengers__card-username, .notifyAvengers__card-phoneNumber {
+  border-color: black;
+  border-width: 2px;
+  border-radius: 10px;
   position: relative;
-  background-color: #ee602c;
+  background-color: #a832fb;
   display: inline-block;
   height: 6rem;
   width: 80%;
@@ -653,6 +739,8 @@ body {
   left: 50%;
   transform: translateX(-50%);
   margin-top: 2rem;
+  color: white;
+  font-weight: 500;
 }
 @media only screen and (max-width: 75em) {
   .notifyAvengers__card-username, .notifyAvengers__card-phoneNumber {
@@ -660,6 +748,7 @@ body {
   }
 }
 .notifyAvengers__card-button-delete {
+  border-radius: 10rem;
   position: relative;
   background-color: red;
   display: inline-block;
@@ -679,9 +768,20 @@ body {
     font-size-adjust: 2rem;
   }
 }
+.notifyAvengers__card-button-delete:hover {
+  transform: translate(-50%, -0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+.notifyAvengers__card-button-delete:active, .notifyAvengers__card-button-delete:focus {
+  outline: none;
+  transform: translate(-50%, -0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  background-color: red;
+}
 .notifyAvengers__card-button-add {
+  border-radius: 10rem;
   position: relative;
-  background-color: lightgreen;
+  background-color: #4074f1;
   display: inline-block;
   height: 6rem;
   width: 80%;
@@ -690,7 +790,7 @@ body {
   text-transform: uppercase;
   vertical-align: middle;
   line-height: 5rem;
-  text-color: #252423;
+  font-weight: 700;
   left: 50%;
   transform: translateX(-50%);
   margin-top: 2rem;
@@ -699,6 +799,16 @@ body {
   .notifyAvengers__card-button-add {
     font-size-adjust: 2rem;
   }
+}
+.notifyAvengers__card-button-add:hover {
+  transform: translate(-50%, -0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+.notifyAvengers__card-button-add:active, .notifyAvengers__card-button-add:focus {
+  outline: none;
+  transform: translate(-50%, -0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  background-color: #4074f1;
 }
 
 .form-user-data__profile-photo {
@@ -933,11 +1043,47 @@ body {
   }
 }
 #send-container {
-  background-color: #777;
-  min-height: 8rem;
+  background-color: #33383b;
+  min-height: 4.5rem;
   width: 90%;
+  color: white;
+  font-weight: 900;
+  font-size: 4rem;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   top: 70rem;
+  border-radius: 10px;
+}
+
+#message-input {
+  overflow: hidden;
+  width: 95%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#send-button {
+  position: absolute;
+  background-color: #a4ff4f;
+  width: 7.5rem;
+  font-weight: 700;
+  font-size: 2rem;
+  width: 100%;
+  border-radius: 10rem;
+  left: 50%;
+  top: 5rem;
+  margin-top: 1rem;
+  transform: translateX(-50%);
+}
+#send-button:hover {
+  transform: translate(-50%, -0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+#send-button:active, #send-button:focus {
+  outline: none;
+  transform: translate(-50%, -0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  background-color: #a4ff4f;
 }

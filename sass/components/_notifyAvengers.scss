@@ -65,13 +65,13 @@
       }
       margin-top: 2rem;
       &:hover {
-        transform: translateY(-0.3rem);
+        transform: translate(-50%,-0.3rem);
         box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
       }
       &:active,
       &:focus {
         outline: none;
-        transform: translateY(-0.1rem);
+        transform: translate(-50%, -0.1rem);
         box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
         background-color: red;
       }
@@ -102,7 +102,7 @@
       &:active,
       &:focus {
         outline: none;
-        transform: translate(-50%,-0.1rem);
+        transform: translate(-50%, -0.1rem);
         box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
         background-color: #4074f1;
       }

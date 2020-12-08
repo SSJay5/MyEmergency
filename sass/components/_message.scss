@@ -1,13 +1,44 @@
 #send-container {
-  background-color: $color-grey-dark-1;
-  min-height: 4rem;
+  background-color: #33383b;
+  min-height: 4.5rem;
   width: 90%;
+  color: white;
+  font-weight: 900;
+  font-size: 4rem;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 70rem;
-  border-radius: 10rem;
+  top: 73rem;
+  border-radius: 10px;
 }
 #message-input {
   overflow: hidden;
+  width: 95%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#send-button {
+  position: absolute;
+  background-color: #a4ff4f;
+  height: 4rem;
+  font-weight: 700;
+  font-size: 2rem;
+  width: 100%;
+  border-radius: 10rem;
+  left: 50%;
+  top: 4rem;
+  margin-top: 1rem;
+  transform: translateX(-50%);
+  &:hover {
+    transform: translate(-50%, -0.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+  }
+  &:active,
+  &:focus {
+    outline: none;
+    transform: translate(-50%, -0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+    background-color: #a4ff4f;
+  }
 }

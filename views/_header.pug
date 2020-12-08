@@ -7,23 +7,23 @@ header
         i.material-icons menu
       ul#nav-mobile.right.hide-on-med-and-down
         li
-          a(href='/') Home
+          a.navigation__item(href='/') Home
         li
-          a(href='/AllEmergencies') Emergencies
+          a.navigation__item(href='/AllEmergencies') Emergencies
         if user
           li
             a(href='/account')
               .navigation__user
-                img.circle(src=`/img/user/${user.photo}` onerror="this.onerror=null; this.src='/img/user/default.jpg'" alt='')
+                img.responsive-img.circle(src=`/img/user/${user.photo}` onerror="this.onerror=null; this.src='/img/user/default.jpg'" alt='')
           li
-            a(href='/account')=`${user.name}`
+            a.navigation__item(href='/account')=`${user.name}`
           li
-            a(class='logout') Log Out
+            a.navigation__item(class='logout') Log Out
         else
           li
-            a(href='/login') Login
+            a.navigation__item(href='/login') Login
           li
-            a(href='/signup') Signup
+            a.navigation__item(href='/signup') Signup
   ul#slide-out.sidenav
     li
       .user-view

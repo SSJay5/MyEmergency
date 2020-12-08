@@ -305,24 +305,63 @@ body {
         width: 100%; } }
 
 .navigation {
-  background-color: #363636; }
+  background-color: #202020;
+  overflow: hidden; }
   .navigation__user {
     width: 4rem; }
     .navigation__user img {
       width: 100%;
       height: auto;
       object-fit: fill; }
+  .navigation__item {
+    min-width: 10rem;
+    font-size: 2rem;
+    text-align: center; }
+    .navigation__item:hover, .navigation__item:active {
+      color: white; }
+
+.spinner-container {
+  z-index: 110;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+#sipnnerEmergency {
+  position: relative;
+  z-index: 110;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(90, 90, 90, 0.8); }
+
+#blurLayer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  z-index: 50;
+  background: #777;
+  background: rgba(90, 90, 90, 0.8);
+  filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -webkit-filter: blur(10px); }
 
 .btn-emergency {
+  letter-spacing: 0.2rem;
+  border: none;
   text-transform: uppercase;
   text-align: center;
-  background-color: orangered;
-  height: 20rem;
-  width: 20rem;
+  height: 22rem;
+  width: 23rem;
   padding: 5rem;
   position: absolute;
   left: 50%;
   top: 50%;
+  background-image: linear-gradient(#ff2600, red);
+  box-shadow: 0 0.3rem 0.8rem #c81b1b, inset 0 0.2rem 0.3rem #bd1010;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -332,11 +371,15 @@ body {
   transition: all 1s;
   transform-origin: top;
   transform: translate(-50%, -50%);
-  opacity: 1; }
+  opacity: 1;
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: 700; }
 
 .btn-refresh {
   position: absolute;
-  z-index: 100;
+  z-index: 5;
   height: 5rem;
   width: 5rem;
   text-align: center;
@@ -426,7 +469,7 @@ body {
 
 .btn-scroll__helpline {
   position: absolute;
-  z-index: 100;
+  z-index: 5;
   height: 5rem;
   width: 5rem;
   border-radius: 50%;
@@ -514,15 +557,16 @@ body {
           width: 40%; } }
 
 .emergencyChatBox {
-  height: 80rem;
+  height: 85rem;
   width: 100%;
-  background-color: #333232;
+  background-color: #1e2428;
   position: relative;
   font-size: 10rem; }
   .emergencyChatBox__heading {
     position: absolute;
     width: 100%;
-    top: 7%; }
+    top: 7%;
+    background-image: linear-gradient(to right, white, #2998ff, #5643fa); }
   .emergencyChatBox__messenger {
     overflow: scroll;
     height: 70%;
@@ -533,29 +577,28 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 1rem; }
+    @media only screen and (max-width: 75em) {
+      .emergencyChatBox__messenger {
+        width: 95%; } }
+    @media only screen and (max-width: 37.5em) {
+      .emergencyChatBox__messenger {
+        width: 99%; } }
+    .emergencyChatBox__messenger::-webkit-scrollbar {
+      display: none; }
   .emergencyChatBox__message {
     position: relative;
     border-radius: 3px;
     background-color: black;
+    word-wrap: break-word;
     color: #f6ff56;
     min-height: 5rem;
     width: 95%;
     left: 50%;
     transform: translateX(-50%);
-    margin: 1rem;
-    font-size: 3rem; }
-
-#send-button {
-  position: absolute;
-  background-color: #a4ff4f;
-  width: 7rem;
-  font-weight: 700;
-  font-size: 2rem;
-  width: 95%;
-  border-radius: 10px;
-  left: 50%;
-  top: 4rem;
-  transform: translateX(-50%); }
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    padding: 1rem; }
 
 .notifyAvengers {
   min-height: 80rem;
@@ -621,11 +664,11 @@ body {
         .notifyAvengers__card-button-delete {
           font-size-adjust: 2rem; } }
       .notifyAvengers__card-button-delete:hover {
-        transform: translateY(-0.3rem);
+        transform: translate(-50%, -0.3rem);
         box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
       .notifyAvengers__card-button-delete:active, .notifyAvengers__card-button-delete:focus {
         outline: none;
-        transform: translateY(-0.1rem);
+        transform: translate(-50%, -0.1rem);
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
         background-color: red; }
     .notifyAvengers__card-button-add {
@@ -669,32 +712,81 @@ body {
   min-height: 60vh;
   width: 100%; }
   .emergencies__searchBar {
+    text-align: center;
     min-height: 10rem;
     width: 100%;
-    background-color: #eee; }
+    background-color: #1e2428; }
     .emergencies__searchBar-distance-val {
-      width: 40rem;
-      height: 5rem; }
+      width: 50rem;
+      height: 5rem;
+      border-radius: 10px;
+      background-color: #777;
+      border: none;
+      padding: 1rem;
+      overflow: hidden; }
+      @media only screen and (max-width: 37.5em) {
+        .emergencies__searchBar-distance-val {
+          width: 25rem;
+          font-size: 2rem;
+          height: 4rem; } }
+    .emergencies__searchBar-text {
+      font-size: 3rem;
+      color: #00d672; }
+      @media only screen and (max-width: 37.5em) {
+        .emergencies__searchBar-text {
+          font-size: 1.5rem; } }
   .emergencies__Cards {
     position: relative;
     min-height: 30rem;
     width: 100%;
-    background-color: cadetblue;
+    background-color: #777;
     padding: 1rem; }
   .emergencies__Card {
     position: relative;
     min-height: 7rem;
     width: 94%;
+    padding: 0.3rem;
     border-radius: 1rem;
-    background-color: cyan;
+    background-color: black;
     margin: 1rem auto;
-    font-size: 5rem; }
+    font-size: 4rem;
+    color: #f6ff56; }
+    @media only screen and (max-width: 37.5em) {
+      .emergencies__Card {
+        font-size: 1.5rem;
+        min-height: 4rem; } }
     .emergencies__Card-help, .emergencies__Card-cancel {
       position: absolute;
+      text-align: center;
       border-radius: 5px;
       left: 95%;
       top: 50%;
-      transform: translate(-95%, -50%); }
+      transform: translate(-95%, -50%);
+      background-color: #3cffec;
+      color: black;
+      font-weight: 600;
+      font-size: 16px; }
+      @media only screen and (max-width: 37.5em) {
+        .emergencies__Card-help, .emergencies__Card-cancel {
+          font-size: 8px;
+          height: 3rem; } }
+    .emergencies__Card-cancel {
+      background-color: orangered; }
+      .emergencies__Card-cancel:hover {
+        background-color: orangered; }
+
+#search-emergencies {
+  width: 8rem;
+  height: 4rem;
+  border-radius: 10rem;
+  margin: 2rem; }
+
+input,
+select,
+textarea {
+  color: white;
+  font-size: 3rem;
+  font-weight: 500; }
 
 .section-login-form {
   height: 80vh;
@@ -846,14 +938,42 @@ body {
     display: none; } }
 
 #send-container {
-  background-color: #777;
-  min-height: 4rem;
+  background-color: #33383b;
+  min-height: 4.5rem;
   width: 90%;
+  color: white;
+  font-weight: 900;
+  font-size: 4rem;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 70rem;
-  border-radius: 10rem; }
+  top: 73rem;
+  border-radius: 10px; }
 
 #message-input {
-  overflow: hidden; }
+  overflow: hidden;
+  width: 95%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); }
+
+#send-button {
+  position: absolute;
+  background-color: #a4ff4f;
+  height: 4rem;
+  font-weight: 700;
+  font-size: 2rem;
+  width: 100%;
+  border-radius: 10rem;
+  left: 50%;
+  top: 4rem;
+  margin-top: 1rem;
+  transform: translateX(-50%); }
+  #send-button:hover {
+    transform: translate(-50%, -0.3rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  #send-button:active, #send-button:focus {
+    outline: none;
+    transform: translate(-50%, -0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    background-color: #a4ff4f; }

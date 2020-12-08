@@ -24,6 +24,8 @@ var _updateUserData = require("./updateUserData");
 
 var _updateUserPassword = require("./updateUserPassword");
 
+var _sipnner = require("./sipnner");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /* eslint-disable */
@@ -60,6 +62,10 @@ if (messageForm != null) {
   messageForm.addEventListener('submit', function (e) {
     e.preventDefault();
     roomName = JSON.parse(document.getElementById('map').getAttribute('data-emergencyid')); // console.log(roomName);
+
+    if (messageInput.value.length === 0) {
+      return;
+    }
 
     var message = messageInput.value;
     appendMessage("You: ".concat(message));
@@ -203,28 +209,31 @@ if (emergencyButton) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
+            (0, _sipnner.spinner)('add');
             navigator.geolocation.getCurrentPosition(function (data) {
               locations[0] = data.coords.longitude;
               locations[1] = data.coords.latitude; // displayMap(currLocation);
               // console.log(currLocation);
             }, function (error) {
-              console.log(error);
+              // console.log(error);
+              (0, _sipnner.spinner)('del');
               return alert('Please Turn On Your GPS !!!');
             }, {
               enableHighAccuracy: true
             });
 
             if (!(locations[0] == null || locations[1] == null)) {
-              _context2.next = 3;
+              _context2.next = 5;
               break;
             }
 
+            (0, _sipnner.spinner)('del');
             return _context2.abrupt("return", alert('Please Provide Your Location'));
 
-          case 3:
+          case 5:
             (0, _mapbox.displayMap)(locations);
-            _context2.prev = 4;
-            _context2.next = 7;
+            _context2.prev = 6;
+            _context2.next = 9;
             return regeneratorRuntime.awrap((0, _axios["default"])({
               method: 'PATCH',
               url: '/api/v1/users/updateMe',
@@ -233,32 +242,33 @@ if (emergencyButton) {
               }
             }));
 
-          case 7:
+          case 9:
             res = _context2.sent;
-            _context2.next = 10;
+            _context2.next = 12;
             return regeneratorRuntime.awrap((0, _axios["default"])({
               method: 'GET',
               url: '/api/v1/users/me'
             }));
 
-          case 10:
+          case 12:
             user = _context2.sent;
 
             if (!user.emergencyActive) {
-              _context2.next = 15;
+              _context2.next = 18;
               break;
             }
 
+            (0, _sipnner.spinner)('del');
             return _context2.abrupt("return", alert('Your Emergency Alert is already Active '));
 
-          case 15:
-            _context2.next = 17;
+          case 18:
+            _context2.next = 20;
             return regeneratorRuntime.awrap((0, _axios["default"])({
               method: 'GET',
               url: '/api/v1/emergencies'
             }));
 
-          case 17:
+          case 20:
             emergency = _context2.sent;
             emergencyButton.style.animationName = 'scaleDown';
             emergencyButton.style.animationDuration = '1s';
@@ -269,24 +279,27 @@ if (emergencyButton) {
 
             emergencyButton.remove();
 
-          case 23:
+          case 26:
             name = JSON.parse(document.getElementById('message-container').dataset.username);
             roomName = JSON.parse(document.getElementById('map').getAttribute('data-emergencyid'));
+            (0, _sipnner.spinner)('del');
             socket.emit('new-user', roomName, name);
-            _context2.next = 31;
+            document.getElementById('blurLayer').remove();
+            _context2.next = 37;
             break;
 
-          case 28:
-            _context2.prev = 28;
-            _context2.t0 = _context2["catch"](4);
+          case 33:
+            _context2.prev = 33;
+            _context2.t0 = _context2["catch"](6);
+            (0, _sipnner.spinner)('del');
             return _context2.abrupt("return", alert(_context2.t0.response.data.message));
 
-          case 31:
+          case 37:
           case "end":
             return _context2.stop();
         }
       }
-    }, null, null, [[4, 28]]);
+    }, null, null, [[6, 33]]);
   });
 }
 

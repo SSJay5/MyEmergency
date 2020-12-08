@@ -1,9 +1,35 @@
 #send-container {
-  background-color: col;
-  height: 8rem;
+  background-color: #33383b;
+  min-height: 4.5rem;
   width: 90%;
+  color: white;
+  font-weight: 900;
+  font-size: 4rem;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   top: 70rem;
+  border-radius: 10px;
+}
+
+#message-input {
+  overflow: hidden;
+  width: 95%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#send-button {
+  position: absolute;
+  background-color: #a4ff4f;
+  width: 7rem;
+  font-weight: 700;
+  font-size: 2rem;
+  width: 100%;
+  border-radius: 10rem;
+  left: 50%;
+  top: 5rem;
+  margin-top: 1rem;
+  transform: translateX(-50%);
 }

@@ -4,7 +4,7 @@ block content
   main#emergencies
     section.emergencies
       .emergencies__searchBar
-        .emergencies__searchBar-text
+        .emergencies__searchBar-text.u-center-text
           | Enter distance(in kilometers) form your current location to which
           | you want to help
         .emergencies__searchBar-distance
@@ -13,11 +13,11 @@ block content
       .emergencies__Cards
         if emergencies !=undefined
           each emergency in emergencies
-            .emergencies__Card=`Created By: ${emergency.userName}`
+            .emergencies__Card=` By: ${emergency.userName}`
               if `${user===undefined?null:user._id}`.toLowerCase() === `${emergency.user}`.toLowerCase() 
                 button.emergencies__Card-cancel.btn Delete
               else
                 if user===undefined
-                  a.emergencies__Card-help.btn(href=  `/login`) Help
+                  a.emergencies__Card-cancle.btn(href=  `/login`) Help
                 else
                   a.emergencies__Card-help.btn(href=  `/emergency/${emergency._id}`) Help

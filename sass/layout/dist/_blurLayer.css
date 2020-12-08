@@ -1,0 +1,15 @@
+#blurLayer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  z-index: 50;
+  background: #777;
+  background: rgba(90, 90, 90, 0.8);
+  filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -webkit-filter: blur(10px);
+}

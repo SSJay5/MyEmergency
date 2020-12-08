@@ -4,6 +4,11 @@ block content
   main
     #cover
     section.emergencyMap
+      if(user)
+        if(user.emergencyActive===false)
+          #blurLayer
+      else
+        #blurLayer
       button.btn-scroll__helpline
         i.medium.material-icons arrow_downward
       button.btn-refresh
@@ -62,22 +67,22 @@ block content
     section.emergencyChatBox
       h2.heading-secondary.emergencyChatBox__heading.u-center-text.u-margin-bottom-small.u-margin-top-small
         | Chat Section
-      #message-container.row.emergencyChatBox__messenger(data-username = `${user===undefined?null:JSON.stringify(user.name)}`)
+      #message-container.emergencyChatBox__messenger(data-username = `${user===undefined?null:JSON.stringify(user.name)}`)
         if user
           if emergency
             each chat in emergency.chats
               -let Chat = chat.split(':')[0]==user.name?`You:${chat.split(':')[1]}`:chat;
                 .emergencyChatBox__message=Chat
-      form#send-container.row
+      form#send-container
         input#message-input(type='text' placeholder='      Enter Your Message')
         if(user)
           button#send-button.btn(type='submit') Send
         else
-          a.btn(href='/login') Send
+          a#send-button.btn(href='/login') Login To Send Messages 
     if user
       section.notifyAvengers#notifyAvengers
         h2.heading-secondary.notifyAvengers__heading.u-center-text.u-margin-bottom-big.u-margin-top-big
-          | notify Avengers
+          | notify Your Avengers
         .row
           form.col-1-of-3.notifyAvengers__card
             if user.avengers.length > 0 

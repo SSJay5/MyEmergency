@@ -1,0 +1,16 @@
+.navigation {
+  background-color: #202020;
+  overflow: hidden;
+}
+.navigation__user {
+  width: 4rem;
+}
+.navigation__user img {
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+}
+
+.spinner-container {
+  z-index: 110;
+}

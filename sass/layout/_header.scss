@@ -1,5 +1,6 @@
 .navigation {
-  background-color: $color-grey-dark-3;
+  background-color: #202020;
+  overflow: hidden;
   &__user {
     width: 4rem;
     & img {
@@ -8,4 +9,24 @@
       object-fit: fill;
     }
   }
+  &__item {
+    min-width: 10rem;
+    font-size: 2rem;
+    text-align: center;
+    &:hover,
+    &:active {
+      color: white;
+    }
+  }
+}
+.spinner-container {
+  z-index: 110;
+  @include absCenter;
+}
+#sipnnerEmergency {
+  position: relative;
+  z-index: 110;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(rgb(90, 90, 90), 0.8);
 }

@@ -11,9 +11,9 @@ import { resetPassword } from './resetPassword';
 import { forgotPassword } from './forgotPassword';
 import { updateUserData } from './updateUserData';
 import { updateUserPassword } from './updateUserPassword';
+import { spinner } from './sipnner';
 
 const socket = io('https://myemergency.herokuapp.com');
-
 const messageForm = document.getElementById('send-container');
 const messageContainer = document.getElementById('message-container');
 const messageInput = document.getElementById('message-input');
@@ -52,6 +52,9 @@ if (messageForm != null) {
       document.getElementById('map').getAttribute('data-emergencyid')
     );
     // console.log(roomName);
+    if (messageInput.value.length === 0) {
+      return;
+    }
     const message = messageInput.value;
     appendMessage(`You: ${message}`);
     socket.emit('send-chat-message', roomName, message);
@@ -166,6 +169,7 @@ var emergencyButton = document.getElementsByClassName('btn-emergency')[0];
 
 if (emergencyButton) {
   emergencyButton.addEventListener('click', async (f) => {
+    spinner('add');
     let user;
     navigator.geolocation.getCurrentPosition(
       (data) => {
@@ -175,7 +179,8 @@ if (emergencyButton) {
         // console.log(currLocation);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
+        spinner('del');
         return alert('Please Turn On Your GPS !!!');
       },
       {
@@ -183,6 +188,7 @@ if (emergencyButton) {
       }
     );
     if (locations[0] == null || locations[1] == null) {
+      spinner('del');
       return alert('Please Provide Your Location');
     }
     displayMap(locations);
@@ -199,6 +205,7 @@ if (emergencyButton) {
         url: '/api/v1/users/me',
       });
       if (user.emergencyActive) {
+        spinner('del');
         return alert('Your Emergency Alert is already Active ');
       } else {
         const emergency = await axios({
@@ -221,8 +228,11 @@ if (emergencyButton) {
       roomName = JSON.parse(
         document.getElementById('map').getAttribute('data-emergencyid')
       );
+      spinner('del');
       socket.emit('new-user', roomName, name);
+      document.getElementById('blurLayer').remove();
     } catch (err) {
+      spinner('del');
       return alert(err.response.data.message);
     }
   });

@@ -1,0 +1,49 @@
+.emergencies {
+  min-height: 60vh;
+  width: 100%;
+}
+.emergencies__searchBar {
+  text-align: center;
+  min-height: 10rem;
+  width: 100%;
+  background-color: #1e2428;
+}
+.emergencies__searchBar-distance-val {
+  width: 40rem;
+  height: 5rem;
+  border-radius: 10px;
+}
+.emergencies__searchBar-text {
+  font-size: 3rem;
+  color: #00d672;
+}
+.emergencies__Cards {
+  position: relative;
+  min-height: 30rem;
+  width: 100%;
+  background-color: cadetblue;
+  padding: 1rem;
+}
+.emergencies__Card {
+  position: relative;
+  min-height: 7rem;
+  width: 94%;
+  border-radius: 1rem;
+  background-color: cyan;
+  margin: 1rem auto;
+  font-size: 5rem;
+}
+.emergencies__Card-help, .emergencies__Card-cancel {
+  position: absolute;
+  border-radius: 5px;
+  left: 95%;
+  top: 50%;
+  transform: translate(-95%, -50%);
+}
+
+#search-emergencies {
+  width: 8rem;
+  height: 4rem;
+  border-radius: 10rem;
+  margin: 2rem;
+}

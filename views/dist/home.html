@@ -42,6 +42,7 @@
     <main>
       <div id="cover"></div>
       <section class="emergencyMap">
+        <div id="blurLayer"></div>
         <button class="btn-scroll__helpline"><i class="medium material-icons">arrow_downward</i></button>
         <button class="btn-refresh"><i class="medium material-icons">gps_fixed</i></button>
         <div id="map" data-emergencyId="null"></div>
@@ -92,10 +93,10 @@
       </section>
       <section class="emergencyChatBox">
         <h2 class="heading-secondary emergencyChatBox__heading u-center-text u-margin-bottom-small u-margin-top-small">Chat Section</h2>
-        <div class="row emergencyChatBox__messenger" id="message-container" data-username="null">
+        <div class="emergencyChatBox__messenger" id="message-container" data-username="null">
         </div>
-        <form class="row" id="send-container">
-          <input id="message-input" type="text" placeholder="      Enter Your Message"><a class="btn" href="/login">Send</a>
+        <form id="send-container">
+          <input id="message-input" type="text" placeholder="      Enter Your Message"><a class="btn" id="send-button" href="/login">Login To Send Messages </a>
         </form>
       </section>
     </main>
