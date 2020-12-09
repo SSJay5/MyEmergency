@@ -20,9 +20,10 @@ export const signup = async (name, email, password, passwordConfirm) => {
       }, 1500);
     }
   } catch (err) {
-    if (err.response.data.message.includes('duplicate key error collection')) {
-      return alert('Someone already has that Username or Email');
-    }
+    // console.error(err.response.data.message);
+    // if (err.response.data.message.includes('duplicate key error collection')) {
+    //   return alert('Someone already has that Username or Email');
+    // }
     alert(err.response.data.message);
   }
 };

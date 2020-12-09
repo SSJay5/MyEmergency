@@ -1160,31 +1160,25 @@ textarea {
 #new_password,
 #current_password {
   background-color: black; }
-  #password:active, #password:visited, #password:hover, #password::selection,
+  #password:active, #password:visited, #password:hover,
   #email:active,
   #email:visited,
   #email:hover,
-  #email::selection,
   #passwordConfirm:active,
   #passwordConfirm:visited,
   #passwordConfirm:hover,
-  #passwordConfirm::selection,
   #name:active,
   #name:visited,
   #name:hover,
-  #name::selection,
   #confirm_password:active,
   #confirm_password:visited,
   #confirm_password:hover,
-  #confirm_password::selection,
   #new_password:active,
   #new_password:visited,
   #new_password:hover,
-  #new_password::selection,
   #current_password:active,
   #current_password:visited,
-  #current_password:hover,
-  #current_password::selection {
+  #current_password:hover {
     background-color: black; }
 
 .section-signup-form {

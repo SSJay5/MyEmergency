@@ -87,8 +87,7 @@
   background-color: black;
   &:active,
   &:visited,
-  &:hover,
-  &::selection {
+  &:hover {
     background-color: black;
   }
 }
