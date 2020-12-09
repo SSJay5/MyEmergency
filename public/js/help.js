@@ -16,7 +16,7 @@ export const help = async (helpingLocation, Location, option = 'driving') => {
     });
     coordinates = res.data.routes[0].geometry.coordinates;
 
-    console.log(coordinates[coordinates.length - 1]);
+    // console.log(coordinates[coordinates.length - 1]);
     let map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/jayss5/ckgkhc0js0tlh19nx8qw40cgf',

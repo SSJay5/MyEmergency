@@ -123,7 +123,7 @@ if (EmergencySearch) {
         // console.log(currLocation);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
         return alert('Please Turn On Your GPS !!!');
       },
       {
@@ -250,7 +250,7 @@ if (refreshButton) {
         // console.log(currLocation);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
         return alert('Please Turn On Your GPS !!!');
       },
       {

@@ -3,15 +3,18 @@ extends base
 block content
   main.section-login-form
     section.login-from
-      h1.login-form__heading.u-center-text.u-margin-top-big
-        | Login Form
-      form#form
-        input#email(type='text' placeholder='Email')
-        br
-        input#password(type='password' placeholder='Password')
-        br
-        button(type='submit') Submit
-        a(href='/forgotPassword') Forgot password
+      h1#loginHeading.heading-secondary.login-form__heading.u-center-text.u-margin-top-big.u-margin-bottom-small Login Form
+      .row
+        form#form.col.s12
+          .input-field.col
+            input#email.validate(type='email')
+            label#emailLabel.login-from__input(for='email') Email
+          .input-field.col
+            input#password.validate(type='password')
+            label#passwordLabel.login-from__input(for='password') Password
+          .col
+            button.login-from__input-button(type='submit') Submit
+            a#forgotButton(href='/forgotPassword') Forgot password
 
 
 

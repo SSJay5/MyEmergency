@@ -1,14 +1,44 @@
 .form-user-data {
+  top: 20rem;
+  background-color: black;
   &__profile {
     &-photo {
       width: 8rem;
-      border-radius: 50%;
+      height: auto;
       overflow: hidden;
       & img {
         width: 100%;
         height: auto;
-        object-fit: fill;
+        @include respond(phone) {
+          width: 70%;
+        }
       }
     }
   }
+  &__upload {
+    margin-top: 3rem;
+    @include respond(phone) {
+      margin-top: 0;
+      margin-left: 1rem;
+    }
+  }
+  &__heading {
+    width: 100%;
+  }
+}
+.form-user-password {
+  background-color: black;
+  height: 40rem;
+  &__heading {
+    width: 100%;
+    background-image: linear-gradient(
+      to right,
+      white,
+      $color-tertiary-light,
+      $color-tertiary-dark
+    );
+  }
+}
+.account-section {
+  background-color: black;
 }

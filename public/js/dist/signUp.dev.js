@@ -39,15 +39,24 @@ var signup = function signup(name, email, password, passwordConfirm) {
             }, 1500);
           }
 
-          _context.next = 10;
+          _context.next = 12;
           break;
 
         case 7:
           _context.prev = 7;
           _context.t0 = _context["catch"](0);
+
+          if (!_context.t0.response.data.message.includes('duplicate key error collection')) {
+            _context.next = 11;
+            break;
+          }
+
+          return _context.abrupt("return", alert('Someone already has that Username or Email'));
+
+        case 11:
           alert(_context.t0.response.data.message);
 
-        case 10:
+        case 12:
         case "end":
           return _context.stop();
       }

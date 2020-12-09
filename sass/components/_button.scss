@@ -70,10 +70,6 @@
     }
   }
   &-floating {
-    &:hover {
-      transform: translateY(-0.3rem);
-      box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
-    }
     background-color: red;
     height: 1rem;
     width: 1rem;
@@ -83,6 +79,10 @@
       outline: none;
       transform: translateY(-0.1rem);
       box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+    }
+    &:hover {
+      transform: translateY(-0.3rem);
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
     }
   }
   &-text {

@@ -417,13 +417,13 @@ body {
   height: 1rem;
   width: 1rem;
   opacity: 0.3; }
-  .btn-floating:hover {
-    transform: translateY(-0.3rem);
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
   .btn-floating:active, .btn-floating:focus {
     outline: none;
     transform: translateY(-0.1rem);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+  .btn-floating:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
 
 .btn-text:hover {
   transform: translateY(-0.3rem);
@@ -699,14 +699,37 @@ body {
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
         background-color: #4074f1; }
 
-.form-user-data__profile-photo {
-  width: 8rem;
-  border-radius: 50%;
-  overflow: hidden; }
-  .form-user-data__profile-photo img {
-    width: 100%;
+.form-user-data {
+  top: 20rem;
+  background-color: black; }
+  .form-user-data__profile-photo {
+    width: 8rem;
     height: auto;
-    object-fit: fill; }
+    overflow: hidden; }
+    .form-user-data__profile-photo img {
+      width: 100%;
+      height: auto; }
+      @media only screen and (max-width: 37.5em) {
+        .form-user-data__profile-photo img {
+          width: 70%; } }
+  .form-user-data__upload {
+    margin-top: 3rem; }
+    @media only screen and (max-width: 37.5em) {
+      .form-user-data__upload {
+        margin-top: 0;
+        margin-left: 1rem; } }
+  .form-user-data__heading {
+    width: 100%; }
+
+.form-user-password {
+  background-color: black;
+  height: 40rem; }
+  .form-user-password__heading {
+    width: 100%;
+    background-image: linear-gradient(to right, white, #2998ff, #5643fa); }
+
+.account-section {
+  background-color: black; }
 
 .emergencies {
   width: 100%; }
@@ -783,37 +806,7 @@ body {
 input,
 select,
 textarea {
-  color: white;
-  font-size: 3rem;
-  font-weight: 500; }
-
-.section-login-form {
-  height: 80vh;
-  width: 100vw; }
-
-.login-from {
-  height: 100%;
-  width: 100%; }
-  .login-from__heading {
-    color: black; }
-  .login-from__input-button {
-    position: absolute;
-    left: 50%;
-    transform: translateY(-50%); }
-
-.section-signup-form {
-  height: 80vh;
-  width: 100vw; }
-
-.signup-from {
-  height: 100%;
-  width: 100%; }
-  .signup-from__heading {
-    color: black; }
-  .signup-from__input-button {
-    position: absolute;
-    left: 50%;
-    transform: translateY(-50%); }
+  color: white; }
 
 .chat-container {
   max-width: 1100px;
@@ -976,3 +969,256 @@ textarea {
     transform: translate(-50%, -0.1rem);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
     background-color: #a4ff4f; }
+
+.section-login-form {
+  height: 70vh;
+  width: 100%; }
+
+.login-from {
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  position: relative; }
+  .login-from__heading {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); }
+  .login-from__input {
+    font-size: 7rem; }
+    .login-from__input-button {
+      margin-top: 1rem;
+      border: none;
+      width: 15rem;
+      height: 4rem;
+      border-radius: 10rem;
+      color: black;
+      font-size: 2rem;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #55c57a; }
+      .login-from__input-button:active, .login-from__input-button:focus {
+        outline: none;
+        transform: translate(-50%, -0.1rem);
+        box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.4);
+        background-color: #55c57a; }
+      .login-from__input-button:hover {
+        transform: translate(-50%, -0.3rem);
+        box-shadow: 0 1rem 2rem rgba(255, 255, 255, 0.4);
+        background-color: #55c57a; }
+
+#passwordLabel,
+#emailLabel,
+#passwordConfirmLabel,
+#nameLabel,
+#confirm_passwordLabel,
+#new_passwordLabel,
+#current_passwordLabel {
+  font-size: 1.5rem;
+  font-weight: 600; }
+  @media only screen and (max-width: 75em) {
+    #passwordLabel,
+    #emailLabel,
+    #passwordConfirmLabel,
+    #nameLabel,
+    #confirm_passwordLabel,
+    #new_passwordLabel,
+    #current_passwordLabel {
+      font-size: 1.4rem; } }
+  @media only screen and (max-width: 56.25em) {
+    #passwordLabel,
+    #emailLabel,
+    #passwordConfirmLabel,
+    #nameLabel,
+    #confirm_passwordLabel,
+    #new_passwordLabel,
+    #current_passwordLabel {
+      font-size: 1.3rem; } }
+  @media only screen and (max-width: 37.5em) {
+    #passwordLabel,
+    #emailLabel,
+    #passwordConfirmLabel,
+    #nameLabel,
+    #confirm_passwordLabel,
+    #new_passwordLabel,
+    #current_passwordLabel {
+      font-size: 1.2rem; } }
+  #passwordLabel:active, #passwordLabel:visited, #passwordLabel:hover, #passwordLabel::selection,
+  #emailLabel:active,
+  #emailLabel:visited,
+  #emailLabel:hover,
+  #emailLabel::selection,
+  #passwordConfirmLabel:active,
+  #passwordConfirmLabel:visited,
+  #passwordConfirmLabel:hover,
+  #passwordConfirmLabel::selection,
+  #nameLabel:active,
+  #nameLabel:visited,
+  #nameLabel:hover,
+  #nameLabel::selection,
+  #confirm_passwordLabel:active,
+  #confirm_passwordLabel:visited,
+  #confirm_passwordLabel:hover,
+  #confirm_passwordLabel::selection,
+  #new_passwordLabel:active,
+  #new_passwordLabel:visited,
+  #new_passwordLabel:hover,
+  #new_passwordLabel::selection,
+  #current_passwordLabel:active,
+  #current_passwordLabel:visited,
+  #current_passwordLabel:hover,
+  #current_passwordLabel::selection {
+    font-size: 1.5rem;
+    font-weight: 600; }
+    @media only screen and (max-width: 75em) {
+      #passwordLabel:active, #passwordLabel:visited, #passwordLabel:hover, #passwordLabel::selection,
+      #emailLabel:active,
+      #emailLabel:visited,
+      #emailLabel:hover,
+      #emailLabel::selection,
+      #passwordConfirmLabel:active,
+      #passwordConfirmLabel:visited,
+      #passwordConfirmLabel:hover,
+      #passwordConfirmLabel::selection,
+      #nameLabel:active,
+      #nameLabel:visited,
+      #nameLabel:hover,
+      #nameLabel::selection,
+      #confirm_passwordLabel:active,
+      #confirm_passwordLabel:visited,
+      #confirm_passwordLabel:hover,
+      #confirm_passwordLabel::selection,
+      #new_passwordLabel:active,
+      #new_passwordLabel:visited,
+      #new_passwordLabel:hover,
+      #new_passwordLabel::selection,
+      #current_passwordLabel:active,
+      #current_passwordLabel:visited,
+      #current_passwordLabel:hover,
+      #current_passwordLabel::selection {
+        font-size: 1.4rem; } }
+    @media only screen and (max-width: 56.25em) {
+      #passwordLabel:active, #passwordLabel:visited, #passwordLabel:hover, #passwordLabel::selection,
+      #emailLabel:active,
+      #emailLabel:visited,
+      #emailLabel:hover,
+      #emailLabel::selection,
+      #passwordConfirmLabel:active,
+      #passwordConfirmLabel:visited,
+      #passwordConfirmLabel:hover,
+      #passwordConfirmLabel::selection,
+      #nameLabel:active,
+      #nameLabel:visited,
+      #nameLabel:hover,
+      #nameLabel::selection,
+      #confirm_passwordLabel:active,
+      #confirm_passwordLabel:visited,
+      #confirm_passwordLabel:hover,
+      #confirm_passwordLabel::selection,
+      #new_passwordLabel:active,
+      #new_passwordLabel:visited,
+      #new_passwordLabel:hover,
+      #new_passwordLabel::selection,
+      #current_passwordLabel:active,
+      #current_passwordLabel:visited,
+      #current_passwordLabel:hover,
+      #current_passwordLabel::selection {
+        font-size: 1.3rem; } }
+    @media only screen and (max-width: 37.5em) {
+      #passwordLabel:active, #passwordLabel:visited, #passwordLabel:hover, #passwordLabel::selection,
+      #emailLabel:active,
+      #emailLabel:visited,
+      #emailLabel:hover,
+      #emailLabel::selection,
+      #passwordConfirmLabel:active,
+      #passwordConfirmLabel:visited,
+      #passwordConfirmLabel:hover,
+      #passwordConfirmLabel::selection,
+      #nameLabel:active,
+      #nameLabel:visited,
+      #nameLabel:hover,
+      #nameLabel::selection,
+      #confirm_passwordLabel:active,
+      #confirm_passwordLabel:visited,
+      #confirm_passwordLabel:hover,
+      #confirm_passwordLabel::selection,
+      #new_passwordLabel:active,
+      #new_passwordLabel:visited,
+      #new_passwordLabel:hover,
+      #new_passwordLabel::selection,
+      #current_passwordLabel:active,
+      #current_passwordLabel:visited,
+      #current_passwordLabel:hover,
+      #current_passwordLabel::selection {
+        font-size: 1.2rem; } }
+
+#password,
+#email,
+#passwordConfirm,
+#name,
+#confirm_password,
+#new_password,
+#current_password {
+  background-color: black; }
+  #password:active, #password:visited, #password:hover, #password::selection,
+  #email:active,
+  #email:visited,
+  #email:hover,
+  #email::selection,
+  #passwordConfirm:active,
+  #passwordConfirm:visited,
+  #passwordConfirm:hover,
+  #passwordConfirm::selection,
+  #name:active,
+  #name:visited,
+  #name:hover,
+  #name::selection,
+  #confirm_password:active,
+  #confirm_password:visited,
+  #confirm_password:hover,
+  #confirm_password::selection,
+  #new_password:active,
+  #new_password:visited,
+  #new_password:hover,
+  #new_password::selection,
+  #current_password:active,
+  #current_password:visited,
+  #current_password:hover,
+  #current_password::selection {
+    background-color: black; }
+
+.section-signup-form {
+  height: 70vh;
+  width: 100%; }
+
+.signup-from {
+  height: 100%;
+  width: 100%;
+  background-color: black; }
+  .signup-from__heading {
+    color: black; }
+  .signup-from__input-button {
+    position: absolute;
+    left: 50%;
+    transform: translateY(-50%); }
+    .signup-from__input-button:active, .signup-from__input-button:focus {
+      outline: none;
+      transform: translateY(-0.1rem);
+      box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.2);
+      background-color: white; }
+    .signup-from__input-button:hover {
+      transform: translateY(-0.3rem);
+      box-shadow: 0 1rem 2rem rgba(255, 255, 255, 0.2); }
+
+.reset-passwordform {
+  height: 70vh;
+  width: 100vw;
+  background-color: black; }
+
+#loginHeading {
+  width: 100%; }
+
+#forgotButton {
+  position: absolute;
+  float: right;
+  top: 10rem; }

@@ -1,64 +1,36 @@
 extends base
 
 block content
-  main
-  section.form-user-data
-    h1 Your Account Details
-    form#updateUserDetails-form
+  main.account-section
+    section.form-user-data
+      h1.form-user-data__heading.heading-secondary.u-center-text.u-margin-top-big.u-margin-bottom-small Your Account Details
       .row
-        .input-field.col.s6
-          input#name.validate(type='text' value=`${user.name}`) 
-          label(for='name')= 'Name'
+        form#updateUserDetails-form.col.s12
+          .input-field.col
+            input#name.validate(type='text' value=`${user.name}` readonly='') 
+            label#nameLabel(for='name')= 'Name'
+          .input-field.col
+            input#email.validate(type='email' value=`${user.email}` readonly='')
+            label#emailLabel(for='email')= 'Email'
+          .input-field.col.s2
+            .form-user-data__profile-photo
+              img.circle(src=`/img/user/${user.photo}` onerror="this.onerror=null; this.src='/img/user/default.jpg'" alt='')
+          .input-field.col.s3
+            input.form-user-data__upload(type='file', accept='image/*', id='photo', name='photo')
+          .col.row
+              button.login-from__input-button(type='submit') Submit
+    section.form-user-password
+      h1.form-user-password__heading.heading-secondary.u-center-text.u-margin-top-big.u-margin-bottom-small Password Change
       .row
-        .input-field.col.s6
-          input#email.validate(type='email' value=`${user.email}`)
-          label(for='email')= 'Email'
-      .row
-        .form-user-data__profile-photo
-          img(src=`/img/user/${user.photo}` onerror="this.onerror=null; this.src='/img/user/default.jpg'" alt='')
-        div
-          input.form__upload(type='file', accept='image/*', id='photo', name='photo')
-      input(type='submit')
-    //
-      <div class="row">
-      <form class="col s12">
-      <div class="row">
-      <div class="input-field col s6">
-      <input id="first_name" type="text" class="validate" />
-      <label for="first_name">First Name</label>
-      </div>
-      <div class="input-field col s6">
-      <input id="last_name" type="text" class="validate" />
-      <label for="last_name">Last Name</label>
-      </div>
-      </div>
-      <div class="row">
-      <div class="input-field col s12">
-      <input id="password" type="password" class="validate" />
-      <label for="password">Password</label>
-      </div>
-      </div>
-      <div class="row">
-      <div class="input-field col s12">
-      <input id="email" type="email" class="validate" />
-      <label for="email">Email</label>
-      </div>
-      </div>
-      </form>
-      </div>
-  section.form-user-password
-    h1 Password Change
-    form#updateUser-password
-      .row
-        .input-field.col.s12
-          input#current_password.validate(type='password' placeholder='Current Password')
-          label(for='current_password') Current Password
-      .row
-        .input-field.col.s12
-          input#new_password.validate(type='password' placeholder='New Password')
-          label(for='new_password') New Password
-      .row
-        .input-field.col.s12
-          input#confirm_password.validate(type='password' placeholder='Confirm Password')
-          label(for='confirm_password') Password
-      button.btn Update
+        form#updateUser-password.col.s12
+          .input-field.col
+            input#current_password.validate(type='password')
+            label#current_passwordLabel(for='current_password') Current Password
+          .input-field.col
+            input#new_password.validate(type='password')
+            label#new_passwordLabel(for='new_password') New Password
+          .input-field.col
+            input#confirm_password.validate(type='password')
+            label#confirm_passwordLabel(for='confirm_password') Password
+          .col
+            button.login-from__input-button Update

@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="/css/icon-font.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="shortcut icon" type="image/png" href="/img/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="img/letter-e-16.png">
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet">
     <title>My Emergency | </title>
@@ -18,12 +18,12 @@
     <!-- HEADER-->
     <header>
       <nav class="navigation">
-        <div class="nav-wrapper"><a class="brand-logo" href="#">Logo</a><a class="sidenav-trigger left" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
+        <div class="nav-wrapper"><a class="brand-logo" href="/"><img src="/img/letter-e-48.png" alt="" srcset=""></a><a class="sidenav-trigger left" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down" id="nav-mobile">
-            <li><a href="/">Home</a></li>
-            <li><a href="/AllEmergencies">Emergencies</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/signup">Signup</a></li>
+            <li><a class="navigation__item" href="/">Home</a></li>
+            <li><a class="navigation__item" href="/AllEmergencies">Emergencies</a></li>
+            <li><a class="navigation__item" href="/login">Login</a></li>
+            <li><a class="navigation__item" href="/signup">Signup</a></li>
           </ul>
         </div>
       </nav>
@@ -41,14 +41,30 @@
     <!-- CONTENT-->
     <main class="section-signup-form">
       <section class="signup-from" id="signup">
-        <h1 class="login-form__heading u-center-text u-margin-top-big">SignUP Form</h1>
-        <form>
-          <input id="name" type="text" placeholder="Your Name"><br>
-          <input id="email" type="text" placeholder="Email"><br>
-          <input id="password" type="password" placeholder="Password"><br>
-          <input id="passwordConfirm" type="password" placeholder="Password Confirm"><br>
-          <button type="submit">Submit form</button>
-        </form>
+        <h1 class="heading-secondary login-form__heading u-center-text u-margin-top-big" id="loginHeading">Signup Form</h1>
+        <div class="row">
+          <form class="col s12">
+            <div class="input-field col">
+              <input id="name" type="text">
+              <label class="login-from__input" id="nameLabel" for="name">UserName</label>
+            </div>
+            <div class="input-field col">
+              <input id="email" type="email">
+              <label class="login-from__input" id="emailLabel" for="email">Email</label>
+            </div>
+            <div class="input-field col">
+              <input id="password" type="password">
+              <label class="login-from__input" id="passwordLabel" for="password">Password</label>
+            </div>
+            <div class="input-field col">
+              <input id="passwordConfirm" type="password">
+              <label class="login-form__input" id="passwordConfirmLabel" for="passwordConfirm">PasswordConfirm</label>
+            </div>
+            <div class="col row">
+              <button class="login-from__input-button" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
       </section>
     </main>
     <!-- FOOTER-->
@@ -66,9 +82,7 @@
     </script>
     <footer class="footer">
       <div class="footer__logo-box">
-        <picture class="footer__logo">
-          <source srcset="      img/logo-green-small-1x.png 1x,      img/logo-green-small-2x.png 2x      " media="(max-width:37.5em)" src="img/logo-green-small-2x.png"><img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo">
-        </picture>
+        <picture class="footer__logo"><img src="/img/letter-e-64.png" alt="Full logo"></picture>
       </div>
       <div class="row">
         <div class="col-1-of-2">

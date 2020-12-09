@@ -8621,15 +8621,24 @@ var signup = /*#__PURE__*/function () {
               }, 1500);
             }
 
-            _context.next = 10;
+            _context.next = 12;
             break;
 
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
+
+            if (!_context.t0.response.data.message.includes('duplicate key error collection')) {
+              _context.next = 11;
+              break;
+            }
+
+            return _context.abrupt("return", alert('Someone already has that Username or Email'));
+
+          case 11:
             alert(_context.t0.response.data.message);
 
-          case 10:
+          case 12:
           case "end":
             return _context.stop();
         }
@@ -8686,8 +8695,8 @@ var help = /*#__PURE__*/function () {
 
           case 7:
             res = _context.sent;
-            coordinates = res.data.routes[0].geometry.coordinates;
-            console.log(coordinates[coordinates.length - 1]);
+            coordinates = res.data.routes[0].geometry.coordinates; // console.log(coordinates[coordinates.length - 1]);
+
             map = new mapboxgl.Map({
               container: 'map',
               // container id
@@ -8751,20 +8760,20 @@ var help = /*#__PURE__*/function () {
                 }
               });
             });
-            _context.next = 21;
+            _context.next = 20;
             break;
 
-          case 18:
-            _context.prev = 18;
+          case 17:
+            _context.prev = 17;
             _context.t0 = _context["catch"](4);
             alert(_context.t0);
 
-          case 21:
+          case 20:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[4, 18]]);
+    }, _callee, null, [[4, 17]]);
   }));
 
   return function help(_x, _x2) {
@@ -9180,8 +9189,8 @@ var spinner = function spinner(type) {
     l1.appendChild(spinnerAddColor('blue'));
     l1.appendChild(spinnerAddColor('red'));
     l1.appendChild(spinnerAddColor('yellow'));
-    l1.appendChild(spinnerAddColor('green'));
-    console.log(l1);
+    l1.appendChild(spinnerAddColor('green')); // console.log(l1);
+
     L2.appendChild(l1);
     L1.appendChild(L2);
     document.getElementsByClassName('emergencyMap')[0].appendChild(L1);
@@ -9589,7 +9598,7 @@ if (EmergencySearch) {
       locations[1] = data.coords.latitude; // displayMap(currLocation);
       // console.log(currLocation);
     }, function (error) {
-      console.log(error);
+      // console.log(error);
       return alert('Please Turn On Your GPS !!!');
     }, {
       enableHighAccuracy: true
@@ -9782,7 +9791,7 @@ if (refreshButton) {
                 locations[1] = data.coords.latitude; // displayMap(currLocation);
                 // console.log(currLocation);
               }, function (error) {
-                console.log(error);
+                // console.log(error);
                 return alert('Please Turn On Your GPS !!!');
               }, {
                 enableHighAccuracy: true
@@ -10103,7 +10112,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51275" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54498" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

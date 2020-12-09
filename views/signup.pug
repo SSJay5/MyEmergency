@@ -3,15 +3,21 @@ extends base
 block content
   main.section-signup-form
     section.signup-from#signup
-      h1.login-form__heading.u-center-text.u-margin-top-big
-        | SignUP Form
-      form
-        input#name(type='text' placeholder='Your Name')
-        br
-        input#email(type='text' placeholder='Email')
-        br
-        input#password(type='password' placeholder='Password')
-        br
-        input#passwordConfirm(type='password' placeholder='Password Confirm')
-        br
-        button(type='submit') Submit form
+      h1#loginHeading.heading-secondary.login-form__heading.u-center-text.u-margin-top-big
+        | Signup Form
+      .row
+        form.col.s12
+          .input-field.col
+            input#name(type='text')
+            label#nameLabel.login-from__input(for='name') UserName
+          .input-field.col
+            input#email(type='email')
+            label#emailLabel.login-from__input(for='email') Email
+          .input-field.col
+            input#password(type='password')
+            label#passwordLabel.login-from__input(for='password') Password
+          .input-field.col
+            input#passwordConfirm(type='password')
+            label#passwordConfirmLabel.login-form__input(for='passwordConfirm') PasswordConfirm
+          .col.row
+            button.login-from__input-button(type='submit') Submit

@@ -39,23 +39,20 @@
       </ul>
     </header>
     <!-- CONTENT-->
-    <main class="section-login-form">
-      <section class="login-from">
-        <h1 class="heading-secondary login-form__heading u-center-text u-margin-top-big u-margin-bottom-small" id="loginHeading">Login Form</h1>
-        <div class="row">
-          <form class="col s12" id="form">
-            <div class="input-field col">
-              <input class="validate" id="email" type="email">
-              <label class="login-from__input" id="emailLabel" for="email">Email</label>
-            </div>
-            <div class="input-field col">
-              <input class="validate" id="password" type="password">
-              <label class="login-from__input" id="passwordLabel" for="password">Password</label>
-            </div>
-            <div class="col">
-              <button class="login-from__input-button" type="submit">Submit</button><a id="forgotButton" href="/forgotPassword">Forgot password</a>
-            </div>
-          </form>
+    <main id="emergencies">
+      <section class="emergencies">
+        <div class="emergencies__searchBar">
+          <div class="emergencies__searchBar-text">
+            Enter distance(in kilometers) form your current location to which
+            you want to help
+          </div>
+          <div class="emergencies__searchBar-distance">
+            <input class="emergencies__searchBar-distance-val" id="helping_distance" type="text-box" placeholder="Enter Your Helping Distance">
+            <button class="btn-danger" id="search-emergencies">Search</button>
+          </div>
+        </div>
+        <div class="emergencies__Cards">
+          <h1>LOGIN TO CONTINUE</h1>
         </div>
       </section>
     </main>

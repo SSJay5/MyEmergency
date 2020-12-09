@@ -36,8 +36,8 @@ var help = function help(helpingLocation, Location) {
 
         case 7:
           res = _context.sent;
-          coordinates = res.data.routes[0].geometry.coordinates;
-          console.log(coordinates[coordinates.length - 1]);
+          coordinates = res.data.routes[0].geometry.coordinates; // console.log(coordinates[coordinates.length - 1]);
+
           map = new mapboxgl.Map({
             container: 'map',
             // container id
@@ -101,20 +101,20 @@ var help = function help(helpingLocation, Location) {
               }
             });
           });
-          _context.next = 21;
+          _context.next = 20;
           break;
 
-        case 18:
-          _context.prev = 18;
+        case 17:
+          _context.prev = 17;
           _context.t0 = _context["catch"](4);
           alert(_context.t0);
 
-        case 21:
+        case 20:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[4, 18]]);
+  }, null, null, [[4, 17]]);
 };
 
 exports.help = help;

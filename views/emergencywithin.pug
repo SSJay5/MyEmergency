@@ -15,7 +15,7 @@ block content
           h1 LOGIN TO CONTINUE
         else
           each emergency in emergencies
-            .emergencies__Card=`Created By: ${emergency.userName}`
+            .emergencies__Card=`By: ${emergency.userName}`
               if `${user===undefined?null:user._id}`.toLowerCase() === `${emergency.user}`.toLowerCase() 
                 button.emergencies__Card-cancel.btn Delete
               else

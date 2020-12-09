@@ -1,30 +1,105 @@
 .section-login-form {
-  height: 80vh;
-  width: 100vw;
+  height: 70vh;
+  width: 100%;
 }
 .login-from {
+  background-color: black;
   height: 100%;
   width: 100%;
-
+  position: relative;
   &__heading {
-    color: black;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
   &__input {
+    font-size: 7rem;
     &-button {
+      margin-top: 1rem;
+      border: none;
+      width: 15rem;
+      height: 4rem;
+      border-radius: 10rem;
+      color: black;
+      font-size: 2rem;
       position: absolute;
       left: 50%;
-      transform: translateY(-50%);
+      transform: translateX(-50%);
+      background-color: $color-primary;
+      &:active,
+      &:focus {
+        outline: none;
+        transform: translate(-50%, -0.1rem);
+        box-shadow: 0 0.5rem 1rem rgba(white, 0.4);
+        background-color: $color-primary;
+      }
+      &:hover {
+        transform: translate(-50%, -0.3rem);
+        box-shadow: 0 1rem 2rem rgba(white, 0.4);
+        background-color: $color-primary;
+      }
     }
   }
 }
+#passwordLabel,
+#emailLabel,
+#passwordConfirmLabel,
+#nameLabel,
+#confirm_passwordLabel,
+#new_passwordLabel,
+#current_passwordLabel {
+  font-size: 1.5rem;
+  @include respond(tab-land) {
+    font-size: 1.4rem;
+  }
+  @include respond(tab-port) {
+    font-size: 1.3rem;
+  }
+  @include respond(phone) {
+    font-size: 1.2rem;
+  }
+  font-weight: 600;
+
+  &:active,
+  &:visited,
+  &:hover,
+  &::selection {
+    font-size: 1.5rem;
+    @include respond(tab-land) {
+      font-size: 1.4rem;
+    }
+    @include respond(tab-port) {
+      font-size: 1.3rem;
+    }
+    @include respond(phone) {
+      font-size: 1.2rem;
+    }
+    font-weight: 600;
+  }
+}
+#password,
+#email,
+#passwordConfirm,
+#name,
+#confirm_password,
+#new_password,
+#current_password {
+  background-color: black;
+  &:active,
+  &:visited,
+  &:hover,
+  &::selection {
+    background-color: black;
+  }
+}
 .section-signup-form {
-  height: 80vh;
-  width: 100vw;
+  height: 70vh;
+  width: 100%;
 }
 .signup-from {
   height: 100%;
   width: 100%;
-
+  background-color: black;
   &__heading {
     color: black;
   }
@@ -33,6 +108,30 @@
       position: absolute;
       left: 50%;
       transform: translateY(-50%);
+      &:active,
+      &:focus {
+        outline: none;
+        transform: translateY(-0.1rem);
+        box-shadow: 0 0.5rem 1rem rgba(white, 0.2);
+        background-color: white;
+      }
+      &:hover {
+        transform: translateY(-0.3rem);
+        box-shadow: 0 1rem 2rem rgba(white, 0.2);
+      }
     }
   }
+}
+.reset-passwordform {
+  height: 70vh;
+  width: 100vw;
+  background-color: black;
+}
+#loginHeading {
+  width: 100%;
+}
+#forgotButton {
+  position: absolute;
+  float: right;
+  top: 10rem;
 }

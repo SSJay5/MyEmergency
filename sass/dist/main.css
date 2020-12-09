@@ -393,7 +393,8 @@ body {
 }
 
 .navigation {
-  background-color: #363636;
+  background-color: #202020;
+  overflow: hidden;
 }
 .navigation__user {
   width: 4rem;
@@ -403,6 +404,30 @@ body {
   height: auto;
   object-fit: fill;
 }
+.navigation__item {
+  min-width: 10rem;
+  font-size: 2rem;
+  text-align: center;
+}
+.navigation__item:hover, .navigation__item:active {
+  color: white;
+}
+
+.spinner-container {
+  z-index: 110;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#sipnnerEmergency {
+  position: relative;
+  z-index: 110;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(90, 90, 90, 0.8);
+}
 
 #blurLayer {
   position: absolute;
@@ -411,19 +436,28 @@ body {
   top: 0;
   bottom: 0;
   z-index: 50;
-  background-color: transparent;
+  background: #777;
+  background: rgba(90, 90, 90, 0.8);
+  filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -webkit-filter: blur(10px);
 }
 
 .btn-emergency {
+  letter-spacing: 0.2rem;
+  border: none;
   text-transform: uppercase;
   text-align: center;
-  background-color: orangered;
-  height: 20rem;
-  width: 20rem;
+  height: 22rem;
+  width: 23rem;
   padding: 5rem;
   position: absolute;
   left: 50%;
   top: 50%;
+  background-image: linear-gradient(#ff2600, red);
+  box-shadow: 0 0.3rem 0.8rem #c81b1b, inset 0 0.2rem 0.3rem #bd1010;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -434,10 +468,14 @@ body {
   transform-origin: top;
   transform: translate(-50%, -50%);
   opacity: 1;
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
 }
 .btn-refresh {
   position: absolute;
-  z-index: 0;
+  z-index: 5;
   height: 5rem;
   width: 5rem;
   text-align: center;
@@ -535,7 +573,7 @@ body {
 }
 .btn-scroll__helpline {
   position: absolute;
-  z-index: 0;
+  z-index: 5;
   height: 5rem;
   width: 5rem;
   border-radius: 50%;
@@ -644,7 +682,7 @@ body {
 }
 
 .emergencyChatBox {
-  height: 81rem;
+  height: 85rem;
   width: 100%;
   background-color: #1e2428;
   position: relative;
@@ -693,6 +731,7 @@ body {
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-size: 3rem;
+  padding: 1rem;
 }
 
 .notifyAvengers {
@@ -823,76 +862,101 @@ body {
 }
 
 .emergencies {
-  min-height: 60vh;
   width: 100%;
 }
 .emergencies__searchBar {
+  text-align: center;
   min-height: 10rem;
   width: 100%;
-  background-color: #eee;
+  background-color: #1e2428;
 }
 .emergencies__searchBar-distance-val {
-  width: 40rem;
+  width: 50rem;
   height: 5rem;
+  border-radius: 10px;
+  background-color: #777;
+  border: none;
+  padding: 1rem;
+  overflow: hidden;
+}
+@media only screen and (max-width: 37.5em) {
+  .emergencies__searchBar-distance-val {
+    width: 25rem;
+    font-size: 2rem;
+    height: 3rem;
+  }
+}
+.emergencies__searchBar-text {
+  font-size: 3rem;
+  color: #00d672;
+}
+@media only screen and (max-width: 37.5em) {
+  .emergencies__searchBar-text {
+    font-size: 1.5rem;
+  }
 }
 .emergencies__Cards {
   position: relative;
   min-height: 30rem;
   width: 100%;
-  background-color: cadetblue;
+  background-color: #777;
   padding: 1rem;
 }
 .emergencies__Card {
   position: relative;
   min-height: 7rem;
   width: 94%;
+  padding: 0.3rem;
   border-radius: 1rem;
-  background-color: cyan;
+  background-color: black;
   margin: 1rem auto;
-  font-size: 5rem;
+  font-size: 4rem;
+  color: #f6ff56;
+}
+@media only screen and (max-width: 37.5em) {
+  .emergencies__Card {
+    font-size: 1.5rem;
+    min-height: 4rem;
+  }
 }
 .emergencies__Card-help, .emergencies__Card-cancel {
   position: absolute;
+  text-align: center;
   border-radius: 5px;
   left: 95%;
   top: 50%;
   transform: translate(-95%, -50%);
-}
-
-.section-login-form {
-  height: 80vh;
-  width: 100vw;
-}
-
-.login-from {
-  height: 100%;
-  width: 100%;
-}
-.login-from__heading {
+  background-color: #3cffec;
   color: black;
+  font-weight: 600;
+  font-size: 16px;
 }
-.login-from__input-button {
-  position: absolute;
-  left: 50%;
-  transform: translateY(-50%);
+@media only screen and (max-width: 37.5em) {
+  .emergencies__Card-help, .emergencies__Card-cancel {
+    font-size: 8px;
+    height: 3rem;
+  }
+}
+.emergencies__Card-cancel {
+  background-color: orangered;
+}
+.emergencies__Card-cancel:hover {
+  background-color: orangered;
 }
 
-.section-signup-form {
-  height: 80vh;
-  width: 100vw;
+#search-emergencies {
+  width: 8rem;
+  height: 4rem;
+  border-radius: 10rem;
+  margin: 2rem;
 }
 
-.signup-from {
-  height: 100%;
-  width: 100%;
-}
-.signup-from__heading {
-  color: black;
-}
-.signup-from__input-button {
-  position: absolute;
-  left: 50%;
-  transform: translateY(-50%);
+input,
+select,
+textarea {
+  color: white;
+  font-size: 3rem;
+  font-weight: 500;
 }
 
 .chat-container {
@@ -1052,7 +1116,7 @@ body {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 70rem;
+  top: 73rem;
   border-radius: 10px;
 }
 
@@ -1067,13 +1131,13 @@ body {
 #send-button {
   position: absolute;
   background-color: #a4ff4f;
-  width: 7.5rem;
+  height: 4rem;
   font-weight: 700;
   font-size: 2rem;
   width: 100%;
   border-radius: 10rem;
   left: 50%;
-  top: 5rem;
+  top: 4rem;
   margin-top: 1rem;
   transform: translateX(-50%);
 }
@@ -1086,4 +1150,47 @@ body {
   transform: translate(-50%, -0.1rem);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   background-color: #a4ff4f;
+}
+
+.section-login-form {
+  height: 80vh;
+  width: 100vw;
+}
+
+.login-from {
+  height: 100%;
+  width: 100%;
+}
+.login-from__heading {
+  color: black;
+}
+.login-from__input {
+  font-size: 7rem;
+}
+.login-from__input-button {
+  width: 7rem;
+  border-radius: 10rem;
+  color: black;
+}
+
+#passwordLabel, #emailLabel {
+  font-size: 1.5rem;
+}
+
+.section-signup-form {
+  height: 80vh;
+  width: 100vw;
+}
+
+.signup-from {
+  height: 100%;
+  width: 100%;
+}
+.signup-from__heading {
+  color: black;
+}
+.signup-from__input-button {
+  position: absolute;
+  left: 50%;
+  transform: translateY(-50%);
 }

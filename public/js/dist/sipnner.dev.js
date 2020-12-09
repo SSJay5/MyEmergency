@@ -45,8 +45,8 @@ var spinner = function spinner(type) {
     l1.appendChild(spinnerAddColor('blue'));
     l1.appendChild(spinnerAddColor('red'));
     l1.appendChild(spinnerAddColor('yellow'));
-    l1.appendChild(spinnerAddColor('green'));
-    console.log(l1);
+    l1.appendChild(spinnerAddColor('green')); // console.log(l1);
+
     L2.appendChild(l1);
     L1.appendChild(L2);
     document.getElementsByClassName('emergencyMap')[0].appendChild(L1);

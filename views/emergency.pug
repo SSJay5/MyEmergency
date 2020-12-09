@@ -11,10 +11,15 @@ block content
     section.emergencyChatBox
       h2.heading-secondary.emergencyChatBox__heading.u-center-text.u-margin-bottom-small.u-margin-top-small
         | Chat Section
-      #message-container.row.emergencyChatBox__messenger(data-username = `${JSON.stringify(user.name)}`)
-        each chat in emergency.chats
-          -let Chat = chat.split(':')[0]==user.name?`You:${chat.split(':')[1]}`:chat;
-            .emergencyChatBox__message=Chat
-      form#send-container.row
-        input#message-input(type='text')
-        button#send-button.btn(type='submit') Send
+      #message-container.emergencyChatBox__messenger(data-username = `${user===undefined?null:JSON.stringify(user.name)}`)
+        if user
+          if emergency
+            each chat in emergency.chats
+              -let Chat = chat.split(':')[0]==user.name?`You:${chat.split(':')[1]}`:chat;
+                .emergencyChatBox__message=Chat
+      form#send-container
+        input#message-input(type='text' placeholder='      Enter Your Message')
+        if(user)
+          button#send-button.btn(type='submit') Send
+        else
+          a#send-button.btn(href='/login') Login To Send Messages 
