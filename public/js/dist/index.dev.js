@@ -119,6 +119,10 @@ if (signUpForm) {
     var password = document.getElementById('password').value;
     var passwordConfirm = document.getElementById('passwordConfirm').value;
 
+    if (name.includes(':')) {
+      return alert('Enter Username without : in it');
+    }
+
     if (password !== passwordConfirm) {
       return alert('Entered Passwords Do not match');
     }

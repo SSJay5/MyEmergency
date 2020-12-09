@@ -103,7 +103,9 @@ if (signUpForm) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('passwordConfirm').value;
-
+    if (name.includes(':')) {
+      return alert('Enter Username without : in it');
+    }
     if (password !== passwordConfirm) {
       return alert('Entered Passwords Do not match');
     }

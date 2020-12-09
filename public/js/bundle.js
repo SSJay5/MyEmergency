@@ -9579,6 +9579,10 @@ if (signUpForm) {
     var password = document.getElementById('password').value;
     var passwordConfirm = document.getElementById('passwordConfirm').value;
 
+    if (name.includes(':')) {
+      return alert('Enter Username without : in it');
+    }
+
     if (password !== passwordConfirm) {
       return alert('Entered Passwords Do not match');
     }
@@ -10112,7 +10116,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54498" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50458" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
