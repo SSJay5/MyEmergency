@@ -8,6 +8,8 @@ var multer = require('multer');
 
 var User = require('../models/userModel');
 
+var Emergency = require('../models/emergencyModel');
+
 var factory = require('./handlerFactory');
 
 var catchAsync = require('../utils/catchAsync');
@@ -110,7 +112,7 @@ exports.getMe = catchAsync(function _callee2(req, res, next) {
   });
 });
 exports.updateMe = catchAsync(function _callee3(req, res, next) {
-  var filteredBody, updatedUser;
+  var filteredBody, emergency, updatedUser;
   return regeneratorRuntime.async(function _callee3$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
@@ -132,16 +134,53 @@ exports.updateMe = catchAsync(function _callee3(req, res, next) {
           // 2) Filtered out unwanted fields names that are not allowed to be updated
           filteredBody = filterObj(req.body, 'name', 'email');
           if (req.file) filteredBody.photo = req.file.filename;
-          if (req.body.currentLocation) filteredBody.currentLocation = turf.point(req.body.currentLocation).geometry; // 3) Update user document
 
-          _context3.next = 8;
+          if (!req.body.currentLocation) {
+            _context3.next = 16;
+            break;
+          }
+
+          if (!req.user.emergencyActive) {
+            _context3.next = 16;
+            break;
+          }
+
+          _context3.next = 9;
+          return regeneratorRuntime.awrap(Emergency.findById(req.user.emergency));
+
+        case 9:
+          emergency = _context3.sent;
+
+          if (emergency) {
+            _context3.next = 12;
+            break;
+          }
+
+          return _context3.abrupt("return", next(new AppError('Emergency Alert is Deleted by user', 404)));
+
+        case 12:
+          emergency.location = turf.point(req.body.location).geometry;
+          _context3.next = 15;
+          return regeneratorRuntime.awrap(Emergency.findByIdAndUpdate(emergency._id, emergency, {
+            "new": true,
+            runValidators: true
+          }));
+
+        case 15:
+          emergency = _context3.sent;
+
+        case 16:
+          filteredBody.currentLocation = turf.point(req.body.currentLocation).geometry; // 3) Update user document
+
+          _context3.next = 19;
           return regeneratorRuntime.awrap(User.findByIdAndUpdate(req.user.id, filteredBody, {
             "new": true,
             runValidators: true
           }));
 
-        case 8:
+        case 19:
           updatedUser = _context3.sent;
+          // console.log(updatedUser);
           res.status(200).json({
             status: 'success',
             data: {
@@ -149,7 +188,7 @@ exports.updateMe = catchAsync(function _callee3(req, res, next) {
             }
           });
 
-        case 10:
+        case 21:
         case "end":
           return _context3.stop();
       }

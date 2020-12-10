@@ -2,6 +2,7 @@ const turf = require('@turf/turf');
 const sharp = require('sharp');
 const multer = require('multer');
 const User = require('../models/userModel');
+const Emergency = require('../models/emergencyModel');
 const factory = require('./handlerFactory');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
@@ -81,14 +82,28 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   const filteredBody = filterObj(req.body, 'name', 'email');
   if (req.file) filteredBody.photo = req.file.filename;
   if (req.body.currentLocation)
-    filteredBody.currentLocation = turf.point(
-      req.body.currentLocation
-    ).geometry;
+    if (req.user.emergencyActive) {
+      let emergency = await Emergency.findById(req.user.emergency);
+
+      if (!emergency) {
+        return next(new AppError('Emergency Alert is Deleted by user', 404));
+      }
+
+      emergency.location = turf.point(req.body.location).geometry;
+
+      emergency = await Emergency.findByIdAndUpdate(emergency._id, emergency, {
+        new: true,
+        runValidators: true,
+      });
+      // console.log(emergency);
+    }
+  filteredBody.currentLocation = turf.point(req.body.currentLocation).geometry;
   // 3) Update user document
   const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
     new: true,
     runValidators: true,
   });
+  // console.log(updatedUser);
   res.status(200).json({
     status: 'success',
     data: {

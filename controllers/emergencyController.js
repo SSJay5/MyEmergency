@@ -124,7 +124,7 @@ exports.getEmergencyLocation = catchAsync(async (req, res, next) => {
   const emergency = await Emergency.findById(req.params.id);
 
   if (!emergency) {
-    return next(new AppError('Emergency ALerat is Deleted by user', 404));
+    return next(new AppError('Emergency Alert is Deleted by user', 404));
   }
 
   res.status(200).json({

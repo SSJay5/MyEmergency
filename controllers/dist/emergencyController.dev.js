@@ -226,7 +226,7 @@ exports.getEmergencyLocation = catchAsync(function _callee4(req, res, next) {
             break;
           }
 
-          return _context4.abrupt("return", next(new AppError('Emergency ALerat is Deleted by user', 404)));
+          return _context4.abrupt("return", next(new AppError('Emergency Alert is Deleted by user', 404)));
 
         case 5:
           res.status(200).json({

@@ -116,7 +116,7 @@ if (signUpForm) {
   });
 }
 var EmergencySearch = document.querySelector('#search-emergencies');
-let locations = [72.82119, 18.959125];
+let locations = [72.877656, 19.075984];
 if (EmergencySearch) {
   EmergencySearch.addEventListener('click', (e) => {
     e.preventDefault();
@@ -126,6 +126,21 @@ if (EmergencySearch) {
         locations[1] = data.coords.latitude;
         // displayMap(currLocation);
         // console.log(currLocation);
+        if (locations[0] == null || locations[1] == null) {
+          return alert('Please Provide Your Location');
+        }
+        let distance = document.getElementById('helping_distance').value;
+        if (!isGoodNumber(distance)) {
+          return alert('Please Enter A Valid Number');
+        }
+        distance = distance * 1;
+        // console.log('yeh ', distance);
+        // emergencies/within/:distance/center/:latlng/unit/:unit
+        window.setTimeout(() => {
+          location.assign(
+            `/emergencies/${distance}/${locations[1]},${locations[0]}/km`
+          );
+        }, 0);
       },
       (error) => {
         // console.log(error);
@@ -135,21 +150,6 @@ if (EmergencySearch) {
         enableHighAccuracy: true,
       }
     );
-    if (locations[0] == null || locations[1] == null) {
-      return alert('Please Provide Your Location');
-    }
-    let distance = document.getElementById('helping_distance').value;
-    if (!isGoodNumber(distance)) {
-      return alert('Please Enter A Valid Number');
-    }
-    distance = distance * 1;
-    // console.log('yeh ', distance);
-    // emergencies/within/:distance/center/:latlng/unit/:unit
-    window.setTimeout(() => {
-      location.assign(
-        `/emergencies/${distance}/${locations[1]},${locations[0]}/km`
-      );
-    }, 0);
   });
 }
 let deleteEmergencyButton = document.getElementsByClassName(
@@ -174,68 +174,69 @@ var emergencyButton = document.getElementsByClassName('btn-emergency')[0];
 
 if (emergencyButton) {
   emergencyButton.addEventListener('click', async (f) => {
-    spinner('add');
-    let user;
-    navigator.geolocation.getCurrentPosition(
-      (data) => {
-        locations[0] = data.coords.longitude;
-        locations[1] = data.coords.latitude;
-        // displayMap(currLocation);
-        // console.log(currLocation);
-      },
-      (error) => {
-        // console.log(error);
-        spinner('del');
-        return alert('Please Turn On Your GPS !!!');
-      },
-      {
-        enableHighAccuracy: true,
-      }
-    );
-    if (locations[0] == null || locations[1] == null) {
-      spinner('del');
-      return alert('Please Provide Your Location');
-    }
-    displayMap(locations);
     try {
-      let res = await axios({
-        method: 'PATCH',
-        url: '/api/v1/users/updateMe',
-        data: {
-          currentLocation: locations,
+      spinner('add');
+      let user;
+      navigator.geolocation.getCurrentPosition(
+        async (data) => {
+          locations[0] = data.coords.longitude;
+          locations[1] = data.coords.latitude;
+          // displayMap(currLocation);
+          // console.log(currLocation);
+          if (locations[0] == null || locations[1] == null) {
+            spinner('del');
+            return alert('Please Provide Your Location');
+          }
+          displayMap(locations);
+
+          let res = await axios({
+            method: 'PATCH',
+            url: '/api/v1/users/updateMe',
+            data: {
+              currentLocation: locations,
+            },
+          });
+          user = await axios({
+            method: 'GET',
+            url: '/api/v1/users/me',
+          });
+          if (user.emergencyActive) {
+            spinner('del');
+            return alert('Your Emergency Alert is already Active ');
+          } else {
+            const emergency = await axios({
+              method: 'GET',
+              url: '/api/v1/emergencies',
+            });
+            emergencyButton.style.animationName = 'scaleDown';
+            emergencyButton.style.animationDuration = '1s';
+            let Map = document.getElementById('map');
+            Map.setAttribute(
+              'data-emergencyid',
+              JSON.stringify(emergency.data.data.data._id)
+            );
+            // console.log(Map);
+            emergencyButton.remove();
+          }
+          name = JSON.parse(
+            document.getElementById('message-container').dataset.username
+          );
+          roomName = JSON.parse(
+            document.getElementById('map').getAttribute('data-emergencyid')
+          );
+          spinner('del');
+          socket.emit('new-user', roomName, name);
+          document.getElementById('blurLayer').remove();
         },
-      });
-      user = await axios({
-        method: 'GET',
-        url: '/api/v1/users/me',
-      });
-      if (user.emergencyActive) {
-        spinner('del');
-        return alert('Your Emergency Alert is already Active ');
-      } else {
-        const emergency = await axios({
-          method: 'GET',
-          url: '/api/v1/emergencies',
-        });
-        emergencyButton.style.animationName = 'scaleDown';
-        emergencyButton.style.animationDuration = '1s';
-        let Map = document.getElementById('map');
-        Map.setAttribute(
-          'data-emergencyid',
-          JSON.stringify(emergency.data.data.data._id)
-        );
-        // console.log(Map);
-        emergencyButton.remove();
-      }
-      name = JSON.parse(
-        document.getElementById('message-container').dataset.username
+        (error) => {
+          // console.log(error);
+          spinner('del');
+          return alert('Please Turn On Your GPS !!!');
+        },
+        {
+          enableHighAccuracy: true,
+        }
       );
-      roomName = JSON.parse(
-        document.getElementById('map').getAttribute('data-emergencyid')
-      );
-      spinner('del');
-      socket.emit('new-user', roomName, name);
-      document.getElementById('blurLayer').remove();
     } catch (err) {
       spinner('del');
       return alert(err.response.data.message);
@@ -247,33 +248,35 @@ if (document.getElementById('map')) displayMap(locations);
 const refreshButton = document.getElementsByClassName('btn-refresh')[0];
 if (refreshButton) {
   refreshButton.addEventListener('click', async (f) => {
-    navigator.geolocation.getCurrentPosition(
-      (data) => {
-        locations[0] = data.coords.longitude;
-        locations[1] = data.coords.latitude;
-        // displayMap(currLocation);
-        // console.log(currLocation);
-      },
-      (error) => {
-        // console.log(error);
-        return alert('Please Turn On Your GPS !!!');
-      },
-      {
-        enableHighAccuracy: true,
-      }
-    );
-    if (locations[0] == null || locations[1] == null) {
-      return alert('Please Provide Your Location');
-    }
-    displayMap(locations);
     try {
-      let res = await axios({
-        method: 'PATCH',
-        url: '/api/v1/users/updateMe',
-        data: {
-          currentLocation: locations,
+      let Location = [];
+      navigator.geolocation.getCurrentPosition(
+        async (data) => {
+          Location[0] = data.coords.longitude;
+          Location[1] = data.coords.latitude;
+          // displayMap(currLocation);
+          // console.log(currLocation);
+          console.log(Location);
+          if (Location[0] === null || Location[1] === null) {
+            return alert('Please Provide Your Location');
+          }
+          displayMap(Location);
+          let res = await axios({
+            method: 'PATCH',
+            url: '/api/v1/users/updateMe',
+            data: {
+              currentLocation: Location,
+            },
+          });
         },
-      });
+        (error) => {
+          // console.log(error);
+          return alert('Please Turn On Your GPS !!!');
+        },
+        {
+          enableHighAccuracy: true,
+        }
+      );
     } catch (err) {
       return alert('Please Login To Continue');
     }
@@ -284,54 +287,50 @@ let helpingLocation = [];
 if (helpButton) {
   helpButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    navigator.geolocation.getCurrentPosition(
-      (data) => {
-        locations[0] = data.coords.longitude;
-        locations[1] = data.coords.latitude;
-        // displayMap(currLocation);
-        // console.log(currLocation);
-      },
-      (error) => {
-        console.log(error);
-        return alert('Please Turn On Your GPS !!!');
-      },
-      {
-        enableHighAccuracy: true,
-      }
-    );
-    // console.log(getMyCurrnetLocation());
-    if (locations[0] == null || locations[1] == null) {
-      return alert('Please Provide Your Location');
-    }
-    const emergencyId = JSON.parse(
-      document.getElementById('map').dataset.emergencyid
-    );
     try {
-      let res = await axios({
-        method: 'GET',
-        url: `/api/v1/emergencies/${emergencyId}`,
-      });
-      helpingLocation = res.data.data.location;
-      // console.log(res.data);
-    } catch (err) {
-      return alert(err.response.data.message);
-    }
+      navigator.geolocation.getCurrentPosition(
+        async (data) => {
+          locations[0] = data.coords.longitude;
+          locations[1] = data.coords.latitude;
+          // displayMap(currLocation);
+          // console.log(currLocation);
+          if (locations[0] == null || locations[1] == null) {
+            return alert('Please Provide Your Location');
+          }
+          const emergencyId = JSON.parse(
+            document.getElementById('map').dataset.emergencyid
+          );
+          console;
 
-    try {
-      let res = await axios({
-        method: 'PATCH',
-        url: '/api/v1/users/updateMe',
-        data: {
-          currentLocation: locations,
+          let res = await axios({
+            method: 'GET',
+            url: `/api/v1/emergencies/${emergencyId}`,
+          });
+          helpingLocation = res.data.data.location;
+          // console.log(res.data);
+          res = await axios({
+            method: 'PATCH',
+            url: '/api/v1/users/updateMe',
+            data: {
+              currentLocation: locations,
+            },
+          });
+          help(helpingLocation, locations);
         },
-      });
+        (error) => {
+          // console.log(error);
+          return alert('Please Turn On Your GPS !!!');
+        },
+        {
+          enableHighAccuracy: true,
+        }
+      );
+      // console.log(getMyCurrnetLocation());
     } catch (err) {
       return alert(err.response.data.message);
     }
-
     // console.log(helpingLocation);
-    // console.log(locations);
-    help(helpingLocation, locations);
+    // console.log(locations)
   });
 }
 

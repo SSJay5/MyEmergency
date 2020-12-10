@@ -20,6 +20,8 @@ var cookieParser = require('cookie-parser');
 
 var compression = require('compression');
 
+var cors = require('cors');
+
 var AppError = require('./utils/appError');
 
 var globalErrorHandler = require('./controllers/errorController');
@@ -43,7 +45,8 @@ app.set('views', path.join(__dirname, 'views')); // 1) GLOBAL MIDDLEWARES
 // Serving static files
 
 app.use(express["static"](path.join(__dirname, 'public'))); // Set security HTTP headers
-// Development logging
+
+app.use(cors()); // Development logging
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
