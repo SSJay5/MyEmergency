@@ -140,7 +140,7 @@ exports.updateMe = catchAsync(function _callee3(req, res, next) {
             break;
           }
 
-          if (!req.user.emergencyActive) {
+          if (!(req.user.emergencyActive && req.body.currentLocation)) {
             _context3.next = 16;
             break;
           }
@@ -170,7 +170,7 @@ exports.updateMe = catchAsync(function _callee3(req, res, next) {
           emergency = _context3.sent;
 
         case 16:
-          filteredBody.currentLocation = turf.point(req.body.currentLocation).geometry; // 3) Update user document
+          if (req.body.currentLocation) filteredBody.currentLocation = turf.point(req.body.currentLocation).geometry; // 3) Update user document
 
           _context3.next = 19;
           return regeneratorRuntime.awrap(User.findByIdAndUpdate(req.user.id, filteredBody, {

@@ -82,7 +82,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   const filteredBody = filterObj(req.body, 'name', 'email');
   if (req.file) filteredBody.photo = req.file.filename;
   if (req.body.currentLocation)
-    if (req.user.emergencyActive) {
+    if (req.user.emergencyActive && req.body.currentLocation) {
       let emergency = await Emergency.findById(req.user.emergency);
 
       if (!emergency) {
@@ -97,7 +97,10 @@ exports.updateMe = catchAsync(async (req, res, next) => {
       });
       // console.log(emergency);
     }
-  filteredBody.currentLocation = turf.point(req.body.currentLocation).geometry;
+  if (req.body.currentLocation)
+    filteredBody.currentLocation = turf.point(
+      req.body.currentLocation
+    ).geometry;
   // 3) Update user document
   const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
     new: true,
