@@ -438,7 +438,8 @@ if (helpButton) {
                       res = _context6.sent;
                       helpingLocation = res.data.data.location; // console.log(res.data);
 
-                      _context6.next = 12;
+                      _context6.prev = 10;
+                      _context6.next = 13;
                       return regeneratorRuntime.awrap((0, _axios["default"])({
                         method: 'PATCH',
                         url: '/api/v1/users/updateMe',
@@ -447,16 +448,26 @@ if (helpButton) {
                         }
                       }));
 
-                    case 12:
+                    case 13:
                       res = _context6.sent;
+                      _context6.next = 20;
+                      break;
+
+                    case 16:
+                      _context6.prev = 16;
+                      _context6.t0 = _context6["catch"](10);
+                      console.log(helpingLocation, locations);
+                      return _context6.abrupt("return", console.log(_context6.t0.response));
+
+                    case 20:
                       (0, _help.help)(helpingLocation, locations);
 
-                    case 14:
+                    case 21:
                     case "end":
                       return _context6.stop();
                   }
                 }
-              });
+              }, null, null, [[10, 16]]);
             }, function (error) {
               // console.log(error);
               return alert('Please Turn On Your GPS !!!');

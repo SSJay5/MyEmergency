@@ -159,7 +159,7 @@ exports.updateMe = catchAsync(function _callee3(req, res, next) {
           return _context3.abrupt("return", next(new AppError('Emergency Alert is Deleted by user', 404)));
 
         case 12:
-          emergency.location = turf.point(req.body.location).geometry;
+          emergency.location = turf.point(req.body.currentLocation).geometry;
           _context3.next = 15;
           return regeneratorRuntime.awrap(Emergency.findByIdAndUpdate(emergency._id, emergency, {
             "new": true,

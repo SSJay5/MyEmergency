@@ -308,13 +308,18 @@ if (helpButton) {
           });
           helpingLocation = res.data.data.location;
           // console.log(res.data);
-          res = await axios({
-            method: 'PATCH',
-            url: '/api/v1/users/updateMe',
-            data: {
-              currentLocation: locations,
-            },
-          });
+          try {
+            res = await axios({
+              method: 'PATCH',
+              url: '/api/v1/users/updateMe',
+              data: {
+                currentLocation: locations,
+              },
+            });
+          } catch (err) {
+            console.log(helpingLocation, locations);
+            return console.log(err.response);
+          }
           help(helpingLocation, locations);
         },
         (error) => {

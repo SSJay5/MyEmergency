@@ -89,7 +89,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
         return next(new AppError('Emergency Alert is Deleted by user', 404));
       }
 
-      emergency.location = turf.point(req.body.location).geometry;
+      emergency.location = turf.point(req.body.currentLocation).geometry;
 
       emergency = await Emergency.findByIdAndUpdate(emergency._id, emergency, {
         new: true,
