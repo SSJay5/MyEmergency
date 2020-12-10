@@ -123,6 +123,10 @@ if (signUpForm) {
       return alert('Enter Username without : in it');
     }
 
+    if (password.length < 8) {
+      return alert('Please Enter Password of Length greater than 7');
+    }
+
     if (password !== passwordConfirm) {
       return alert('Entered Passwords Do not match');
     }
