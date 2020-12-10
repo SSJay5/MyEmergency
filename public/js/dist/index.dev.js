@@ -239,7 +239,8 @@ if (emergencyButton) {
 
                     case 5:
                       (0, _mapbox.displayMap)(locations);
-                      _context2.next = 8;
+                      _context2.prev = 6;
+                      _context2.next = 9;
                       return regeneratorRuntime.awrap((0, _axios["default"])({
                         method: 'PATCH',
                         url: '/api/v1/users/updateMe',
@@ -248,33 +249,33 @@ if (emergencyButton) {
                         }
                       }));
 
-                    case 8:
+                    case 9:
                       res = _context2.sent;
-                      _context2.next = 11;
+                      _context2.next = 12;
                       return regeneratorRuntime.awrap((0, _axios["default"])({
                         method: 'GET',
                         url: '/api/v1/users/me'
                       }));
 
-                    case 11:
+                    case 12:
                       user = _context2.sent;
 
                       if (!user.emergencyActive) {
-                        _context2.next = 17;
+                        _context2.next = 18;
                         break;
                       }
 
                       (0, _sipnner.spinner)('del');
                       return _context2.abrupt("return", alert('Your Emergency Alert is already Active '));
 
-                    case 17:
-                      _context2.next = 19;
+                    case 18:
+                      _context2.next = 20;
                       return regeneratorRuntime.awrap((0, _axios["default"])({
                         method: 'GET',
                         url: '/api/v1/emergencies'
                       }));
 
-                    case 19:
+                    case 20:
                       emergency = _context2.sent;
                       emergencyButton.style.animationName = 'scaleDown';
                       emergencyButton.style.animationDuration = '1s';
@@ -285,19 +286,27 @@ if (emergencyButton) {
 
                       emergencyButton.remove();
 
-                    case 25:
+                    case 26:
                       name = JSON.parse(document.getElementById('message-container').dataset.username);
                       roomName = JSON.parse(document.getElementById('map').getAttribute('data-emergencyid'));
                       (0, _sipnner.spinner)('del');
                       socket.emit('new-user', roomName, name);
                       document.getElementById('blurLayer').remove();
+                      _context2.next = 37;
+                      break;
 
-                    case 30:
+                    case 33:
+                      _context2.prev = 33;
+                      _context2.t0 = _context2["catch"](6);
+                      (0, _sipnner.spinner)('del');
+                      return _context2.abrupt("return", alert(_context2.t0.response.data.message));
+
+                    case 37:
                     case "end":
                       return _context2.stop();
                   }
                 }
-              });
+              }, null, null, [[6, 33]]);
             }, function (error) {
               // console.log(error);
               (0, _sipnner.spinner)('del');

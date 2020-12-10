@@ -188,45 +188,49 @@ if (emergencyButton) {
             return alert('Please Provide Your Location');
           }
           displayMap(locations);
-
-          let res = await axios({
-            method: 'PATCH',
-            url: '/api/v1/users/updateMe',
-            data: {
-              currentLocation: locations,
-            },
-          });
-          user = await axios({
-            method: 'GET',
-            url: '/api/v1/users/me',
-          });
-          if (user.emergencyActive) {
-            spinner('del');
-            return alert('Your Emergency Alert is already Active ');
-          } else {
-            const emergency = await axios({
-              method: 'GET',
-              url: '/api/v1/emergencies',
+          try {
+            let res = await axios({
+              method: 'PATCH',
+              url: '/api/v1/users/updateMe',
+              data: {
+                currentLocation: locations,
+              },
             });
-            emergencyButton.style.animationName = 'scaleDown';
-            emergencyButton.style.animationDuration = '1s';
-            let Map = document.getElementById('map');
-            Map.setAttribute(
-              'data-emergencyid',
-              JSON.stringify(emergency.data.data.data._id)
+            user = await axios({
+              method: 'GET',
+              url: '/api/v1/users/me',
+            });
+            if (user.emergencyActive) {
+              spinner('del');
+              return alert('Your Emergency Alert is already Active ');
+            } else {
+              const emergency = await axios({
+                method: 'GET',
+                url: '/api/v1/emergencies',
+              });
+              emergencyButton.style.animationName = 'scaleDown';
+              emergencyButton.style.animationDuration = '1s';
+              let Map = document.getElementById('map');
+              Map.setAttribute(
+                'data-emergencyid',
+                JSON.stringify(emergency.data.data.data._id)
+              );
+              // console.log(Map);
+              emergencyButton.remove();
+            }
+            name = JSON.parse(
+              document.getElementById('message-container').dataset.username
             );
-            // console.log(Map);
-            emergencyButton.remove();
+            roomName = JSON.parse(
+              document.getElementById('map').getAttribute('data-emergencyid')
+            );
+            spinner('del');
+            socket.emit('new-user', roomName, name);
+            document.getElementById('blurLayer').remove();
+          } catch (err) {
+            spinner('del');
+            return alert(err.response.data.message);
           }
-          name = JSON.parse(
-            document.getElementById('message-container').dataset.username
-          );
-          roomName = JSON.parse(
-            document.getElementById('map').getAttribute('data-emergencyid')
-          );
-          spinner('del');
-          socket.emit('new-user', roomName, name);
-          document.getElementById('blurLayer').remove();
         },
         (error) => {
           // console.log(error);
